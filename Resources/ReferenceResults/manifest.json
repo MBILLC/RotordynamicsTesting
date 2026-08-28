@@ -1,0 +1,514 @@
+[
+  {
+    "name": "BearingAndShafts",
+    "model": "RotorDynamics.TestModels.BearingAndShafts",
+    "variables": [
+      "bearing1.contact",
+      "bearing1.f_imp",
+      "bearing1.q_load",
+      "time"
+    ],
+    "bytes": 186405
+  },
+  {
+    "name": "BearingFaultDemo",
+    "model": "RotorDynamics.Examples.BearingFaultDemo",
+    "variables": [
+      "bearing1.F_imp[1]",
+      "bearing1.F_imp[2]",
+      "bearing1.F_n",
+      "bearing1.F_pulse",
+      "bearing1.F_sd[1]",
+      "bearing1.F_sd[2]",
+      "bearing1.T_imp",
+      "bearing1.contact",
+      "bearing1.f_imp",
+      "bearing1.flange_a.f[1]",
+      "bearing1.flange_a.f[2]",
+      "bearing1.flange_a.r[1]",
+      "bearing1.flange_a.r[2]",
+      "bearing1.flange_b.f[1]",
+      "bearing1.flange_b.f[2]",
+      "bearing1.flange_b.r[1]",
+      "bearing1.flange_b.r[2]",
+      "bearing1.q_load",
+      "bearing1.t_c",
+      "bearing1.tau_drag",
+      "bearing1.v_impact",
+      "housing1.delta_y0",
+      "rotor.flange_a.r[1]",
+      "rotor.flange_a.r[2]",
+      "rotor.flange_a.theta",
+      "rotor.v[1]",
+      "rotor.v[2]",
+      "time"
+    ],
+    "bytes": 4831877
+  },
+  {
+    "name": "BrakeDemo",
+    "model": "RotorDynamics.Examples.BrakeExample.BrakeDemo",
+    "variables": [
+      "omegaSensor.w",
+      "t_stop",
+      "tau_brake",
+      "time"
+    ],
+    "bytes": 15728
+  },
+  {
+    "name": "CantileverGravityDirection",
+    "model": "RotorDynamics.TestModels.CantileverGravityDirection",
+    "variables": [
+      "err_phi[1]",
+      "err_phi[2]",
+      "err_r[1]",
+      "err_r[2]",
+      "phiTip.phi_out[1]",
+      "phiTip.phi_out[2]",
+      "phi_tip_exact[1]",
+      "phi_tip_exact[2]",
+      "rTip.r_out[1]",
+      "rTip.r_out[2]",
+      "r_tip_exact[1]",
+      "r_tip_exact[2]",
+      "time"
+    ],
+    "bytes": 2725
+  },
+  {
+    "name": "CouplingReactionTorque",
+    "model": "RotorDynamics.TestModels.CouplingReactionTorque",
+    "variables": [
+      "coupling.a_ang",
+      "coupling.e_off",
+      "coupling.flange_a.f[1]",
+      "coupling.flange_a.f[2]",
+      "coupling.flange_a.phi[1]",
+      "coupling.flange_a.phi[2]",
+      "coupling.flange_a.r[1]",
+      "coupling.flange_a.r[2]",
+      "coupling.flange_a.t[1]",
+      "coupling.flange_a.t[2]",
+      "coupling.flange_a.tau",
+      "coupling.flange_a.theta",
+      "coupling.flange_b.f[1]",
+      "coupling.flange_b.f[2]",
+      "coupling.flange_b.phi[1]",
+      "coupling.flange_b.phi[2]",
+      "coupling.flange_b.r[1]",
+      "coupling.flange_b.r[2]",
+      "coupling.flange_b.t[1]",
+      "coupling.flange_b.t[2]",
+      "coupling.flange_b.tau",
+      "coupling.flange_b.theta",
+      "omega_run",
+      "time"
+    ],
+    "bytes": 1453520
+  },
+  {
+    "name": "EccentricBrakeCoupling",
+    "model": "RotorDynamics.TestModels.EccentricBrakeCoupling",
+    "variables": [
+      "omegaSensor.w",
+      "omega_coupled",
+      "omega_naive",
+      "t_probe",
+      "time"
+    ],
+    "bytes": 26617
+  },
+  {
+    "name": "HousingAccelerationCheck",
+    "model": "RotorDynamics.TestModels.HousingAccelerationCheck",
+    "variables": [
+      "aSensor.a_out[1]",
+      "aSensor.a_out[2]",
+      "bearing.F_imp[1]",
+      "bearing.F_imp[2]",
+      "bearing.F_n",
+      "bearing.F_sd[1]",
+      "bearing.F_sd[2]",
+      "bearing.T_imp",
+      "bearing.contact",
+      "bearing.f_imp",
+      "bearing.q_load",
+      "bearing.t_c",
+      "bearing.v_impact",
+      "housing.flange.r[1]",
+      "housing.flange.r[2]",
+      "rSensor.r_out[1]",
+      "rSensor.r_out[2]",
+      "time"
+    ],
+    "bytes": 3284252
+  },
+  {
+    "name": "HydrodynamicBearingFriction",
+    "model": "RotorDynamics.TestModels.HydrodynamicBearingFriction",
+    "variables": [
+      "bearing.lossPower",
+      "bearing.support.f[1]",
+      "bearing.support.f[2]",
+      "bearing.tau_fric",
+      "omegaSensor.w",
+      "omega_expected",
+      "t_probe",
+      "time"
+    ],
+    "bytes": 84666
+  },
+  {
+    "name": "HydrodynamicBearingIsotropyCheck",
+    "model": "RotorDynamics.TestModels.HydrodynamicBearingIsotropyCheck",
+    "variables": [
+      "d_isotropic[1]",
+      "d_isotropic[2]",
+      "r2.r_out[1]",
+      "r2.r_out[2]",
+      "r3.r_out[1]",
+      "r3.r_out[2]",
+      "time"
+    ],
+    "bytes": 28811
+  },
+  {
+    "name": "HydrodynamicBearingShortBearing",
+    "model": "RotorDynamics.TestModels.HydrodynamicBearingShortBearing",
+    "variables": [
+      "Cxx_expected",
+      "Cxy_expected",
+      "Cyy_expected",
+      "F_fricSupport_expected[1]",
+      "F_fricSupport_expected[2]",
+      "Kxx_expected",
+      "Kxy_expected",
+      "Kyx_expected",
+      "Kyy_expected",
+      "W_load",
+      "W_load_check",
+      "bearing.Cxx",
+      "bearing.Cxy",
+      "bearing.Cyx",
+      "bearing.Cyy",
+      "bearing.Kxx",
+      "bearing.Kxy",
+      "bearing.Kyx",
+      "bearing.Kyy",
+      "bearing.epsilon",
+      "bearing.support.f[1]",
+      "bearing.support.f[2]",
+      "bearing.tau_fric",
+      "omegaSensor.w",
+      "omega_expected",
+      "t_probe",
+      "tau_fric_expected",
+      "time"
+    ],
+    "bytes": 104785
+  },
+  {
+    "name": "InertialFlexibleShaftCheck",
+    "model": "RotorDynamics.TestModels.InertialFlexibleShaftCheck",
+    "variables": [
+      "int_r2",
+      "rTip.r_out[1]",
+      "rTip.r_out[2]",
+      "time",
+      "u_tip_expected"
+    ],
+    "bytes": 98790
+  },
+  {
+    "name": "InhomogeneousRotorInitModes",
+    "model": "RotorDynamics.TestModels.InhomogeneousRotorInitModes",
+    "variables": [
+      "omega_test",
+      "time",
+      "wRest.w",
+      "wSpeed.w"
+    ],
+    "bytes": 819
+  },
+  {
+    "name": "InhomogeneousRotorWhirl",
+    "model": "RotorDynamics.TestModels.InhomogeneousRotorWhirl",
+    "variables": [
+      "core.r_c[1]",
+      "core.r_c[2]",
+      "omega_run",
+      "rShaft.r_out[1]",
+      "rShaft.r_out[2]",
+      "time"
+    ],
+    "bytes": 266222
+  },
+  {
+    "name": "IshibashiRotorKit",
+    "model": "RotorDynamics.Examples.IshibashiRotorKit",
+    "variables": [
+      "rRotor.r_out[1]",
+      "rRotor.r_out[2]",
+      "rotor.I_d",
+      "rotor.I_p",
+      "rotor.flange_a.phi[1]",
+      "rotor.flange_a.phi[2]",
+      "rotor.flange_a.r[1]",
+      "rotor.flange_a.r[2]",
+      "rotor.flange_b.r[1]",
+      "rotor.flange_b.r[2]",
+      "rotor.m",
+      "time",
+      "wRotor.w"
+    ],
+    "bytes": 702581
+  },
+  {
+    "name": "JeffcottValidation",
+    "model": "RotorDynamics.TestModels.JeffcottValidation",
+    "variables": [
+      "omega_run",
+      "rDisc.r_out[1]",
+      "rDisc.r_out[2]",
+      "rotor.flange_a.theta",
+      "time",
+      "wDisc.w"
+    ],
+    "bytes": 137087
+  },
+  {
+    "name": "MixedAxisGravity",
+    "model": "RotorDynamics.TestModels.MixedAxisGravity",
+    "variables": [
+      "err_horizontal",
+      "err_vertical",
+      "rTipH.r_out[1]",
+      "rTipH.r_out[2]",
+      "rTipV.r_out[1]",
+      "rTipV.r_out[2]",
+      "r_tip_exact_horizontal",
+      "time"
+    ],
+    "bytes": 1688
+  },
+  {
+    "name": "MomentLeverArm",
+    "model": "RotorDynamics.TestModels.MomentLeverArm",
+    "variables": [
+      "M_expected",
+      "bearing1.support.t[1]",
+      "bearing1.support.t[2]",
+      "d_lever",
+      "time"
+    ],
+    "bytes": 1081
+  },
+  {
+    "name": "MultiBodyMountEquivalence",
+    "model": "RotorDynamics.TestModels.MultiBodyMountEquivalence",
+    "variables": [
+      "bearingA.support.f[1]",
+      "bearingA.support.f[2]",
+      "bearingB.support.f[1]",
+      "bearingB.support.f[2]",
+      "d_f[1]",
+      "d_f[2]",
+      "d_r[1]",
+      "d_r[2]",
+      "rTipA.r_out[1]",
+      "rTipA.r_out[2]",
+      "rTipB.r_out[1]",
+      "rTipB.r_out[2]",
+      "time"
+    ],
+    "bytes": 2824
+  },
+  {
+    "name": "MultiBodyMountKinematics",
+    "model": "RotorDynamics.TestModels.MultiBodyMountKinematics",
+    "variables": [
+      "dx",
+      "dy",
+      "err_phi[1]",
+      "err_phi[2]",
+      "err_r[1]",
+      "err_r[2]",
+      "mount.support.phi[1]",
+      "mount.support.phi[2]",
+      "mount.support.r[1]",
+      "mount.support.r[2]",
+      "tilt_x",
+      "time"
+    ],
+    "bytes": 2461
+  },
+  {
+    "name": "MultiBodyMountReaction",
+    "model": "RotorDynamics.TestModels.MultiBodyMountReaction",
+    "variables": [
+      "bearingA.support.f[1]",
+      "bearingA.support.f[2]",
+      "bearingA.support.r[1]",
+      "bearingA.support.r[2]",
+      "bearingB.support.f[1]",
+      "bearingB.support.f[2]",
+      "bearingB.support.r[1]",
+      "bearingB.support.r[2]",
+      "d_r[1]",
+      "d_r[2]",
+      "d_rigid",
+      "d_sup",
+      "rTipA.r_out[1]",
+      "rTipA.r_out[2]",
+      "rTipB.r_out[1]",
+      "rTipB.r_out[2]",
+      "time"
+    ],
+    "bytes": 15747
+  },
+  {
+    "name": "NonlinearImplicit_DynamicCustomFunction",
+    "model": "TestModels.NonlinearStatic.NonlinearImplicit",
+    "variables": [
+      "time",
+      "x",
+      "y"
+    ],
+    "bytes": 579
+  },
+  {
+    "name": "NonlinearImplicit_SteadyStateCustomFunction",
+    "model": "TestModels.NonlinearStatic.NonlinearImplicit",
+    "variables": [
+      "time",
+      "x",
+      "y"
+    ],
+    "bytes": 570
+  },
+  {
+    "name": "PlainBearingFriction",
+    "model": "RotorDynamics.TestModels.PlainBearingFriction",
+    "variables": [
+      "bearing.support.f[1]",
+      "bearing.support.f[2]",
+      "bearing.tau_fric",
+      "omegaSensor.w",
+      "omega_expected",
+      "t_probe",
+      "tau_fric_exact",
+      "time"
+    ],
+    "bytes": 14783
+  },
+  {
+    "name": "RollerBearingFriction",
+    "model": "RotorDynamics.TestModels.RollerBearingFriction",
+    "variables": [
+      "bearing.support.f[1]",
+      "bearing.support.f[2]",
+      "bearing.tau_fric",
+      "omegaSensor.w",
+      "omega_expected",
+      "t_probe",
+      "tau_fric_exact",
+      "time"
+    ],
+    "bytes": 29486
+  },
+  {
+    "name": "RotorInitModes",
+    "model": "RotorDynamics.TestModels.RotorInitModes",
+    "variables": [
+      "omega_test",
+      "time",
+      "wRest.w",
+      "wSpeed.w"
+    ],
+    "bytes": 819
+  },
+  {
+    "name": "TorsionShaftBending",
+    "model": "RotorDynamics.TestModels.TorsionShaftBending",
+    "variables": [
+      "phiTip.phi_out[1]",
+      "phiTip.phi_out[2]",
+      "phi_tip_exact",
+      "rTip.r_out[1]",
+      "rTip.r_out[2]",
+      "r_tip_exact",
+      "time"
+    ],
+    "bytes": 1463
+  },
+  {
+    "name": "TorsionalOscillation",
+    "model": "RotorDynamics.TestModels.TorsionalOscillation",
+    "variables": [
+      "I_p",
+      "c_t",
+      "d_t",
+      "disc.flange_a.theta",
+      "disc2.flange_a.theta",
+      "omega_t",
+      "tau_step",
+      "time",
+      "zeta_t"
+    ],
+    "bytes": 213100
+  },
+  {
+    "name": "VerticalHousingReaction",
+    "model": "RotorDynamics.TestModels.VerticalHousingReaction",
+    "variables": [
+      "F_expected",
+      "bearingB.axialFlange_a.f",
+      "d_F",
+      "thrust.axialFlange.f",
+      "time"
+    ],
+    "bytes": 1074
+  },
+  {
+    "name": "VerticalShaftNoSag",
+    "model": "RotorDynamics.TestModels.VerticalShaftNoSag",
+    "variables": [
+      "phiTip.phi_out[1]",
+      "phiTip.phi_out[2]",
+      "rTip.r_out[1]",
+      "rTip.r_out[2]",
+      "r_tip_horizontal",
+      "time"
+    ],
+    "bytes": 1271
+  },
+  {
+    "name": "VerticalShaftThrustPath",
+    "model": "RotorDynamics.TestModels.VerticalShaftThrustPath",
+    "variables": [
+      "F_expected",
+      "rotor.axialFlange_a.f",
+      "rotor.axialFlange_b.f",
+      "rotor.r_c[1]",
+      "rotor.r_c[2]",
+      "shaft.axialFlange_a.f",
+      "shaft.axialFlange_b.f",
+      "shaft.flange_b.r[1]",
+      "shaft.flange_b.r[2]",
+      "thrust.axialFlange.f",
+      "time"
+    ],
+    "bytes": 2378
+  },
+  {
+    "name": "VerticalThrustChain",
+    "model": "RotorDynamics.TestModels.VerticalThrustChain",
+    "variables": [
+      "F_expected",
+      "mount.axialFlange.f",
+      "time"
+    ],
+    "bytes": 659
+  }
+]
