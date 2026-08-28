@@ -1,0 +1,45 @@
+# Regression cases for the TestModels library's own steady-state examples --
+# see HOWTO.md section 3 for the case 1/2/3 steady-state taxonomy this pair
+# demonstrates. TestModels is a separate top-level Modelica library from
+# RotorDynamics (its own package.mo at the ModCheck project
+# root) -- it gets its own case-list file rather than sharing
+# regression_cases.yaml's `library:` scope; `--all-configs` merges it with
+# the main suite when wanted (connect() purges FMUs for every distinct
+# library across merged files, so this composes safely with the main file).
+library: TestModels
+workspace: rotordynamicsdevelopment
+custom_function: dynamic
+tolerance: 0.001
+
+cases:
+  - name: NonlinearImplicit_DynamicCustomFunction
+    # Case 1: a structurally state-less model (x*y=4, x-sin(y)=1 -- pure
+    # algebraic equations, no der(...) anywhere) run through the ordinary
+    # "dynamic" custom function. Confirmed live: every variable comes back
+    # constant across the whole time grid; is_steady_state() classifies each
+    # one as steady_state automatically -- this case needs nothing the
+    # harness didn't already have, hence ncp=2 (nothing to resolve over
+    # time -- see the regression-testing skill's endpoint/steady-state ncp
+    # tier).
+    enabled: true
+    model: TestModels.NonlinearStatic.NonlinearImplicit
+    start_time: 0.0
+    final_time: 1.0
+    ncp: 2
+    rtol: 1.0e-6
+    modifiers: {}
+    variables: [time, x, y]
+
+  - name: NonlinearImplicit_SteadyStateCustomFunction
+    # Case 2: the same model, solved directly by Impact's own "steady state"
+    # custom function -- no start_time/final_time/ncp/rtol (that custom
+    # function takes none of those -- see run_regression()'s check_mode
+    # docstring / _run_steady_state_case()). get_trajectories() comes back
+    # with every variable, including "time", as a length-1 array (the
+    # converged operating point); check_mode is forced "steady_state" for
+    # every variable in a case like this one, unconditionally.
+    enabled: true
+    custom_function: steady state
+    model: TestModels.NonlinearStatic.NonlinearImplicit
+    modifiers: {}
+    variables: [time, x, y]

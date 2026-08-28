@@ -1,0 +1,77 @@
+{
+  "version" : "2",
+  "id" : "9f7be7ea-f406-4d80-b4ca-795cac30ab47",
+  "experiment" : {
+    "base" : {
+      "analysis" : {
+        "variableFilters" : [ ],
+        "selectedType" : "steady state",
+        "choices" : [ {
+          "type" : "dynamic",
+          "parameters" : {
+            "startTime" : 0,
+            "stopTime" : 1
+          },
+          "simulationOptions" : {
+            "dynamic_diagnostics" : false,
+            "ncp" : 500
+          },
+          "solverOptions" : {
+            "store_event_points" : true
+          },
+          "compilerOptions" : {
+            "generate_html_diagnostics" : false,
+            "include_protected_variables" : false
+          },
+          "runtimeOptions" : { }
+        }, {
+          "type" : "steady state",
+          "parameters" : { },
+          "simulationOptions" : { },
+          "solverOptions" : {
+            "jacobian_calculation_mode" : 9,
+            "max_iter_no_jacobian" : 1,
+            "residual_equation_scaling" : 5,
+            "step_limit_factor" : 1,
+            "tolerance" : 1.0E-5
+          },
+          "compilerOptions" : {
+            "automatic_tearing" : true,
+            "divide_by_vars_in_tearing" : true,
+            "equation_sorting" : true,
+            "expose_scalar_equation_blocks_in_interactive_fmu" : true,
+            "generate_html_diagnostics" : false,
+            "hand_guided_tearing" : true,
+            "include_protected_variables" : false,
+            "index_reduction" : false,
+            "interactive_fmu" : true,
+            "local_iteration_in_tearing" : "annotation",
+            "merge_blt_blocks" : true,
+            "variability_propagation" : false
+          },
+          "runtimeOptions" : { }
+        } ],
+        "expansion" : {
+          "discreteAlgorithm" : {
+            "noOfSamples" : 0,
+            "seed" : 0
+          },
+          "continuousAlgorithm" : {
+            "type" : "SOBOL",
+            "noOfSamples" : 10,
+            "seed" : 0
+          }
+        }
+      },
+      "modifiers" : {
+        "initializeFrom" : "",
+        "variables" : [ ]
+      }
+    }
+  },
+  "metadata" : {
+    "created" : "2026-08-18 02:40:51.469886264",
+    "lastModified" : "2026-08-18T02:43:33.683282480Z",
+    "name" : "Experiment 1"
+  }
+}

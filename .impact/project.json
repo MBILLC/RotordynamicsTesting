@@ -1,0 +1,53 @@
+{
+  "name": "RotordynamicsTesting",
+  "format": "1.0.0",
+  "dependencies": [
+    {
+      "name": "Modelica",
+      "versionSpecifier": "4.1.0"
+    },
+    {
+      "name": "Modelon",
+      "versionSpecifier": "7.0.0+build.30"
+    }
+  ],
+  "content": [
+    {
+      "relpath": "Resources/Views",
+      "contentType": "VIEWS",
+      "defaultDisabled": false,
+      "id": "460ab4b64e504dcf9630d201dfe773a0"
+    },
+    {
+      "relpath": "Resources/Favorites",
+      "contentType": "FAVORITES",
+      "defaultDisabled": false,
+      "id": "1c46ca373e12483a8545f2c9571e8a07"
+    },
+    {
+      "relpath": "Resources/CustomFunctions",
+      "contentType": "CUSTOM_FUNCTIONS",
+      "defaultDisabled": false,
+      "id": "b362a5e55c954ab6a0fe53c20fbd0785"
+    },
+    {
+      "relpath": "Resources/Custom",
+      "contentType": "GENERIC",
+      "defaultDisabled": false,
+      "id": "c62f0d007dd84c7fa4583533a30ee67c"
+    },
+    {
+      "relpath": "ReferenceResults",
+      "contentType": "REFERENCE_RESULTS",
+      "defaultDisabled": false,
+      "id": "6de9bb41af99466eb29a5ca0271ae2f7"
+    },
+    {
+      "relpath": "Resources/ExperimentDefinitions",
+      "contentType": "EXPERIMENT_DEFINITIONS",
+      "defaultDisabled": false,
+      "id": "d6dad588617d49e085aa68a022fb3f34"
+    }
+  ],
+  "executionOptions": []
+}
