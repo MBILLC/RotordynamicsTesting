@@ -1,9 +1,12 @@
 **/*.ipynb_checkpoints/
 
-# Generated regression-report output (batch notebooks + raw funnel-comparison
-# CSV trace data) -- reproducible from a regression run via ModCheck's
-# regression_testing.py, not a stored baseline. Mirrors ModCheck's own
-# .gitignore for the same kind of content (HtmlReports/InteractiveReports/
-# NotebookReports/). Testing/Resources/ReferenceResults/ IS the stored
+# Generated regression-report output, all three --report-format renderers
+# (batch notebooks / static HTML / interactive HTML, each with its own raw
+# funnel-comparison CSV trace data) -- reproducible from a regression run via
+# ModCheck's regression_testing.py, not a stored baseline. Mirrors ModCheck's
+# own .gitignore for the same content. Restore any of them with
+# restore_reports.py; Testing/Resources/ReferenceResults/ IS the stored
 # baseline and stays tracked.
 Testing/Resources/Notebooks/
+Testing/Resources/HtmlReports/
+Testing/Resources/InteractiveReports/
