@@ -1,25 +1,21 @@
 #!/usr/bin/env python3
 """
-Regenerate a visual regression report (Notebooks/, HtmlReports/, or
-InteractiveReports/) from the committed ReferenceResults/ baselines, if it
-doesn't already exist on disk.
+Thin wrapper around ModCheck's restore_reports.py, pre-filled for this
+project's own regression_cases.yaml and report directory names.
 
-All three report formats are gitignored -- they're reproducible report
-output (executed notebooks / static HTML / interactive HTML, each with its
-own raw funnel-comparison trace data), not stored data, so a fresh clone of
-this repo won't have them. This re-simulates every case in
-regression_cases.yaml through ModCheck's harness and rebuilds the requested
-report by comparing against ReferenceResults/, which IS committed here -- so
-this only needs Modelon Impact access, nothing else to restore first. See
-ModCheck's own HOWTO.md ("Restoring one after a fresh clone...") for the
-underlying pattern this script wraps.
+The actual restore logic lives in ModCheck -- a separate, generic, sibling
+project (https://github.com/hubertus65/ModCheck) -- see its restore_reports.py
+and HOWTO.md ("Restoring one after a fresh clone..."). This wrapper exists
+only so `python3 restore_reports.py notebook` works from here without typing
+--config/--html-report-dir every time, and applies this project's own
+"Notebooks" naming (not ModCheck's own default "NotebookReports") to match
+the main RotorDynamics project's Resources/Notebooks/ convention.
 
-Usage:
-    python3 restore_reports.py notebook                 # skip if already exists
-    python3 restore_reports.py html --force              # regenerate even if it exists
+Usage: same as ModCheck's restore_reports.py --
+    python3 restore_reports.py notebook
+    python3 restore_reports.py html --force
     python3 restore_reports.py html-interactive
-    python3 restore_reports.py --all                     # all three formats
-    python3 restore_reports.py notebook --harness PATH   # explicit path to regression_testing.py
+    python3 restore_reports.py --all
 """
 from __future__ import annotations
 
@@ -31,60 +27,48 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent  # .../Rotordynamicsdevelopment/Testing/Resources
 CONFIG = HERE / "regression_cases.yaml"
 
-# format -> (output dir, marker file that means "already generated")
-REPORT_DIRS = {
-    "notebook": (HERE / "Notebooks", "index.ipynb"),
-    "html": (HERE / "HtmlReports", "index.html"),
-    "html-interactive": (HERE / "InteractiveReports", "index.html"),
-}
+# ModCheck is a sibling project (separate repo) holding the actual harness
+# and the generic restore_reports.py this wraps. Default assumes the usual
+# sibling layout (local_projects/ModCheck next to this repo's own
+# local_projects/<...> checkout); pass --modcheck-restore if yours differs.
+DEFAULT_MODCHECK_RESTORE = (HERE.parent.parent.parent / "ModCheck" / "ModCheck"
+                            / "Resources" / "restore_reports.py")
 
-# ModCheck is a sibling project (separate repo), not part of this one -- see
-# its own HOWTO.md for what regression_testing.py needs. Default assumes the
-# usual sibling layout (local_projects/ModCheck next to this repo's own
-# local_projects/<...> checkout); pass --harness if yours differs.
-DEFAULT_HARNESS = (HERE.parent.parent.parent / "ModCheck" / "ModCheck" / "Resources"
-                   / "regression_testing.py")
-
-
-def restore(fmt: str, harness: Path, force: bool) -> int:
-    out_dir, marker = REPORT_DIRS[fmt]
-    index = out_dir / marker
-    if index.exists() and not force:
-        print(f"{index} already exists -- nothing to do (pass --force to regenerate).")
-        return 0
-
-    if not harness.exists():
-        sys.exit(f"Harness not found at {harness} -- clone ModCheck as a sibling "
-                  f"project (https://github.com/hubertus65/ModCheck), or pass "
-                  f"--harness /path/to/regression_testing.py.")
-
-    cmd = [sys.executable, str(harness),
-           "--config", str(CONFIG),
-           "--report-format", fmt,
-           "--html-report-dir", str(out_dir)]
-    print(f"Restoring {out_dir} from {CONFIG.name}'s ReferenceResults/ ...")
-    print(" ", " ".join(cmd))
-    return subprocess.run(cmd).returncode
+# This project names its notebook report dir "Notebooks", not ModCheck's own
+# default "NotebookReports".
+OUTPUT_DIR_NAME = {"notebook": "Notebooks", "html": "HtmlReports",
+                    "html-interactive": "InteractiveReports"}
 
 
 def main() -> int:
     p = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("format", nargs="?", choices=sorted(REPORT_DIRS),
+    p.add_argument("format", nargs="?", choices=sorted(OUTPUT_DIR_NAME),
                     help="which report to restore (omit and pass --all for all three)")
     p.add_argument("--all", action="store_true", help="restore all three report formats")
     p.add_argument("--force", action="store_true",
                     help="regenerate even if the report already exists")
-    p.add_argument("--harness", type=Path, default=DEFAULT_HARNESS,
-                    help=f"path to ModCheck's regression_testing.py (default: {DEFAULT_HARNESS})")
+    p.add_argument("--modcheck-restore", type=Path, default=DEFAULT_MODCHECK_RESTORE,
+                    help=f"path to ModCheck's restore_reports.py "
+                         f"(default: {DEFAULT_MODCHECK_RESTORE})")
     args = p.parse_args()
 
     if not args.all and args.format is None:
         p.error("specify a format (notebook|html|html-interactive) or --all")
 
+    if not args.modcheck_restore.exists():
+        sys.exit(f"ModCheck not found at {args.modcheck_restore} -- clone it as a "
+                  f"sibling project (https://github.com/hubertus65/ModCheck), or "
+                  f"pass --modcheck-restore /path/to/restore_reports.py.")
+
     rc = 0
-    for fmt in (list(REPORT_DIRS) if args.all else [args.format]):
-        rc = restore(fmt, args.harness, args.force) or rc
+    for fmt in (list(OUTPUT_DIR_NAME) if args.all else [args.format]):
+        cmd = [sys.executable, str(args.modcheck_restore), fmt,
+               "--config", str(CONFIG),
+               "--html-report-dir", str(HERE / OUTPUT_DIR_NAME[fmt])]
+        if args.force:
+            cmd.append("--force")
+        rc = subprocess.run(cmd).returncode or rc
     return rc
 
 
