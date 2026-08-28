@@ -22,7 +22,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parent  # .../Rotordynamicsdevelopment/Resources
+HERE = Path(__file__).resolve().parent  # .../Rotordynamicsdevelopment/Testing/Resources
 CONFIG = HERE / "regression_cases.yaml"
 NOTEBOOKS_DIR = HERE / "Notebooks"
 INDEX_NB = NOTEBOOKS_DIR / "index.ipynb"
@@ -31,7 +31,7 @@ INDEX_NB = NOTEBOOKS_DIR / "index.ipynb"
 # its own HOWTO.md for what regression_testing.py needs. Default assumes the
 # usual sibling layout (local_projects/ModCheck next to this repo's own
 # local_projects/<...> checkout); pass --harness if yours differs.
-DEFAULT_HARNESS = (HERE.parent.parent / "ModCheck" / "ModCheck" / "Resources"
+DEFAULT_HARNESS = (HERE.parent.parent.parent / "ModCheck" / "ModCheck" / "Resources"
                    / "regression_testing.py")
 
 

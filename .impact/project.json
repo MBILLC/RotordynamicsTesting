@@ -19,7 +19,7 @@
       "id": "460ab4b64e504dcf9630d201dfe773a0"
     },
     {
-      "relpath": "Resources/Favorites",
+      "relpath": "Testing/Resources/Favorites",
       "contentType": "FAVORITES",
       "defaultDisabled": false,
       "id": "1c46ca373e12483a8545f2c9571e8a07"
@@ -43,10 +43,17 @@
       "id": "6de9bb41af99466eb29a5ca0271ae2f7"
     },
     {
-      "relpath": "Resources/ExperimentDefinitions",
+      "relpath": "Testing/Resources/ExperimentDefinitions",
       "contentType": "EXPERIMENT_DEFINITIONS",
       "defaultDisabled": false,
       "id": "d6dad588617d49e085aa68a022fb3f34"
+    },
+    {
+      "relpath": "Testing",
+      "contentType": "MODELICA",
+      "name": "Testing",
+      "defaultDisabled": false,
+      "id": "08902ae8325945069a27bcf669cc9916"
     }
   ],
   "executionOptions": []

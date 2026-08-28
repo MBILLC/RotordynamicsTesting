@@ -4,6 +4,6 @@
 # CSV trace data) -- reproducible from a regression run via ModCheck's
 # regression_testing.py, not a stored baseline. Mirrors ModCheck's own
 # .gitignore for the same kind of content (HtmlReports/InteractiveReports/
-# NotebookReports/). Resources/ReferenceResults/ IS the stored baseline and
-# stays tracked.
-Resources/Notebooks/
+# NotebookReports/). Testing/Resources/ReferenceResults/ IS the stored
+# baseline and stays tracked.
+Testing/Resources/Notebooks/
