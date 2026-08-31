@@ -857,6 +857,20 @@
     "bytes": 1337947
   },
   {
+    "name": "VerticalHousingAxialModeCheck",
+    "model": "RotorDynamics.TestModels.VerticalHousingAxialModeCheck",
+    "variables": [
+      "c_z",
+      "c_za",
+      "f_n_target",
+      "housing.axialFlange.s",
+      "s_inf",
+      "time",
+      "x_ring"
+    ],
+    "bytes": 38515
+  },
+  {
     "name": "VerticalHousingReaction",
     "model": "RotorDynamics.TestModels.VerticalHousingReaction",
     "variables": [

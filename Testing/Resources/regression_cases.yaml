@@ -771,6 +771,22 @@ cases:
     variables: [time, bearing1.s_mid, bearing2.s_mid, gearMesh.F_ax1, f_n1, f_n2,
                 c_series, axialMass1.m_total, axialMass2.m_total]
 
+  # ---- Axial inertia 4.5: VerticalHousing's own axial pedestal mass (m_eff_z), and the
+  # DivideByZero it fixes (a locating bearing's c_za and this component's c_z meeting at a
+  # massless node, d_z = 0). Deliberately undamped -- see the model's own documentation for
+  # why c_za does not appear in the closed form.
+  - name: VerticalHousingAxialModeCheck
+    enabled: true
+    model: RotorDynamics.TestModels.VerticalHousingAxialModeCheck
+    start_time: 0.0
+    # 389.8 Hz mode; 2000 points over 0.1 s is 20 kHz, ~51 samples per cycle -- tier 4
+    # (smooth continuous response), at the 50/period floor given how short the run is.
+    final_time: 0.1
+    ncp: 2000
+    rtol: 1.0e-9
+    modifiers: {}
+    variables: [time, x_ring, housing.axialFlange.s, f_n_target, s_inf, c_z, c_za]
+
 # ---------------------------------------------------------------------------------------
 # Ramped excitation (RampUpInitializationPlan.md Phases B-E). Added 2026-08-31.
 #
