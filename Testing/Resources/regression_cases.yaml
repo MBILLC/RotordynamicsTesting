@@ -766,3 +766,101 @@ cases:
     modifiers: {}
     variables: [time, bearing1.s_mid, bearing2.s_mid, gearMesh.F_ax1, f_n1, f_n2,
                 c_series, axialMass1.m_total, axialMass2.m_total]
+
+# ---------------------------------------------------------------------------------------
+# Ramped excitation (RampUpInitializationPlan.md Phases B-E). Added 2026-08-31.
+#
+# Every case sets a NON-ZERO t_ramp on purpose. At t_ramp = 0 each of these models reduces
+# to one the suite already covers (or to the unramped rig it extends), so the ramp itself
+# would go unchecked -- the value of the case is the ramped path.
+#
+# rtol here follows the rule GearMeshRatioCheck established above: set the case's rtol two
+# decades TIGHTER than the tolerance the model actually needs (its own experiment(...)
+# annotation, or whatever the report found it needed), so that run_regression()'s 100x
+# loosening lands exactly on that requirement rather than two decades below it.
+# ---------------------------------------------------------------------------------------
+
+  # ---- Phase B: rampFactor in a radial force source ----
+  - name: RampedSpringLoadCheck
+    enabled: true
+    model: RotorDynamics.TestModels.RampedSpringLoadCheck
+    start_time: 0.0
+    final_time: 0.05
+    ncp: 5000
+    # Model annotation asks for 1e-7; 1e-9 here so the 100x-loosened run lands on it.
+    rtol: 1.0e-9
+    # 0.01 s is the middle of the report's own sweep (0, 0.002, 0.01, 0.02): long enough
+    # that the 13.3 kN preload arrives smoothly rather than as a step, short enough that
+    # the ramp completes well inside the 0.05 s run.
+    modifiers:
+      t_ramp: 0.01
+    # springLoad.F_applied IS the feature -- the ramped force itself, a large well-scaled
+    # quantity, not a difference of two larger ones. rSensor.r_out is preferred over
+    # aSensor.a_out as the primary response for the same reason: displacement is the
+    # integrated, better-conditioned signal, and the acceleration is kept only because the
+    # transient this ramp exists to suppress is an acceleration.
+    variables: [time, "springLoad.F_applied*", "rSensor.r_out*", "aSensor.a_out*"]
+
+  # ---- Phase C: rampFactor in Rotor's own static unbalance, at resonance ----
+  - name: RampedEccentricRotorCheck
+    enabled: true
+    model: RotorDynamics.TestModels.RampedEccentricRotorCheck
+    start_time: 0.0
+    # 3 s at rho = 1 is ~75 whirl cycles; 6000 points is ~80 per cycle, comfortably inside
+    # tier 4's 50-100/period rule for a smooth continuous response.
+    final_time: 3.0
+    ncp: 6000
+    rtol: 1.0e-9
+    # t_ramp = 1 s with rho = 1: unbalance ramped in over the first third of the run, at
+    # resonance, which is also this library's only exercise of Rotor.initMode = SteadySpeed
+    # together with a ramp.
+    modifiers:
+      t_ramp: 1.0
+      rho: 1.0
+    variables: [time, "rDisc.r_out*", t_ramp, e_unb, zeta, omega_n]
+
+  # ---- Phase D: a ramped fault on a housing, from a steady-state-ish start ----
+  - name: RampedFaultInitCheck
+    enabled: true
+    model: RotorDynamics.TestModels.RampedFaultInitCheck
+    start_time: 0.0
+    # Tier 3: the bearing's Hertz contact pulses are microseconds wide, and the same >=10
+    # stored points per pulse rule that sizes HousingAccelerationCheck applies here.
+    final_time: 0.05
+    ncp: 50000
+    rtol: 1.0e-9
+    # initSteadyState stays FALSE. RampedFaultInitCheckConvergenceIssue.md records an
+    # unresolved failure with every component at steady-state init; that is an open
+    # modelling question, and a regression case is the wrong place to pin it down -- it
+    # would either fail for a known reason or freeze a trajectory nobody has validated.
+    modifiers:
+      t_ramp: 0.01
+      initSteadyState: false
+    # Impulsive acceleration on a near-zero baseline: same treatment as
+    # HousingAccelerationCheck, and PROVISIONAL for the same reason -- re-verify against
+    # this case's own stored reference.
+    tolerance: 0.03
+    integral_abs_variables: ["aSensor.a_out*"]
+    integral_tolerance: 0.03
+    variables: [time, "aSensor.a_out*", bearing.f_imp, bearing.contact, bearing.F_n,
+                bearing.t_c, "bearing.F_imp*", "bearing.F_sd*"]
+
+  # ---- Phase E: the ramp on the full four-bearing IMS rig ----
+  - name: RampedIMSBearingTestRigCheck
+    enabled: true
+    model: RotorDynamics.TestModels.RampedIMSBearingTestRigCheck
+    start_time: 0.0
+    final_time: 0.05
+    ncp: 5000
+    # The report runs this rig at 1e-6 -- it is the most expensive model in the library.
+    # 1e-8 here so the 100x-loosened regression run lands on that 1e-6 rather than on 1e-4,
+    # which would compare two genuinely different solutions.
+    rtol: 1.0e-8
+    # 0.02 s is ~65 shaft revolutions at the rig's 2000 rpm, and cuts the peak housing
+    # acceleration transient by two orders of magnitude versus the instant-on default.
+    modifiers:
+      t_ramp: 0.02
+    tolerance: 0.03
+    integral_abs_variables: ["aHousing2.a_out*"]
+    integral_tolerance: 0.03
+    variables: [time, "aHousing2.a_out*"]
