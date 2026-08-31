@@ -460,3 +460,309 @@ cases:
     rtol: 1.0e-9
     modifiers: {}
     variables: [time, int_r2, u_tip_expected, "rTip.r_out*"]
+
+# ---------------------------------------------------------------------------------------
+# Gear meshing (GearMeshPlan.md Phases A-E), locating bearings (Phase F) and axial inertia
+# (AxialInertiaPlan.md). Added 2026-08-31.
+#
+# POLICY, for future work as much as for these: every model added under
+# RotorDynamics/TestModels or RotorDynamics/Examples gets a case here as part of the same
+# change that adds it. A model verified once in the credibility report is verified against
+# the physics; a case here is what keeps it verified against the NEXT edit. The two are not
+# substitutes -- the report re-derives closed forms, this file freezes trajectories.
+#
+# Each case below is sized from the model's own experiment(...) annotation, reduced in ncp
+# where that annotation's grid exists for closed-form/FFT work the funnel comparison does not
+# need (regression-testing skill section 2). `variables:` is lifted from the matching
+# verify_* filter list in rotordynamics_validation.py.
+#
+# NO err_* VARIABLES, deliberately. The report's models expose `err_<quantity>` diagnostics --
+# simulated minus closed form, relative -- whose value is ~1e-11, i.e. a numerical zero. A
+# regression check on one of those asks "does this zero reproduce to within 0.1% of zero";
+# the harness floors the band at 1e-9 absolute, so any solver difference at all fails it.
+# Measured on GearMeshRatioCheck: err_delta/err_tau1/err_omega2 were the last three failures
+# after everything else passed. They carry no information the raw quantities in the same case
+# do not carry better, and checking a model against its own closed form is the REPORT's job.
+# Residual variables that are STRUCTURALLY exact zeros (F_float, F_residual, F_axialResidual,
+# F_weightResidual) are kept -- an exact zero reproduces as an exact zero.
+#
+# TOLERANCES BELOW ARE PROVISIONAL on every case except GearMeshRatioCheck, which is the only
+# one whose reference has been stored and re-run so far. Expect the excitation-heavy cases
+# (GearMeshExcitationCheck, GearboxToothFaultDemo, TwoStageGearboxDemo,
+# GearMeshRippleTorqueCheck, AngularContactFaultFrequencyCheck) to need empirical tuning
+# against their own stored references at rtol_factor 100 -- see HousingAccelerationCheck
+# above for what that treatment looks like on an impulsive signal.
+# ---------------------------------------------------------------------------------------
+
+  # ---- GearMesh Phase A: closed-form load path ----
+  - name: GearMeshRatioCheck
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshRatioCheck
+    start_time: 0.0
+    # No excitation at all (stiffnessVariation = Constant, every transmission-error amplitude
+    # zero) and both axes rigidly pinned: a smooth ramp to a settled load path, so a quarter
+    # of the annotation's grid resolves everything the comparison sees.
+    final_time: 0.2
+    ncp: 2000
+    # rtol is 1e-10, two decades tighter than the model's own experiment annotation, so that
+    # run_regression()'s 100x-looser re-simulation still lands at the 1e-8 this model actually
+    # needs. That is not padding: gearMesh.delta is a CANCELLATION of two large rotating
+    # terms (r_b1*theta1 + r_b2*theta2, each ~0.75 m at t = 0.2 s) whose difference is 4.4
+    # MICRONS, so its accuracy is set by the ABSOLUTE error in the shaft angles, not by any
+    # relative tolerance on delta itself. Every force in this case is proportional to delta,
+    # so they all inherit it. Measured: at rtol 1e-6 the settled forces are 0.33% off and
+    # nine checks fail; at 1e-8 every check is exactly 0.0. Loosening `tolerance` instead
+    # would have hidden a real solver requirement behind a wider band.
+    rtol: 1.0e-10
+    modifiers: {}
+    variables: [time, tau_load, omega1, gearMesh.z1, gearMesh.z2, gearMesh.m_n,
+                gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.m_t,
+                gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2,
+                gearMesh.a_centre, gearMesh.eps_alpha, gearMesh.k_mesh,
+                gearMesh.c_mesh_used, gearMesh.i_ratio, gearMesh.delta,
+                gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_sep,
+                gearMesh.tau_1, gearMesh.tau_2, gear1.omega, gear2.omega]
+
+  # ---- GearMesh Phase C: helical thrust, sign and overturning moment ----
+  - name: GearMeshHelicalThrustCheck
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshHelicalThrustCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.0e-8
+    modifiers: {}
+    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n,
+                gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t,
+                gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2,
+                gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma,
+                gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1,
+                "gearMesh.M_1*", "gearMesh.M_2*",
+                thrust1.axialFlange.f, thrust2.axialFlange.f]
+
+  # ---- GearMesh Phase B: the mesh as the model's only excitation source ----
+  - name: GearMeshExcitationCheck
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshExcitationCheck
+    start_time: 0.0
+    # The model's own annotation grid is kept here, not reduced: this rig exists to carry a
+    # tooth-mesh-frequency oscillation (500 Hz at 1500 rpm with z1 = 20) plus the housing
+    # ringing it drives, and thinning that is the one thing that would make the stored
+    # trajectory a different signal rather than the same one at lower density.
+    final_time: 0.3
+    ncp: 15000
+    rtol: 1.0e-7
+    tolerance: 0.01
+    modifiers: {}
+    variables: [time, gearMesh.z1, gearMesh.z2, gearMesh.k_mesh, gearMesh.k_t,
+                gearMesh.eps_alpha, gearMesh.duty, gearMesh.delta, gearMesh.F_loa,
+                gearMesh.f_mesh, gearMesh.e_ste, gearMesh.env1, gearMesh.inContact,
+                gear1.flange_a.theta, gear1.omega, gear2.omega, "housingA_acc.a_out*"]
+
+  # ---- GearMesh: a spalled tooth and an eccentric wheel on the same rig ----
+  - name: GearboxToothFaultDemo
+    enabled: true
+    model: RotorDynamics.Examples.GearboxToothFaultDemo
+    start_time: 0.0
+    # Extends GearMeshExcitationCheck, so the same span and grid: 0.3 s is 7.5 shaft
+    # revolutions at 1500 rpm, several passes of the once-per-revolution tooth fault, which
+    # is what a regression needs. The report runs the same model out to 0.7 s because ITS
+    # question is a sideband spectrum, not reproducibility.
+    final_time: 0.3
+    ncp: 15000
+    rtol: 1.0e-7
+    tolerance: 0.01
+    modifiers: {}
+    variables: [time, gearMesh.z1, gearMesh.z2, gearMesh.k_mesh, gearMesh.k_t,
+                gearMesh.eps_alpha, gearMesh.duty, gearMesh.delta, gearMesh.F_loa,
+                gearMesh.f_mesh, gearMesh.e_ste, gearMesh.env1, gearMesh.inContact,
+                gear1.flange_a.theta, gear1.omega, gear2.omega, "housingA_acc.a_out*"]
+
+  # ---- GearMesh Phase D: angle-synchronous motor ripple, friction, power balance ----
+  - name: GearMeshRippleTorqueCheck
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshRippleTorqueCheck
+    start_time: 0.0
+    # Ripple order 6/rev = 150 Hz at 1500 rpm, mesh 500 Hz; 20 kHz sampling is 40 points per
+    # mesh cycle. Model defaults are used deliberately (tau_mean = 50, tau_ripple = 5, all
+    # four bearings with useFriction = true) so the case tests the rig as shipped.
+    final_time: 0.6
+    ncp: 12000
+    rtol: 1.0e-7
+    tolerance: 0.01
+    modifiers: {}
+    variables: [time, gear1.omega, gear2.omega, gear1.flange_a.theta,
+                "housingA_acc.a_out*", P_in, P_out, P_loss, P_resid,
+                startProduct.y, tau_mean, N_ripple, D_load, gearMesh.z1, gearMesh.z2]
+
+  # ---- GearMesh Phase D: two meshes in series on three parallel shafts ----
+  - name: TwoStageGearboxDemo
+    enabled: true
+    model: RotorDynamics.Examples.TwoStageGearboxDemo
+    start_time: 0.0
+    # Two mesh frequencies, not harmonically related, and an intermediate shaft belonging to
+    # both -- the case that would catch a sign error appearing only in a train.
+    final_time: 0.7
+    ncp: 14000
+    rtol: 1.0e-7
+    tolerance: 0.01
+    modifiers: {}
+    variables: [time, gear1.omega, gear2.omega, gear4.omega,
+                mesh1.f_mesh, mesh2.f_mesh, mesh1.delta, mesh2.delta,
+                mesh1.F_loa, mesh2.F_loa, mesh1.a_centre, mesh2.a_centre,
+                "acc1.a_out*", "acc2.a_out*", "acc3.a_out*"]
+
+  # ---- GearMesh Phase E: HorizontalHousing.useMultiBodyAnchor is a true no-op ----
+  - name: MultiBodyAnchoredHousingCheck
+    enabled: true
+    model: RotorDynamics.TestModels.MultiBodyAnchoredHousingCheck
+    start_time: 0.0
+    # Three rigs whose difference variables (d_rB, d_fC, ...) are ~1e-16 by construction. A
+    # funnel tolerance relative to a reference range that IS numerical noise is meaningless,
+    # so these will auto-classify steady_state (endpoint vs. |reference|) -- verify that
+    # classification when the reference is first stored rather than assuming it.
+    final_time: 0.2
+    ncp: 1000
+    rtol: 1.0e-9
+    modifiers: {}
+    variables: [time, "d_rB*", "d_rC*", "d_fB*", "d_fC*", "discA.r_c*",
+                "bearingA.support.f*"]
+
+  # ---- GearMesh Phase E: the mesh cross-checks its own installation geometry ----
+  - name: GearMeshGeometryCheck
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshGeometryCheck
+    start_time: 0.0
+    # The consistent-layout run only. The deliberate-failure variants (2 mm of centre-distance
+    # error, 20 mrad of direction error) are assertion tests, not trajectory tests: they
+    # belong in the report, which checks that the asserts actually fire, not here.
+    final_time: 0.1
+    ncp: 200
+    rtol: 1.0e-8
+    modifiers: {}
+    variables: [time, a_nom, gearMesh.a_centre, gearMesh.phi_centreline, gearMesh.r_b2,
+                gearMesh.a_actual, gearMesh.phi_actual, gearMesh.F_loa, gearMesh.delta,
+                "rAnchor1.r*", "rAnchor2.r*"]
+
+  # ---- Phase F: locating vs. floating bearing ----
+  - name: RollerBearingThrustReactionCheck
+    enabled: true
+    model: RotorDynamics.TestModels.RollerBearingThrustReactionCheck
+    start_time: 0.0
+    # Purely algebraic in the axial channel (d_za = 0, and the axial network is massless
+    # here), so the only dynamics are the applied ramp.
+    final_time: 0.05
+    ncp: 500
+    rtol: 1.0e-9
+    modifiers: {}
+    variables: [time, F_thrust, c_za, s_target, bearing1.F_za, bearing1.s_mid,
+                bearing1.delta_za, bearing2.F_za, F_float, F_toGround]
+
+  # ---- Phase F: two locating bearings share thrust by stiffness ----
+  - name: TwoLocatingBearingSplitCheck
+    enabled: true
+    model: RotorDynamics.TestModels.TwoLocatingBearingSplitCheck
+    start_time: 0.0
+    final_time: 0.05
+    ncp: 500
+    rtol: 1.0e-9
+    modifiers: {}
+    variables: [time, F_thrust, c_za1, c_za2, s_target, F1_target, F2_target,
+                bearing1.F_za, bearing2.F_za, bearing1.s_mid, F_residual]
+
+  # ---- Phase F: contact angle moves the ball-pass frequencies ----
+  - name: AngularContactFaultFrequencyCheck
+    enabled: true
+    model: RotorDynamics.TestModels.AngularContactFaultFrequencyCheck
+    start_time: 0.0
+    # Deliberately the same span and grid as HousingAccelerationCheck above -- this is the
+    # same rig -- so the two cases differ in exactly one parameter, which is the point of the
+    # model. ncp is tier 3 (>=10 stored points across the shortest contact pulse).
+    final_time: 0.05
+    ncp: 50000
+    rtol: 1.0e-9
+    # alpha_contact = 25 deg. At the model's default of 0 this case would be a duplicate of
+    # HousingAccelerationCheck, bit-for-bit -- the whole content of the case is the non-zero
+    # contact angle.
+    modifiers:
+      alpha_contact: 0.4363323129985824
+    # Carried over from HousingAccelerationCheck, whose impulsive aSensor.a_out needed both:
+    # PROVISIONAL until re-verified against this case's own stored reference.
+    tolerance: 0.03
+    integral_abs_variables: ["aSensor.a_out*"]
+    integral_tolerance: 0.03
+    variables: [time, alpha_contact, omega_run, k_cage_target, f_imp_target,
+                bearing.f_imp, "aSensor.a_out*"]
+
+  # ---- Phase F: helical thrust into the locating bearing's own pedestal ----
+  - name: HelicalThrustLocatedShaftCheck
+    enabled: true
+    model: RotorDynamics.TestModels.HelicalThrustLocatedShaftCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.0e-8
+    modifiers: {}
+    variables: [time, c_za, c_z, F_ax_target, s_target, gearMesh.F_ax1, gearMesh.r_b2,
+                gearMesh.phi_t, gearMesh.beta, bearing1.F_za, bearing1.s_mid,
+                bearing2.F_za, housing1.axialFlange.f, housing2.axialFlange.f,
+                F_axialResidual]
+
+  # ---- Axial inertia A1: Newton on a free thrust line ----
+  - name: AxialMassNewtonCheck
+    enabled: true
+    model: RotorDynamics.TestModels.AxialMassNewtonCheck
+    start_time: 0.0
+    # A parabola in s and a straight line in v: nothing here needs resolution.
+    final_time: 0.05
+    ncp: 500
+    rtol: 1.0e-9
+    modifiers: {}
+    variables: [time, a_target, v_target, s_target,
+                axialMass.v, axialMass.s, axialMass.m_total, F_axial]
+
+  # ---- Axial inertia A2: the axial mode's frequency and damping ----
+  - name: AxialModeFrequencyCheck
+    enabled: true
+    model: RotorDynamics.TestModels.AxialModeFrequencyCheck
+    start_time: 0.0
+    # 78.6 Hz mode; 5000 points over 0.2 s is 25 kHz, ~320 samples per cycle -- tier 4
+    # (smooth continuous response), comfortably above the 50-100/period rule of thumb.
+    final_time: 0.2
+    ncp: 5000
+    rtol: 1.0e-9
+    modifiers: {}
+    variables: [time, x_ring, bearing1.delta_za, axialMass.m_total, axialMass.v,
+                f_n_target, s_inf, zeta_qm, c_za, t_step]
+
+  # ---- Axial inertia A4: inertia adds no weight, and the cross-check agrees ----
+  - name: AxialMassVerticalWeightCheck
+    enabled: true
+    model: RotorDynamics.TestModels.AxialMassVerticalWeightCheck
+    start_time: 0.0
+    # Static: a rigid ThrustBearing prescribes the axial position, so nothing moves at all.
+    # m_phantom stays 0 -- the deliberate-error variant is an assertion test and belongs in
+    # the report, not here.
+    final_time: 0.01
+    ncp: 200
+    rtol: 1.0e-9
+    modifiers: {}
+    variables: [time, F_thrust, F_expected, F_weightResidual,
+                axialMass.m_total, m_phantom]
+
+  # ---- Axial inertia A3: the composed helical thrust path's axial modes ----
+  - name: HelicalAxialModeCheck
+    enabled: true
+    model: RotorDynamics.TestModels.HelicalAxialModeCheck
+    start_time: 0.0
+    # At the model's default zeta_axial = 0.05 the 4149 Hz and 1799 Hz modes decay within
+    # milliseconds of the load ramp, so what this case actually freezes is the ramp transient
+    # plus the settled load path. 10 kHz sampling resolves the ramp-driven content; the modes
+    # themselves are measured in the report on a lightly damped variant, which is a
+    # measurement, not a regression.
+    final_time: 0.2
+    ncp: 10000
+    rtol: 1.0e-8
+    modifiers: {}
+    variables: [time, bearing1.s_mid, bearing2.s_mid, gearMesh.F_ax1, f_n1, f_n2,
+                c_series, axialMass1.m_total, axialMass2.m_total]

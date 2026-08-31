@@ -120,6 +120,40 @@
     "bytes": 26617
   },
   {
+    "name": "GearMeshRatioCheck",
+    "model": "RotorDynamics.TestModels.GearMeshRatioCheck",
+    "variables": [
+      "gear1.omega",
+      "gear2.omega",
+      "gearMesh.F_loa",
+      "gearMesh.F_sep",
+      "gearMesh.F_tang",
+      "gearMesh.a_centre",
+      "gearMesh.beta",
+      "gearMesh.c_mesh_used",
+      "gearMesh.delta",
+      "gearMesh.eps_alpha",
+      "gearMesh.i_ratio",
+      "gearMesh.k_mesh",
+      "gearMesh.m_n",
+      "gearMesh.m_t",
+      "gearMesh.phi_n",
+      "gearMesh.phi_t",
+      "gearMesh.r_b1",
+      "gearMesh.r_b2",
+      "gearMesh.r_p1",
+      "gearMesh.r_p2",
+      "gearMesh.tau_1",
+      "gearMesh.tau_2",
+      "gearMesh.z1",
+      "gearMesh.z2",
+      "omega1",
+      "tau_load",
+      "time"
+    ],
+    "bytes": 102302
+  },
+  {
     "name": "HousingAccelerationCheck",
     "model": "RotorDynamics.TestModels.HousingAccelerationCheck",
     "variables": [
