@@ -10,3 +10,6 @@
 Testing/Resources/Notebooks/
 Testing/Resources/HtmlReports/
 Testing/Resources/InteractiveReports/
+
+# Nightly cron daemon's own logs and PID file -- see nightly_regression_cron.py.
+Testing/Resources/CronLogs/
