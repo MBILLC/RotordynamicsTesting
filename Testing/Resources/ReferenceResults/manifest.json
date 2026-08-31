@@ -1,5 +1,65 @@
 [
   {
+    "name": "AngularContactFaultFrequencyCheck",
+    "model": "RotorDynamics.TestModels.AngularContactFaultFrequencyCheck",
+    "variables": [
+      "aSensor.a_out[1]",
+      "aSensor.a_out[2]",
+      "alpha_contact",
+      "bearing.f_imp",
+      "f_imp_target",
+      "k_cage_target",
+      "omega_run",
+      "time"
+    ],
+    "bytes": 1035794
+  },
+  {
+    "name": "AxialMassNewtonCheck",
+    "model": "RotorDynamics.TestModels.AxialMassNewtonCheck",
+    "variables": [
+      "F_axial",
+      "a_target",
+      "axialMass.m_total",
+      "axialMass.s",
+      "axialMass.v",
+      "s_target",
+      "time",
+      "v_target"
+    ],
+    "bytes": 16495
+  },
+  {
+    "name": "AxialMassVerticalWeightCheck",
+    "model": "RotorDynamics.TestModels.AxialMassVerticalWeightCheck",
+    "variables": [
+      "F_expected",
+      "F_thrust",
+      "F_weightResidual",
+      "axialMass.m_total",
+      "m_phantom",
+      "time"
+    ],
+    "bytes": 2319
+  },
+  {
+    "name": "AxialModeFrequencyCheck",
+    "model": "RotorDynamics.TestModels.AxialModeFrequencyCheck",
+    "variables": [
+      "axialMass.m_total",
+      "axialMass.v",
+      "bearing1.delta_za",
+      "c_za",
+      "f_n_target",
+      "s_inf",
+      "t_step",
+      "time",
+      "x_ring",
+      "zeta_qm"
+    ],
+    "bytes": 135918
+  },
+  {
     "name": "BearingAndShafts",
     "model": "RotorDynamics.TestModels.BearingAndShafts",
     "variables": [
@@ -120,6 +180,88 @@
     "bytes": 26617
   },
   {
+    "name": "GearMeshExcitationCheck",
+    "model": "RotorDynamics.TestModels.GearMeshExcitationCheck",
+    "variables": [
+      "gear1.flange_a.theta",
+      "gear1.omega",
+      "gear2.omega",
+      "gearMesh.F_loa",
+      "gearMesh.delta",
+      "gearMesh.duty",
+      "gearMesh.e_ste",
+      "gearMesh.env1",
+      "gearMesh.eps_alpha",
+      "gearMesh.f_mesh",
+      "gearMesh.inContact",
+      "gearMesh.k_mesh",
+      "gearMesh.k_t",
+      "gearMesh.z1",
+      "gearMesh.z2",
+      "housingA_acc.a_out[1]",
+      "housingA_acc.a_out[2]",
+      "time"
+    ],
+    "bytes": 817527
+  },
+  {
+    "name": "GearMeshGeometryCheck",
+    "model": "RotorDynamics.TestModels.GearMeshGeometryCheck",
+    "variables": [
+      "a_nom",
+      "gearMesh.F_loa",
+      "gearMesh.a_actual",
+      "gearMesh.a_centre",
+      "gearMesh.delta",
+      "gearMesh.phi_actual",
+      "gearMesh.phi_centreline",
+      "gearMesh.r_b2",
+      "rAnchor1.r[1]",
+      "rAnchor1.r[2]",
+      "rAnchor1.r[3]",
+      "rAnchor1.resolveInFrame",
+      "rAnchor2.r[1]",
+      "rAnchor2.r[2]",
+      "rAnchor2.r[3]",
+      "rAnchor2.resolveInFrame",
+      "time"
+    ],
+    "bytes": 7566
+  },
+  {
+    "name": "GearMeshHelicalThrustCheck",
+    "model": "RotorDynamics.TestModels.GearMeshHelicalThrustCheck",
+    "variables": [
+      "gearMesh.F_ax1",
+      "gearMesh.F_loa",
+      "gearMesh.F_tang",
+      "gearMesh.M_1[1]",
+      "gearMesh.M_1[2]",
+      "gearMesh.M_2[1]",
+      "gearMesh.M_2[2]",
+      "gearMesh.beta",
+      "gearMesh.beta_b",
+      "gearMesh.eps_alpha",
+      "gearMesh.eps_beta",
+      "gearMesh.eps_gamma",
+      "gearMesh.m_n",
+      "gearMesh.m_t",
+      "gearMesh.phi_n",
+      "gearMesh.phi_t",
+      "gearMesh.r_b1",
+      "gearMesh.r_b2",
+      "gearMesh.r_p1",
+      "gearMesh.r_p2",
+      "gearMesh.z1",
+      "gearMesh.z2",
+      "tau_load",
+      "thrust1.axialFlange.f",
+      "thrust2.axialFlange.f",
+      "time"
+    ],
+    "bytes": 110151
+  },
+  {
     "name": "GearMeshRatioCheck",
     "model": "RotorDynamics.TestModels.GearMeshRatioCheck",
     "variables": [
@@ -152,6 +294,92 @@
       "time"
     ],
     "bytes": 102302
+  },
+  {
+    "name": "GearMeshRippleTorqueCheck",
+    "model": "RotorDynamics.TestModels.GearMeshRippleTorqueCheck",
+    "variables": [
+      "D_load",
+      "N_ripple",
+      "P_in",
+      "P_loss",
+      "P_out",
+      "P_resid",
+      "gear1.flange_a.theta",
+      "gear1.omega",
+      "gear2.omega",
+      "gearMesh.z1",
+      "gearMesh.z2",
+      "housingA_acc.a_out[1]",
+      "housingA_acc.a_out[2]",
+      "startProduct.y",
+      "tau_mean",
+      "time"
+    ],
+    "bytes": 917133
+  },
+  {
+    "name": "GearboxToothFaultDemo",
+    "model": "RotorDynamics.Examples.GearboxToothFaultDemo",
+    "variables": [
+      "gear1.flange_a.theta",
+      "gear1.omega",
+      "gear2.omega",
+      "gearMesh.F_loa",
+      "gearMesh.delta",
+      "gearMesh.duty",
+      "gearMesh.e_ste",
+      "gearMesh.env1",
+      "gearMesh.eps_alpha",
+      "gearMesh.f_mesh",
+      "gearMesh.inContact",
+      "gearMesh.k_mesh",
+      "gearMesh.k_t",
+      "gearMesh.z1",
+      "gearMesh.z2",
+      "housingA_acc.a_out[1]",
+      "housingA_acc.a_out[2]",
+      "time"
+    ],
+    "bytes": 1089108
+  },
+  {
+    "name": "HelicalAxialModeCheck",
+    "model": "RotorDynamics.TestModels.HelicalAxialModeCheck",
+    "variables": [
+      "axialMass1.m_total",
+      "axialMass2.m_total",
+      "bearing1.s_mid",
+      "bearing2.s_mid",
+      "c_series",
+      "f_n1",
+      "f_n2",
+      "gearMesh.F_ax1",
+      "time"
+    ],
+    "bytes": 239674
+  },
+  {
+    "name": "HelicalThrustLocatedShaftCheck",
+    "model": "RotorDynamics.TestModels.HelicalThrustLocatedShaftCheck",
+    "variables": [
+      "F_ax_target",
+      "F_axialResidual",
+      "bearing1.F_za",
+      "bearing1.s_mid",
+      "bearing2.F_za",
+      "c_z",
+      "c_za",
+      "gearMesh.F_ax1",
+      "gearMesh.beta",
+      "gearMesh.phi_t",
+      "gearMesh.r_b2",
+      "housing1.axialFlange.f",
+      "housing2.axialFlange.f",
+      "s_target",
+      "time"
+    ],
+    "bytes": 94813
   },
   {
     "name": "HousingAccelerationCheck",
@@ -339,6 +567,26 @@
     "bytes": 1081
   },
   {
+    "name": "MultiBodyAnchoredHousingCheck",
+    "model": "RotorDynamics.TestModels.MultiBodyAnchoredHousingCheck",
+    "variables": [
+      "bearingA.support.f[1]",
+      "bearingA.support.f[2]",
+      "d_fB[1]",
+      "d_fB[2]",
+      "d_fC[1]",
+      "d_fC[2]",
+      "d_rB[1]",
+      "d_rB[2]",
+      "d_rC[1]",
+      "d_rC[2]",
+      "discA.r_c[1]",
+      "discA.r_c[2]",
+      "time"
+    ],
+    "bytes": 38581
+  },
+  {
     "name": "MultiBodyMountEquivalence",
     "model": "RotorDynamics.TestModels.MultiBodyMountEquivalence",
     "variables": [
@@ -437,6 +685,62 @@
     "bytes": 14783
   },
   {
+    "name": "RampedEccentricRotorCheck",
+    "model": "RotorDynamics.TestModels.RampedEccentricRotorCheck",
+    "variables": [
+      "e_unb",
+      "omega_n",
+      "rDisc.r_out[1]",
+      "rDisc.r_out[2]",
+      "t_ramp",
+      "time",
+      "zeta"
+    ],
+    "bytes": 101123
+  },
+  {
+    "name": "RampedFaultInitCheck",
+    "model": "RotorDynamics.TestModels.RampedFaultInitCheck",
+    "variables": [
+      "aSensor.a_out[1]",
+      "aSensor.a_out[2]",
+      "bearing.F_imp[1]",
+      "bearing.F_imp[2]",
+      "bearing.F_n",
+      "bearing.F_sd[1]",
+      "bearing.F_sd[2]",
+      "bearing.contact",
+      "bearing.f_imp",
+      "bearing.t_c",
+      "time"
+    ],
+    "bytes": 1767782
+  },
+  {
+    "name": "RampedIMSBearingTestRigCheck",
+    "model": "RotorDynamics.TestModels.RampedIMSBearingTestRigCheck",
+    "variables": [
+      "aHousing2.a_out[1]",
+      "aHousing2.a_out[2]",
+      "time"
+    ],
+    "bytes": 97601
+  },
+  {
+    "name": "RampedSpringLoadCheck",
+    "model": "RotorDynamics.TestModels.RampedSpringLoadCheck",
+    "variables": [
+      "aSensor.a_out[1]",
+      "aSensor.a_out[2]",
+      "rSensor.r_out[1]",
+      "rSensor.r_out[2]",
+      "springLoad.F_applied[1]",
+      "springLoad.F_applied[2]",
+      "time"
+    ],
+    "bytes": 229346
+  },
+  {
     "name": "RollerBearingFriction",
     "model": "RotorDynamics.TestModels.RollerBearingFriction",
     "variables": [
@@ -450,6 +754,23 @@
       "time"
     ],
     "bytes": 29486
+  },
+  {
+    "name": "RollerBearingThrustReactionCheck",
+    "model": "RotorDynamics.TestModels.RollerBearingThrustReactionCheck",
+    "variables": [
+      "F_float",
+      "F_thrust",
+      "F_toGround",
+      "bearing1.F_za",
+      "bearing1.delta_za",
+      "bearing1.s_mid",
+      "bearing2.F_za",
+      "c_za",
+      "s_target",
+      "time"
+    ],
+    "bytes": 8894
   },
   {
     "name": "RotorInitModes",
@@ -491,6 +812,49 @@
       "zeta_t"
     ],
     "bytes": 213100
+  },
+  {
+    "name": "TwoLocatingBearingSplitCheck",
+    "model": "RotorDynamics.TestModels.TwoLocatingBearingSplitCheck",
+    "variables": [
+      "F1_target",
+      "F2_target",
+      "F_residual",
+      "F_thrust",
+      "bearing1.F_za",
+      "bearing1.s_mid",
+      "bearing2.F_za",
+      "c_za1",
+      "c_za2",
+      "s_target",
+      "time"
+    ],
+    "bytes": 8422
+  },
+  {
+    "name": "TwoStageGearboxDemo",
+    "model": "RotorDynamics.Examples.TwoStageGearboxDemo",
+    "variables": [
+      "acc1.a_out[1]",
+      "acc1.a_out[2]",
+      "acc2.a_out[1]",
+      "acc2.a_out[2]",
+      "acc3.a_out[1]",
+      "acc3.a_out[2]",
+      "gear1.omega",
+      "gear2.omega",
+      "gear4.omega",
+      "mesh1.F_loa",
+      "mesh1.a_centre",
+      "mesh1.delta",
+      "mesh1.f_mesh",
+      "mesh2.F_loa",
+      "mesh2.a_centre",
+      "mesh2.delta",
+      "mesh2.f_mesh",
+      "time"
+    ],
+    "bytes": 1337947
   },
   {
     "name": "VerticalHousingReaction",

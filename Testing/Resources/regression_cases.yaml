@@ -530,7 +530,11 @@ cases:
     start_time: 0.0
     final_time: 0.2
     ncp: 2000
-    rtol: 1.0e-8
+    # 1e-10, for exactly the reason GearMeshRatioCheck above carries it: every force here is
+    # proportional to gearMesh.delta, a 4.4 um cancellation of two ~0.75 m rotating terms, so
+    # the 100x-loosened re-simulation has to land on the 1e-8 this model needs rather than on
+    # 1e-6. Measured at 1e-8: seven checks fail, the forces 0.31% out. At 1e-10: all pass.
+    rtol: 1.0e-10
     modifiers: {}
     variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n,
                 gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t,
