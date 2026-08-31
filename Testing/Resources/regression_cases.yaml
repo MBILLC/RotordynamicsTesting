@@ -774,7 +774,10 @@ cases:
   # ---- Axial inertia 4.5: VerticalHousing's own axial pedestal mass (m_eff_z), and the
   # DivideByZero it fixes (a locating bearing's c_za and this component's c_z meeting at a
   # massless node, d_z = 0). Deliberately undamped -- see the model's own documentation for
-  # why c_za does not appear in the closed form.
+  # why c_za does not appear in the closed form. The pedestal mass IS bearing1's own OUTER
+  # ring (RollerBearing.m_outer, inert there), referenced -- not retyped -- into
+  # housing.m_eff_z; bearing1.m_outer is frozen alongside m_eff_z's own consumer-side value
+  # so a future edit that breaks the reference (rather than the value) still fails a check.
   - name: VerticalHousingAxialModeCheck
     enabled: true
     model: RotorDynamics.TestModels.VerticalHousingAxialModeCheck
@@ -785,7 +788,8 @@ cases:
     ncp: 2000
     rtol: 1.0e-9
     modifiers: {}
-    variables: [time, x_ring, housing.axialFlange.s, f_n_target, s_inf, c_z, c_za]
+    variables: [time, x_ring, housing.axialFlange.s, f_n_target, s_inf, c_z, c_za,
+                bearing1.m_outer]
 
 # ---------------------------------------------------------------------------------------
 # Ramped excitation (RampUpInitializationPlan.md Phases B-E). Added 2026-08-31.

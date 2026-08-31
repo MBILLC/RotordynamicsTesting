@@ -860,6 +860,7 @@
     "name": "VerticalHousingAxialModeCheck",
     "model": "RotorDynamics.TestModels.VerticalHousingAxialModeCheck",
     "variables": [
+      "bearing1.m_outer",
       "c_z",
       "c_za",
       "f_n_target",
@@ -868,7 +869,7 @@
       "time",
       "x_ring"
     ],
-    "bytes": 38515
+    "bytes": 38780
   },
   {
     "name": "VerticalHousingReaction",
