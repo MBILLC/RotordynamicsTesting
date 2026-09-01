@@ -46,6 +46,14 @@ custom_function: dynamic
 # value range in the reference trajectory (see HOWTO.md section 3).
 tolerance: 0.001
 
+# Per-case wall-clock cap, overriding the harness default of 300 s. This library needs a much
+# larger one: its heaviest cases are full planetary stages -- 8 gear meshes, 4 carrier posts,
+# 11 bearings and a modal ring, with a 6.5 kHz mesh mode setting the step size -- and a run
+# that legitimately takes several minutes is not a runaway. 300 s would cancel healthy cases
+# and report them as failures, which is worse than waiting. Any single case may still override
+# this with its own `timeout_seconds:`.
+timeout_seconds: 1200
+
 cases:
   - name: JeffcottValidation
     enabled: true
@@ -523,6 +531,453 @@ cases:
                 gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_sep,
                 gearMesh.tau_1, gearMesh.tau_2, gear1.omega, gear2.omega]
 
+  # ---- Planetary Phase G1: INTERNAL (ring) mesh, closed-form load path ----
+  - name: GearMeshInternalRatioCheck
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshInternalRatioCheck
+    start_time: 0.0
+    # Same shape of run as GearMeshRatioCheck above: no excitation, both axes rigidly pinned,
+    # a smooth ramp to a settled load path. 2000 points over 0.2 s is a quarter of the
+    # annotation's grid and still resolves the 1950 Hz mesh ringdown envelope, which is what
+    # the comparison actually has to reproduce.
+    final_time: 0.2
+    ncp: 2000
+    # 1e-10, for exactly the reason GearMeshRatioCheck carries it: gearMesh.delta is a 5.9 um
+    # cancellation of r_b1*theta1 - r_b2*theta2, each ~0.8 m by t = 0.2 s, so its accuracy is
+    # set by the ABSOLUTE error in the shaft angles and every force in the case inherits that.
+    # The internal mesh makes this slightly worse than the external one, not better: the two
+    # cancelling terms are subtracted rather than added, and the ring's larger inertia stretches
+    # the ringdown envelope from 3.9 ms to 4.8 ms.
+    rtol: 1.0e-10
+    modifiers: {}
+    # s_int, a_centre, r_a2 and eps_alpha are the four DERIVED parameters the internal branch
+    # computes differently; F_1[1] is the separating-force direction, the one qualitative sign
+    # that distinguishes an internal mesh from an external one at run time. Freezing all five
+    # is the point of this case -- the rest of the list mirrors GearMeshRatioCheck's so the two
+    # references can be diffed against each other.
+    variables: [time, tau_load, omega1, gearMesh.z1, gearMesh.z2, gearMesh.m_n,
+                gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.m_t,
+                gearMesh.s_int, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2,
+                gearMesh.r_a1, gearMesh.r_a2,
+                gearMesh.a_centre, gearMesh.eps_alpha, gearMesh.k_mesh,
+                gearMesh.c_mesh_used, gearMesh.m_eq, gearMesh.i_ratio, gearMesh.delta,
+                gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_sep,
+                # Trailing * , NOT F_1[1]: these patterns are Impact result-filter GLOBS, in
+                # which [1] is a character class and would silently match nothing.
+                gearMesh.F_1*, gearMesh.F_2*,
+                gearMesh.tau_1, gearMesh.tau_2, gearMesh.f_mesh,
+                gear1.omega, gear2.omega]
+
+  # ---- Planetary Phase G2: the ORBITING mesh point, by exact invariance ----
+  - name: GearMeshOrbitInvarianceCheck
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshOrbitInvarianceCheck
+    start_time: 0.0
+    final_time: 0.2
+    # 8000 points: this case's signals are NOT smooth settled values. Both rigs run the
+    # stiffness variation, the transmission error and a damage envelope, so k_t and e_ste
+    # carry tooth-mesh-rate content at 500 Hz and its 5 harmonics. A quarter of the
+    # annotation's grid still resolves the 5th harmonic at 3.2 samples per cycle, which is
+    # enough for a trajectory comparison (it is not an FFT).
+    ncp: 8000
+    # 1e-10 for GearMeshRatioCheck's reason -- delta is a micron-scale cancellation of two
+    # ~0.75 m rotating terms -- but ALSO because the quantities frozen here are DIFFERENCES
+    # between two rigs that are analytically identical. Their reference values are exact
+    # zeros to within solver noise, so the reference is only meaningful if that noise is
+    # itself small and reproducible.
+    rtol: 1.0e-10
+    modifiers: {}
+    # The d_* columns are the test: every one of them is an exact zero, and an exact zero
+    # reproduces as an exact zero. err_theta_m is the one channel subtraction cannot see.
+    variables: [time, psi_c, omega1, tau_load,
+                d_delta, d_kt, d_este, d_env1, d_env2, d_Floa,
+                d_F1x, d_F1y, d_tau1, d_tau2, d_omega2,
+                err_theta_m, phi_F1,
+                gearMeshA.theta_m, gearMeshB.theta_m,
+                gearMeshA.delta, gearMeshA.k_t, gearMeshA.e_ste, gearMeshA.F_1*]
+
+  # ---- Planetary Phase G3: CarrierPost, against a closed-form orbiting mass ----
+  - name: CarrierPostCheck
+    enabled: true
+    model: RotorDynamics.TestModels.CarrierPostCheck
+    start_time: 0.0
+    final_time: 0.5
+    # 5000 points over 0.5 s. Everything read here is either a ramp quantity or a settled
+    # constant; the fastest thing present is the 477 Hz carrier support mode, which is a
+    # startup transient only.
+    ncp: 5000
+    # 1e-10 is a REQUIREMENT here, not padding: post1.F_tang is 1.8 N obtained as the cross
+    # product of a 0.099 m lever with a 2145 N force, i.e. a 1e-3 cancellation, and it is the
+    # row that discriminates a post transmitting load from one transmitting only force.
+    rtol: 1.0e-10
+    modifiers: {}
+    variables: [time, a_c, k_t, c_t, dr_pin2, dpsi_pin2, omega_c, alpha_c, m_p, gain,
+                phi_lag, R1_target, R2_target, Frad1_target, Ftan1_target,
+                tau_ramp1_target, tau_ramp2_target,
+                R1, R2, lag1, lag2, eps_qs,
+                err_R1, err_R2, err_Frad1, err_Ftan1, err_lag1,
+                err_tauRamp1, err_tauRamp2, err_a2, err_psi2,
+                post1.F_radial, post1.F_tang, post1.tau_post, post1.psi,
+                post2.F_radial, post2.F_tang, post2.tau_post, post2.psi, post2.a_eff,
+                planet1.r_c*, planet2.r_c*]
+
+  # ---- Planetary Phase G4: the complete stage ----
+  - name: PlanetaryRatioCheck
+    # RE-ENABLED 2026-09-01: the stall referred to below was resolved and the model is now
+    # verified (PlanetaryGearboxPlan.md 4.10). It was never a solver problem -- three
+    # independent model defects (fixed-frame delta in GearMesh, an unanchored carrier angle,
+    # and a wrong absoluteLateral default), plus a fourth found later, conflating theta_m
+    # with theta1_ref. With those fixed the run went from 1 449 239 steps for 0.02 s to
+    # 9 372 steps for 0.06 s, and error-test failures from 31 779 to 52.
+    enabled: true
+    model: RotorDynamics.TestModels.PlanetaryRatioCheck
+    start_time: 0.0
+    final_time: 0.06
+    # 3000 points over 0.06 s. Excitation is OFF in this case (Constant stiffness, no
+    # transmission error), so there is no tooth-mesh content to resolve -- only the 0.02 s
+    # ramp and the 6.5 kHz mesh-mode ringdown that decays with a 0.44 ms envelope. The
+    # horizon is cut to exactly what the answer needs: see the rtol note below for why it
+    # cannot be bought back with a looser tolerance instead.
+    ncp: 3000
+    # A HEAVY CASE: 8 GearMesh instances, 4 CarrierPosts, 11 bearings and a 6.5 kHz stiff
+    # mode. It earns its cost -- it is the only case where the internal mesh, the orbiting
+    # mesh point and CarrierPost all have to agree at once. NOTE the "tens of minutes per
+    # run" warning that stood here until 2026-09-01 was a symptom of the four model defects,
+    # not of the model's size: after they were fixed the solve went from 1 449 239 steps for
+    # 0.02 s to 9 372 steps for the full 0.06 s. Cost is now unremarkable.
+    rtol: 1.0e-9
+    modifiers: {}
+    variables: [time, N, z_s, z_p, z_r, m_n, phi_n, b_face, k_sp, k_rp, tau_load, omega_s,
+                a_c, r_ps, r_pp, r_pr, r_bs, ratio,
+                omega_c_t, omega_p_t, f_mesh_t, F_sp_t, F_rp_t,
+                delta_sp_t, delta_rp_t, tau_ring_t,
+                err_omega_c, err_omega_p, err_f_mesh_sp, err_f_mesh_rp,
+                err_F_sp, err_F_rp, err_delta_sp, err_delta_rp,
+                err_tau_ring, err_tau_carrier,
+                loadShareSpread, F_sp_mean, F_sp_max, F_sp_min,
+                carrier.omega, sun.omega]
+
+  # ---- Planetary Phase G5: mesh phasing and harmonic cancellation ----
+  - name: PlanetaryMeshPhasingCheck
+    # RE-ENABLED 2026-09-01: see PlanetaryRatioCheck above -- same model family, and the same
+    # four defects. Verified the same day.
+    enabled: true
+    model: RotorDynamics.TestModels.PlanetaryMeshPhasingCheck
+    start_time: 0.0
+    final_time: 0.12
+    # 12000 points = 130 samples per mesh cycle at 768 Hz, 26 per 5th-harmonic cycle. The
+    # credibility report FFTs k_sum_sp and F_sun_x over an integer number of mesh cycles to
+    # read the harmonic amplitudes, and the cancelling harmonics have to come out at 1e-12
+    # of the surviving one -- so this is one of the few cases whose ncp is set by SPECTRAL
+    # content rather than by trajectory shape.
+    ncp: 12000
+    rtol: 1.0e-9
+    modifiers: {}
+    # gamma_s/gamma_r are the phasing result and are exact constants; k_sum_sp and F_sun_x
+    # are the signals whose harmonic content the report reads. Freezing both means a future
+    # edit that broke the cancellation would fail here even if nobody re-ran the FFT.
+    variables: [time, N, z_s, z_p, z_r, a_c, ratio, f_mesh_t, F_sp_t, omega_c_t,
+                gamma_s*, gamma_r*, err_gamma_s*, err_gamma_r*,
+                k_sum_sp, k_sum_rp, F_sum_sp, tau_sun, F_sun_x, F_sun_y,
+                err_F_sp, err_omega_c, err_f_mesh, loadShareSpread]
+
+  # ---- Planetary Phase G8: the flexible ring rim (FlexibleRing) ----
+  # Four cases, added 2026-09-01 with the phase. G8a and G8b are cheap and check the
+  # component in isolation; G8c and G8d check it assembled under a planetary stage. The pair
+  # G8a/G8b is deliberate: mode frequencies depend only on K_n/M_n and apply NO LOAD at all,
+  # so a wrong generalized-force projection passes G8a untouched. G8b is what exercises it.
+
+  - name: RingModeFrequencyCheck
+    # G8a: pluck a free ring and read back its in-plane flexural frequencies, against Love's
+    # closed form f_n = n(n^2-1)/(2*pi*sqrt(n^2+1)) * sqrt(EI/(rho*A*R^4)). Frequencies are
+    # measured from zero-crossing times, so ncp has to resolve the HIGHEST retained mode:
+    # 3077 Hz at these dimensions, and 20000 points over 0.05 s gives 130 samples per cycle
+    # of it. b_leak is frozen alongside f_meas because it is the independent check that the
+    # modes are uncoupled -- a sin-family amplitude that stops being zero means the ring's
+    # modal basis has been broken, which a frequency check alone would not catch.
+    enabled: true
+    model: RotorDynamics.TestModels.RingModeFrequencyCheck
+    start_time: 0.0
+    final_time: 0.05
+    ncp: 20000
+    rtol: 1.0e-9
+    modifiers: {}
+    # NO err_f* and NO b_leak*: both are computed near-zeros, and a stored 1e-11 cannot be
+    # reproduced to 0.1% OF ITSELF -- see the regression-testing skill section 11.2. The
+    # measured frequencies f_meas* carry the same information, well-conditioned: if a mode
+    # frequency drifts, f_meas* moves and this case fails. The closed-form comparison is the
+    # credibility report's job, not the suite's.
+    variables: [time, R, b_rim, h_rim, rho, E, amp_0, f_t*, f_meas*, ring.a*]
+
+  - name: RingStaticDeflectionCheck
+    # G8b: two inward pinch loads 180 degrees apart, against the handbook thin-ring
+    # deflection (pi/4 - 2/pi)*P*R^3/(E*I). This is the case that exercises the generalized-
+    # force projection, so it is the one that would catch a wrong one. Two truncation
+    # controls are frozen with it: dD_trunc (the same series cut to the retained modes, which
+    # is what the model can actually reach) and oddLeak/sinLeak, which must stay at zero
+    # because a symmetric pinch cannot drive odd orders or the sin family. NOTE oddLeak
+    # indexes a[2*j] -- mode n is stored at index n-1, so ODD orders sit at EVEN indices; an
+    # earlier a[2*j-1] returned half the measured deflection instead of zero.
+    # Quasi-static: 2000 points over 0.05 s is ample for a load ramp with no oscillation.
+    enabled: true
+    model: RotorDynamics.TestModels.RingStaticDeflectionCheck
+    start_time: 0.0
+    final_time: 0.05
+    ncp: 2000
+    rtol: 1.0e-9
+    modifiers: {}
+    # err_trunc/err_exact/oddLeak/sinLeak all dropped: computed near-zeros again (11.2).
+    # dD_meas stays even though it IS a difference of two deflections, because it is this
+    # model's whole output and there is nothing better conditioned to put in its place; the
+    # modal amplitudes ring.a* are added alongside it as the well-conditioned quantities the
+    # deflection is built from, so a drift shows up in them first.
+    variables: [time, R, b_rim, h_rim, P, S_trunc, dD_meas, dD_trunc, dD_exact, ring.a*]
+
+  - name: PlanetaryFlexibleRingCheck
+    # G8c: the assembled stage on a COMPLIANT rim, and the sharpest available test that the
+    # mesh cannot create energy. N equally spaced in-phase planets can drive ring order n
+    # only when n is a multiple of N, because sum_i cos(n*psi_i) is N*cos(n*theta_c) for
+    # n = 0 (mod N) and IDENTICALLY ZERO otherwise -- so with modes n = 2..5 and four
+    # planets, only n = 4 may respond. Nothing in the model is told this. ringReject is the
+    # headline and the reason this case earns its cost: the forbidden orders are UNFORCED, so
+    # anything appearing in them arrived from somewhere it should not have. Against the
+    # earlier bilateral-spring mesh they grew out of round-off at +4710 1/s; against the
+    # unilateral contact they decay at -44.8 1/s.
+    enabled: true
+    model: RotorDynamics.TestModels.PlanetaryFlexibleRingCheck
+    start_time: 0.0
+    final_time: 0.06
+    ncp: 6000
+    rtol: 1.0e-9
+    modifiers: {}
+    # ringFiltered and ringReject are the HEADLINE physics of this case but are exactly the
+    # kind of computed near-zero (1e-15 and 1e-10) that a stored-trajectory check cannot
+    # reproduce -- they belong to the credibility report, which compares them against zero
+    # with a physically meaningful threshold. What the suite freezes instead is ringDriven
+    # (the order that DOES respond, ~4e-6) plus the mesh forces and the contact state: if the
+    # spatial filtering ever broke, ringDriven and the forces move too.
+    variables: [time, N, z_s, z_p, z_r, h_rim, ratio, gearbox.ringFlex.f_n*,
+                ringDriven, ringQuasiStatic,
+                F_sp_mean, F_sp_t, loadShareSpread,
+                gearbox.meshSP*.sigma, gearbox.meshRP*.sigma,
+                gearbox.carrier.omega, gearbox.planet*.omega]
+
+  # ---- G6's demo: the whole stage as one component, with a ring accelerometer ----
+  # Paired with a floating-sun case. The pair is the answer to PlanetaryGearboxPlan.md
+  # section 5 question 5: softening k_sun a thousandfold changes NOTHING here, because four
+  # equally spaced, equally loaded, error-free meshes exert no net lateral force on the sun.
+  # The two references should therefore agree to solver noise -- and that agreement is the
+  # result, not a redundancy. sunOffset stays at 5e-16 m in both.
+  - name: PlanetaryGearboxDemo
+    enabled: true
+    model: RotorDynamics.Examples.PlanetaryGearboxDemo
+    start_time: 0.0
+    final_time: 0.33
+    ncp: 3000
+    rtol: 1.0e-8
+    modifiers: {}
+    variables: [time, N, z_s, z_p, z_r, ratio, f_c_t, f_mesh_t, f_pass_t, h_rim, k_sun,
+                F_sp*, F_rp*, F_sp_mean, F_sp_t, loadShare*,
+                tau_out, err_ratio, err_tau, w_sensor, v_sensor, a_sensor, sunOffset]
+
+  - name: PlanetaryGearboxDemo_FloatingSun
+    enabled: true
+    model: RotorDynamics.Examples.PlanetaryGearboxDemo
+    start_time: 0.0
+    final_time: 0.33
+    ncp: 3000
+    rtol: 1.0e-8
+    modifiers:
+      floatingSun: true
+    variables: [time, N, z_s, z_p, z_r, ratio, f_c_t, f_mesh_t, f_pass_t, h_rim, k_sun,
+                F_sp*, F_rp*, F_sp_mean, F_sp_t, loadShare*,
+                tau_out, err_ratio, err_tau, w_sensor, v_sensor, a_sensor, sunOffset]
+
+  # ---- G7: the FAULT MATRIX. Five cases on one rig, differing only in which fault is on. ----
+  # Rates are timed off GearMesh's own damage ENVELOPE (env1/env2) rising edges -- exact, no
+  # peak finding. NOTE env1/env2 are computed whenever THAT MESH's useFault is true regardless
+  # of whether that gear's damage amplitudes are zero, so they are kinematic MARKERS: the
+  # sun-fault case also returns T_planet and the ring-fault case also returns T_planetR, from
+  # meshes carrying no damage. Read the n* counters to tell which fault is actually active.
+  - name: PlanetaryFaultSignature_Healthy
+    # The baseline every other case is a departure from: loadShareSpread 2.7e-10, no fault
+    # events at all, err_F_sp mean -2.4e-5.
+    enabled: true
+    model: RotorDynamics.TestModels.PlanetaryFaultSignatureCheck
+    start_time: 0.0
+    final_time: 0.45
+    ncp: 4500
+    rtol: 1.0e-8
+    modifiers: {}
+    variables: [time, N, z_s, z_p, z_r, f_c_t, f_mesh_t, f_sun_t, f_planet_t,
+                T_sun_t, T_planet_t, T_ring_t,
+                T_sun, T_planet, T_planetR, T_ring,
+                err_T_sun, err_T_planet, err_T_planetR, err_T_ring,
+                nSun, nPlanet, nPlanetR, nRing,
+                envSun, envPlanet, envPlanetR, envRing,
+                F_sp_mean, F_sp_t, loadShareSpread, loadShare1, err_F_sp]
+
+  - name: PlanetaryFaultSignature_SunTooth
+    # T_sun 62.857 ms against the closed-form 62.8571 (err 5.6e-14), 7 events, spread 0.041.
+    # Exact because the sun is kinematically driven -- its rate is a boundary condition.
+    enabled: true
+    model: RotorDynamics.TestModels.PlanetaryFaultSignatureCheck
+    start_time: 0.0
+    final_time: 0.45
+    ncp: 4500
+    rtol: 1.0e-8
+    modifiers:
+      useSunFault: true
+    variables: [time, N, z_s, z_p, z_r, f_c_t, f_mesh_t, f_sun_t, f_planet_t,
+                T_sun_t, T_planet_t, T_ring_t,
+                T_sun, T_planet, T_planetR, T_ring,
+                err_T_sun, err_T_planet, err_T_planetR, err_T_ring,
+                nSun, nPlanet, nPlanetR, nRing,
+                envSun, envPlanet, envPlanetR, envRing,
+                F_sp_mean, F_sp_t, loadShareSpread, loadShare1, err_F_sp]
+
+  - name: PlanetaryFaultSignature_PlanetTooth
+    # T_planet = T_planetR = 23.571 ms (err 4.4e-7) -- ONE tooth timed through TWO different
+    # meshes, which is the evidence behind the factor of 2 in the planet-fault rate. Largest
+    # disturbance of the three: spread 0.285, and loadShare1 reaches -0.25 as planet 1's sun
+    # mesh unloads onto its coast flank. THIS CASE IS THE REGRESSION GUARD for the
+    # meshSP.useFault defect fixed 2026-09-01, which made it report zero sun-mesh events.
+    enabled: true
+    model: RotorDynamics.TestModels.PlanetaryFaultSignatureCheck
+    start_time: 0.0
+    final_time: 0.45
+    ncp: 4500
+    rtol: 1.0e-8
+    modifiers:
+      usePlanetFault: true
+    variables: [time, N, z_s, z_p, z_r, f_c_t, f_mesh_t, f_sun_t, f_planet_t,
+                T_sun_t, T_planet_t, T_ring_t,
+                T_sun, T_planet, T_planetR, T_ring,
+                err_T_sun, err_T_planet, err_T_planetR, err_T_ring,
+                nSun, nPlanet, nPlanetR, nRing,
+                envSun, envPlanet, envPlanetR, envRing,
+                F_sp_mean, F_sp_t, loadShareSpread, loadShare1, err_F_sp]
+
+  - name: PlanetaryFaultSignature_RingTooth
+    # T_ring 110.000 ms against 110.0000 (err 5.8e-14), 4 events, spread 0.017.
+    enabled: true
+    model: RotorDynamics.TestModels.PlanetaryFaultSignatureCheck
+    start_time: 0.0
+    final_time: 0.45
+    ncp: 4500
+    rtol: 1.0e-8
+    modifiers:
+      useRingFault: true
+    variables: [time, N, z_s, z_p, z_r, f_c_t, f_mesh_t, f_sun_t, f_planet_t,
+                T_sun_t, T_planet_t, T_ring_t,
+                T_sun, T_planet, T_planetR, T_ring,
+                err_T_sun, err_T_planet, err_T_planetR, err_T_ring,
+                nSun, nPlanet, nPlanetR, nRing,
+                envSun, envPlanet, envPlanetR, envRing,
+                F_sp_mean, F_sp_t, loadShareSpread, loadShare1, err_F_sp]
+
+  - name: PlanetaryFaultSignature_PinError
+    # No repetition rate -- a static geometric offset. loadShareSpread 1.1e-4 against the
+    # healthy 2.7e-10. Small in absolute terms because a planet is a floating idler that
+    # re-centres; see the model documentation.
+    enabled: true
+    model: RotorDynamics.TestModels.PlanetaryFaultSignatureCheck
+    start_time: 0.0
+    final_time: 0.45
+    ncp: 4500
+    rtol: 1.0e-8
+    modifiers:
+      dr_pin1: 1.0e-6
+    variables: [time, N, z_s, z_p, z_r, f_c_t, f_mesh_t, f_sun_t, f_planet_t,
+                T_sun_t, T_planet_t, T_ring_t,
+                T_sun, T_planet, T_planetR, T_ring,
+                err_T_sun, err_T_planet, err_T_planetR, err_T_ring,
+                nSun, nPlanet, nPlanetR, nRing,
+                envSun, envPlanet, envPlanetR, envRing,
+                F_sp_mean, F_sp_t, loadShareSpread, loadShare1, err_F_sp]
+
+  # ---- G6: the SEQUENTIALLY-phased set, and the asymmetry the in-phase set cannot show ----
+  # Paired with a stiff-rim control, exactly as PlanetarySidebandCheck is. The deliverable is
+  # the ORDER SPECTRUM of w_sensor, which is post-processing and belongs to the credibility
+  # report; what the suite freezes is the trajectory it is computed from, plus the load-path
+  # errors and the three sequential mesh phases {0, 1/3, 2/3}. If the phasing ever broke,
+  # err_gamma_r and loadShareSpread move before the spectrum does.
+  # Horizon: 0.1 s settling + 8 carrier revolutions at f_c = 9.2172 Hz. Whole revolutions,
+  # so a rectangular window puts every carrier order exactly on an FFT bin.
+  - name: PlanetarySequentialSidebandCheck
+    enabled: true
+    model: RotorDynamics.TestModels.PlanetarySequentialSidebandCheck
+    start_time: 0.0
+    final_time: 0.967945
+    ncp: 23231
+    # 1e-8, not 1e-9, for the reason PlanetarySidebandCheck records: every err_* here is a
+    # difference of nearly equal numbers, and holding one to a tight rtol makes the solver
+    # chase digits the subtraction already destroyed.
+    rtol: 1.0e-8
+    modifiers: {}
+    variables: [time, N, z_s, z_p, z_r, h_rim, ratio, f_c_t, f_mesh_t, gearbox.ringFlex.f_n*,
+                w_sensor, ringAmp*, ringStatic,
+                F_sp_mean, F_sp_t, loadShareSpread,
+                err_omega_c, err_omega_p, err_f_mesh_sp, err_f_mesh_rp,
+                err_F_sp, err_tau_carrier, err_gamma_r*]
+
+  - name: PlanetarySequentialSidebandCheck_RigidRim
+    enabled: true
+    model: RotorDynamics.TestModels.PlanetarySequentialSidebandCheck
+    start_time: 0.0
+    final_time: 0.967945
+    ncp: 23231
+    rtol: 1.0e-8
+    # The control: a 100 mm rim collapses all three sideband orders by ~46x while leaving the
+    # SAME three orders as the only populated ones. Structure from phasing, amplitude from rim.
+    modifiers:
+      h_rim: 0.100
+    variables: [time, N, z_s, z_p, z_r, h_rim, ratio, f_c_t, f_mesh_t, gearbox.ringFlex.f_n*,
+                w_sensor, ringAmp*, ringStatic,
+                F_sp_mean, F_sp_t, loadShareSpread,
+                err_omega_c, err_omega_p, err_f_mesh_sp, err_f_mesh_rp,
+                err_F_sp, err_tau_carrier, err_gamma_r*]
+
+  - name: PlanetarySidebandCheck
+    # G8d: modulation sidebands produced by a rim that bends instead of by an assumed
+    # weighting window. THE HORIZON HERE IS DELIBERATELY SHORT. The credibility report runs
+    # this model for eight carrier revolutions (0.91 s) because its claim is SPECTRAL and
+    # needs the frequency resolution; a regression case does not -- freezing the trajectory
+    # itself detects drift perfectly well, and 0.15 s costs about a sixth as much. The
+    # spectral claim stays in the notebook, where it belongs, and this case guards the
+    # trajectory that claim is read out of.
+    #
+    # h_rim = 0.020 is the model default and is NOT an arbitrary choice: at 0.008 the rim
+    # deflects 52 um at the mesh stations against a 3.4 um tooth compression, carrying every
+    # mesh back and forth across its flanks -- 9080 state events in 0.44 s, genuine repeated
+    # contact loss. At 0.020 (deflection ~3.3 um) contact is never lost: 165 events over
+    # 0.6 s, sigma = +1 at every sample. The sigma variables are frozen for exactly that
+    # reason -- they are what would show the model drifting back into flank chatter.
+    #
+    # rtol 1.0e-8, not the 1e-9 used by the rest of this family: at 1e-9 the step size decays
+    # from 0.10 to 0.0005 simulated seconds per wall second around t = 0.5 s. That looked
+    # like an instability and was not one -- at 1e-8 the identical case is stationary to five
+    # digits across every window and the spectrum is unchanged.
+    enabled: true
+    model: RotorDynamics.TestModels.PlanetarySidebandCheck
+    start_time: 0.0
+    final_time: 0.15
+    # 7500 points = 50 kHz sampling, ~39 samples per tooth-mesh cycle at 1272.7 Hz, so the
+    # mesh-frequency content the sidebands ride on is resolved in the frozen trajectory.
+    ncp: 7500
+    rtol: 1.0e-8
+    modifiers: {}
+    # w_sensor is the quantity the whole case exists for -- the rim deflection a fixed
+    # accelerometer would see -- and it is well-conditioned (~4e-6 m, oscillating). The
+    # err_*/ringFiltered/ringReject near-zeros are left to the credibility report (11.2).
+    # gamma_s*/gamma_r* are kept: they are O(1) mesh phases that land on exact values
+    # (0 or 0.5 for this set), not computed residuals.
+    variables: [time, N, z_s, z_p, z_r, h_rim, ratio, gearbox.ringFlex.f_n*,
+                w_sensor, ringDriven,
+                gamma_s*, gamma_r*, F_sp_mean, F_sp_t, loadShareSpread,
+                gearbox.meshSP*.sigma, gearbox.meshRP*.sigma,
+                gearbox.carrier.omega]
+
   # ---- GearMesh Phase C: helical thrust, sign and overturning moment ----
   - name: GearMeshHelicalThrustCheck
     enabled: true
@@ -543,6 +998,72 @@ cases:
                 gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1,
                 "gearMesh.M_1*", "gearMesh.M_2*",
                 thrust1.axialFlange.f, thrust2.axialFlange.f]
+
+  # ---- The INTERNAL twin of the case above: PlanetaryGearboxPlan.md section 7 gap 1 ----
+  - name: GearMeshInternalHelicalThrustCheck
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshInternalHelicalThrustCheck
+    start_time: 0.0
+    final_time: 0.5
+    # 0.5 s, not the external twin's 0.2 s: this rig settles more slowly, and the point of
+    # the case is three SIGNS plus three magnitudes read after the ring-down.
+    ncp: 2000
+    # Same 1e-10 as the external twin, for the same reason: every force is proportional to
+    # gearMesh.delta, a 5.6 um cancellation of two large rotating terms.
+    rtol: 1.0e-10
+    modifiers: {}
+    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n,
+                gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t,
+                gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2,
+                gearMesh.a_centre, gearMesh.s_int,
+                gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma,
+                gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1,
+                "gearMesh.M_1*", "gearMesh.M_2*",
+                err_Fax, err_M1, err_M2, err_omega2,
+                thrust1.axialFlange.f, thrust2.axialFlange.f]
+
+  # ---- Backlash / contact loss: PlanetaryGearboxPlan.md section 4.16.5, and G7 needs it ----
+  # Run TWICE, deliberately. The pair is a switch test: the second case differs from the
+  # first ONLY in gearMesh.useBacklash, so anything that moves between them is attributable
+  # to the dead zone and nothing else. err_F is identically zero in BOTH -- the closed form
+  # is written against gearMesh.b_eff -- so the discriminators are t_separated, gap_measured
+  # and b_eff, which is the point of pairing them rather than running one and asserting.
+  - name: GearMeshBacklashCheck
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshBacklashCheck
+    start_time: 0.0
+    final_time: 0.5
+    # Exactly one sweep period at f_sweep = 2 Hz, so d_tsep's closed form (a per-period
+    # average) is directly readable at the endpoint.
+    ncp: 2000
+    # 1e-10: err_delta is the time integral of the prescribed speed, and at 1e-8 it carries
+    # 7.8e-4 of pure solver error. The dead-zone checks themselves are insensitive to this
+    # (they did not move under a 1000x tolerance change) but the reference should not store
+    # a trajectory dominated by integration error.
+    rtol: 1.0e-10
+    modifiers: {}
+    variables: [time, gearMesh.b_eff, gearMesh.delta, gearMesh.F_loa, gearMesh.F_tang,
+                gearMesh.F_sep, gearMesh.sigma, gearMesh.k_mesh, gearMesh.r_b1,
+                err_delta, err_F, err_Ftang, err_sigma, err_gap, d_tsep,
+                gap_measured, lostMotion1, t_separated, nSeparations, F_sep_scaled]
+
+  - name: GearMeshBacklashCheck_NoBacklash
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshBacklashCheck
+    start_time: 0.0
+    final_time: 0.5
+    ncp: 2000
+    rtol: 1.0e-10
+    # The control. b_eff collapses to 0, the dead zone disappears, and the same rig must give
+    # a continuous piecewise-linear spring through the origin: F_loa sweeps +/-14000 N.
+    # t_separated must be numerically zero (6.8e-11 s measured -- the two zero-width sigma = 0
+    # instants at delta = 0 have no duration) and gap_measured 1e-14 m.
+    modifiers:
+      gearMesh.useBacklash: false
+    variables: [time, gearMesh.b_eff, gearMesh.delta, gearMesh.F_loa, gearMesh.F_tang,
+                gearMesh.F_sep, gearMesh.sigma, gearMesh.k_mesh, gearMesh.r_b1,
+                err_delta, err_F, err_Ftang, err_sigma, err_gap, d_tsep,
+                gap_measured, lostMotion1, t_separated, nSeparations, F_sep_scaled]
 
   # ---- GearMesh Phase B: the mesh as the model's only excitation source ----
   - name: GearMeshExcitationCheck
