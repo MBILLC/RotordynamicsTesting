@@ -13,3 +13,20 @@ Testing/Resources/InteractiveReports/
 
 # Nightly cron daemon's own logs and PID file -- see nightly_regression_cron.py.
 Testing/Resources/CronLogs/
+
+# Per-case regression run artifacts (2026-09-02). The suite is now driven one
+# case per process for restart resilience -- see run_baseline.sh -- which leaves
+# a log per case plus its resume state on disk. All reproducible from a run;
+# ReferenceResults/ remains the stored baseline and stays tracked.
+Testing/Resources/HtmlReports_before/
+Testing/Resources/case_*.log
+Testing/Resources/baseline.log
+Testing/Resources/batch2*.log
+Testing/Resources/before_refactor.log
+Testing/Resources/jvm_watch.log
+Testing/Resources/_done.txt
+Testing/Resources/_remaining.txt
+Testing/Resources/_args.txt
+Testing/Resources/_cases_order.json
+Testing/Resources/_probe*.py
+Testing/Resources/_worksession/

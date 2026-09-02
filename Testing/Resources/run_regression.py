@@ -54,7 +54,9 @@ def main() -> int:
                  f"(https://github.com/hubertus65/ModCheck), or pass "
                  f"--modcheck /path/to/regression_testing.py.")
 
-    cmd = [sys.executable, str(args.modcheck),
+    # -u: the child block-buffers stdout when redirected to a file, so a run
+    # killed by a container restart loses every progress line it printed.
+    cmd = [sys.executable, "-u", str(args.modcheck),
            "--config", str(CONFIG), "--ref-dir", str(REF_DIR)] + forwarded
 
     # Pre-fill the report directory for whichever format was asked for, unless the
