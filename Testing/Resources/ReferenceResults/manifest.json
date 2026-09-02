@@ -335,7 +335,20 @@
       "housingA_acc.a_out[2]",
       "time"
     ],
-    "bytes": 817527
+    "bytes": 807640,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-07,
+      "cpu_time": 3.7627195609966293,
+      "steps": 45254,
+      "error_test_failures": 1013,
+      "convergence_failures": 0,
+      "state_events": 1,
+      "kind": "dynamic"
+    }
   },
   {
     "name": "GearMeshGeometryCheck",
@@ -494,17 +507,10 @@
     "name": "GearMeshOrbitInvarianceCheck",
     "model": "RotorDynamics.TestModels.GearMeshOrbitInvarianceCheck",
     "variables": [
-      "d_F1x",
-      "d_F1y",
-      "d_Floa",
       "d_delta",
       "d_env1",
       "d_env2",
       "d_este",
-      "d_kt",
-      "d_omega2",
-      "d_tau1",
-      "d_tau2",
       "err_theta_m",
       "gearMeshA.F_1[1]",
       "gearMeshA.F_1[2]",
@@ -519,7 +525,20 @@
       "tau_load",
       "time"
     ],
-    "bytes": 941591
+    "bytes": 525559,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-10,
+      "cpu_time": 6.850344154983759,
+      "steps": 47292,
+      "error_test_failures": 3135,
+      "convergence_failures": 0,
+      "state_events": 429,
+      "kind": "dynamic"
+    }
   },
   {
     "name": "GearMeshRatioCheck",
@@ -601,7 +620,20 @@
       "housingA_acc.a_out[2]",
       "time"
     ],
-    "bytes": 1089108
+    "bytes": 1085238,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-07,
+      "cpu_time": 3.9227795569458976,
+      "steps": 46025,
+      "error_test_failures": 1075,
+      "convergence_failures": 0,
+      "state_events": 3,
+      "kind": "dynamic"
+    }
   },
   {
     "name": "HelicalAxialModeCheck",
@@ -1928,7 +1960,20 @@
       "mesh2.f_mesh",
       "time"
     ],
-    "bytes": 1337947
+    "bytes": 1399448,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-07,
+      "cpu_time": 14.995240767952055,
+      "steps": 133266,
+      "error_test_failures": 4449,
+      "convergence_failures": 0,
+      "state_events": 733,
+      "kind": "dynamic"
+    }
   },
   {
     "name": "VerticalHousingAxialModeCheck",

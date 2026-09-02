@@ -30,3 +30,14 @@ Testing/Resources/_args.txt
 Testing/Resources/_cases_order.json
 Testing/Resources/_probe*.py
 Testing/Resources/_worksession/
+Testing/Resources/HtmlReports_rtol1/
+Testing/Resources/HtmlReports_verify/
+Testing/Resources/rtol1*.log
+Testing/Resources/vt*.log
+Testing/Resources/store_*.log
+Testing/Resources/verify_*.log
+Testing/Resources/restore_refs.log
+Testing/Resources/sideband_check.log
+# Pre-re-store copies of the four references. Belt-and-braces only: the previous
+# versions of these tracked .npz are already recoverable from git history.
+Testing/Resources/ReferenceResults_backup_20260902/

@@ -8,7 +8,9 @@ R=/home/jovyan/impact/local_projects/Rotordynamicsdevelopment/Testing/Resources
 RD=$R/HtmlReports_before
 J=/home/jovyan/impact/local_projects/ModCheck/ModCheck/Resources/CronLogs/memory_watch_vscode.jsonl
 DONE=$R/_done.txt; touch "$DONE"; mkdir -p "$RD"
-while read -r c; do
+# `|| [ -n "$c" ]`: read returns non-zero at EOF even when it read a final line
+# that has no trailing newline, which silently skipped the last case of the list.
+while read -r c || [ -n "$c" ]; do
   [ -z "$c" ] && continue
   grep -qx "$c" "$DONE" && continue
   n0=$(wc -l < "$J" 2>/dev/null || echo 0); t0=$(date +%s)
