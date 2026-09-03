@@ -1515,13 +1515,13 @@ cases:
     enabled: true
     model: RotorDynamics.TestModels.PlanetaryOverhungSmoke
     start_time: 0.0
-    # 0.01 s, not the 0.06 s of its straddle-mounted sibling: the overhung variant costs
-    # 403 s CPU for 0.06 s against 1.1 s for the same rig straddle-mounted, and the
-    # re-simulation did not reach the reference's end time -- which funnel reports as
-    # "Reference and test data maximum x values are different". The 370x integration cost
-    # is a real property of the overhung mounting and is NOT understood yet; see
-    # PlanetaryGearboxPlan 4.27.7. Shortened so the structural check still runs.
-    final_time: 0.01
+    # Back to the full 0.06 s of its straddle-mounted sibling. It ran to 0.01 s while the
+    # overhung variant cost 403 s CPU for 0.06 s; that turned out to be an event storm in
+    # the mesh contact switch (zero backlash puts the unloaded coast flank exactly on its
+    # switching threshold), not a property of the mounting. The model now carries 10 um of
+    # backlash and the same horizon costs 1.08 s -- 375x -- so the workaround is retired.
+    # See PlanetaryGearboxPlan 4.27.8.
+    final_time: 0.06
     ncp: 3000
     rtol: 1.0e-9
     modifiers: {}
@@ -1529,6 +1529,42 @@ cases:
     # FlexibleRing component does not exist and those patterns match nothing --
     # a filter that matches nothing stores nothing and fails silently (2 variables).
     variables: [time, gearbox.carrier.omega, gearbox.meshSP*F_loa*, gearbox.post*tau_post*]
+
+  - name: PlanetaryOverhungSmoke_NoBacklash
+    # The control for PlanetaryOverhungSmoke, and a DELIBERATE record of a known failure
+    # mode: an unphysical parameterisation, not a modelling defect. useBacklash = false sets
+    # the mesh contact threshold b_eff to exactly zero, so the unloaded coast flank of a
+    # compliantly supported gear sits on its own switching surface and chatters -- 67,582
+    # state events and 403 s of CPU for 0.06 s, against 1.18 s with the 30 um half-backlash
+    # the real gearing has. Same pairing as GearMeshBacklashCheck / _NoBacklash.
+    #
+    # 0.015 s ON PURPOSE, and not shorter: the full horizon costs 403 s, which is the very
+    # thing this case documents, while at 0.010 s the storm has NOT yet developed -- the
+    # speed ramp is still coming up and the case shows 12 events and looks healthy. 0.015 s
+    # is the first horizon where the mode is unmistakable (4,150 events against 40).
+    #
+    # If this case ever gets FASTER or its trajectories change, the contact-switch behaviour
+    # has moved -- which is worth knowing, whether or not it was intended.
+    enabled: true
+    model: RotorDynamics.TestModels.PlanetaryOverhungSmoke
+    start_time: 0.0
+    final_time: 0.015
+    ncp: 500
+    rtol: 1.0e-9
+    modifiers:
+      gearbox.useBacklash: false
+    variables: [time, gearbox.carrier.omega, gearbox.meshSP*F_loa*, gearbox.post*tau_post*]
+    # The post torques carry the chatter itself, and chatter micro-structure is NOT a
+    # reproducible reference: re-simulated at the suite's 100x looser rtol the storm takes a
+    # different path through the same switching surface, and these four miss by ~0.5 while
+    # carrier.omega and all four mesh forces reproduce to EXACTLY 0.000000. Stored but not
+    # compared -- what this case guards is that the macroscopic behaviour is unchanged, and
+    # the fact that a chattering trajectory cannot be a trajectory reference is itself part
+    # of what the case documents. The magnitude of the failure mode is measured where it can
+    # be measured robustly -- as an event COUNT, in the credibility report's
+    # validate_backlash_chatter() section.
+    exclude_variables:
+      - "gearbox.post*tau_post*"
 
   - name: PlanetaryRollerPlanetBearingSmoke
     # The replaceable half of 4.27.4: planet bearings redeclared from PlainBearing to

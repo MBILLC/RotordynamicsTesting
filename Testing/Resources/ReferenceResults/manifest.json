@@ -1563,18 +1563,48 @@
       "gearbox.post[4].tau_post",
       "time"
     ],
-    "bytes": 221130,
+    "bytes": 165625,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-09,
-      "cpu_time": 0.6404340650187805,
-      "steps": 3108,
-      "error_test_failures": 6,
+      "cpu_time": 1.384122991003096,
+      "steps": 8553,
+      "error_test_failures": 305,
       "convergence_failures": 0,
-      "state_events": 12,
+      "state_events": 40,
+      "kind": "dynamic"
+    }
+  },
+  {
+    "name": "PlanetaryOverhungSmoke_NoBacklash",
+    "model": "RotorDynamics.TestModels.PlanetaryOverhungSmoke",
+    "variables": [
+      "gearbox.carrier.omega",
+      "gearbox.meshSP[1].F_loa",
+      "gearbox.meshSP[2].F_loa",
+      "gearbox.meshSP[3].F_loa",
+      "gearbox.meshSP[4].F_loa",
+      "gearbox.post[1].tau_post",
+      "gearbox.post[2].tau_post",
+      "gearbox.post[3].tau_post",
+      "gearbox.post[4].tau_post",
+      "time"
+    ],
+    "bytes": 294983,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-09,
+      "cpu_time": 23.65802947501652,
+      "steps": 118370,
+      "error_test_failures": 7319,
+      "convergence_failures": 0,
+      "state_events": 3805,
       "kind": "dynamic"
     }
   },
