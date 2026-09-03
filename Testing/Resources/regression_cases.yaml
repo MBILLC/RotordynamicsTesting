@@ -874,7 +874,11 @@ cases:
     start_time: 0.0
     final_time: 0.45
     ncp: 4500
-    rtol: 1.0e-8
+    # rtol 1e-8 -> 1e-10 (2026-09-03): loadShare1 failed the routine 100x factor on a single
+    # point (t~1.9us, the fault ratio's denominator-floor transition at the very start) --
+    # see PlanetTooth's note below for the shared diagnosis and why tightening, not
+    # skip_initial_fraction, is the fix that generalises across all three siblings.
+    rtol: 1.0e-10
     modifiers:
       useSunFault: true
     variables: [time, N, z_s, z_p, z_r, f_c_t, f_mesh_t, f_sun_t, f_planet_t,
@@ -896,7 +900,16 @@ cases:
     start_time: 0.0
     final_time: 0.45
     ncp: 4500
-    rtol: 1.0e-8
+    # rtol 1e-8 -> 1e-10 (2026-09-03): loadShare1 failed the routine 100x factor at several
+    # points clustered at its fault-tooth mesh transitions (t~2us, 0.199, 0.34, 0.388s) --
+    # near-vertical edges (0 -> ~1 in a few us) whose event TIMING shifts slightly under a
+    # looser rtol, not a value disagreement (skill 12d Pattern 2's mechanism, but recurring
+    # through the run rather than only at the start, so skip_initial_fraction alone would not
+    # have covered it). At rtol_factor 1 (this case's own rtol) the run is bit-identical to
+    # the reference (0.0 error, skill 7) -- confirming the 100x factor, not the model, is what
+    # moves these edges. Tightening two decades per 11.3's rule lands the 100x-loosened run
+    # back at 1e-8 and cleared every point: 96/96 across all three siblings, verified live.
+    rtol: 1.0e-10
     modifiers:
       usePlanetFault: true
     variables: [time, N, z_s, z_p, z_r, f_c_t, f_mesh_t, f_sun_t, f_planet_t,
@@ -914,7 +927,9 @@ cases:
     start_time: 0.0
     final_time: 0.45
     ncp: 4500
-    rtol: 1.0e-8
+    # rtol 1e-8 -> 1e-10 (2026-09-03): same single-point startup-edge failure and fix as
+    # SunTooth/PlanetTooth above -- see PlanetTooth's note for the shared diagnosis.
+    rtol: 1.0e-10
     modifiers:
       useRingFault: true
     variables: [time, N, z_s, z_p, z_r, f_c_t, f_mesh_t, f_sun_t, f_planet_t,
@@ -974,10 +989,19 @@ cases:
       # 1.54e-3/1.58e-3; 5e-3 keeps ~3x margin without loosening the other 29
       # checks in the case.
       "loadShareSpread": 5.0e-3
+    # final_time 0.30 s, NOT the model's own 0.967945 s (2026-09-03): the model's own docs
+    # require WHOLE CARRIER REVOLUTIONS so an FFT lands its lines on exact bins -- a spectral
+    # requirement, not a settling-time one, and this case does NOT need it. That claim now has
+    # its own separate home: val.verify_planetary_sequential_sidebands() in the credibility
+    # notebook runs this SAME model independently at the full 0.967945 s / 23231-point
+    # horizon and reproduces the documented order-120/123/129 measurement on its own (see
+    # regression-testing skill 12c/12d, modelica-equation-modeling 20). This case only has to
+    # freeze the trajectory: settling is documented at 0.1 s, the slowest significant content
+    # afterward has a ~0.0375 s period, so 0.30 s clears 0.1 s + 5 cycles with margin.
     model: RotorDynamics.TestModels.PlanetarySequentialSidebandCheck
     start_time: 0.0
-    final_time: 0.967945
-    ncp: 23231
+    final_time: 0.30
+    ncp: 7200
     # 1e-8, not 1e-9, for the reason PlanetarySidebandCheck records: every err_* here is a
     # difference of nearly equal numbers, and holding one to a tight rtol makes the solver
     # chase digits the subtraction already destroyed.
@@ -1006,10 +1030,19 @@ cases:
       # 1.54e-3/1.58e-3; 5e-3 keeps ~3x margin without loosening the other 29
       # checks in the case.
       "loadShareSpread": 5.0e-3
+    # final_time 0.30 s, NOT the model's own 0.967945 s (2026-09-03): the model's own docs
+    # require WHOLE CARRIER REVOLUTIONS so an FFT lands its lines on exact bins -- a spectral
+    # requirement, not a settling-time one, and this case does NOT need it. That claim now has
+    # its own separate home: val.verify_planetary_sequential_sidebands() in the credibility
+    # notebook runs this SAME model independently at the full 0.967945 s / 23231-point
+    # horizon and reproduces the documented order-120/123/129 measurement on its own (see
+    # regression-testing skill 12c/12d, modelica-equation-modeling 20). This case only has to
+    # freeze the trajectory: settling is documented at 0.1 s, the slowest significant content
+    # afterward has a ~0.0375 s period, so 0.30 s clears 0.1 s + 5 cycles with margin.
     model: RotorDynamics.TestModels.PlanetarySequentialSidebandCheck
     start_time: 0.0
-    final_time: 0.967945
-    ncp: 23231
+    final_time: 0.30
+    ncp: 7200
     rtol: 1.0e-8
     # The control: a 100 mm rim collapses all three sideband orders by ~46x while leaving the
     # SAME three orders as the only populated ones. Structure from phasing, amplitude from rim.
@@ -1243,8 +1276,16 @@ cases:
     start_time: 0.0
     # Two mesh frequencies, not harmonically related, and an intermediate shaft belonging to
     # both -- the case that would catch a sign error appearing only in a train.
-    final_time: 0.7
-    ncp: 14000
+    #
+    # final_time 0.20 s, not 0.7 s (2026-09-03): this model's own credibility-notebook
+    # validation (verify_two_stage_gearbox()) already runs it as a SEPARATE, independent
+    # experiment at t_final=0.7 s / ncp=35000 -- the horizon its analysis window
+    # [0.30, 0.66] s needs -- so shortening THIS case costs that claim nothing (regression-
+    # testing skill 12c/12d, modelica-equation-modeling 20). Offline analysis: transient
+    # settles by 0.153 s, slowest significant content afterward has a 0.0075 s period, 0.20 s
+    # clears 5 cycles with margin.
+    final_time: 0.20
+    ncp: 4000
     rtol: 1.0e-7
     tolerance: 0.01
     modifiers: {}
@@ -1342,7 +1383,13 @@ cases:
     start_time: 0.0
     final_time: 0.2
     ncp: 2000
-    rtol: 1.0e-8
+    # rtol 1e-8 -> 1e-10 (2026-09-03): the settled axial equilibrium (F_ax1 and everything
+    # downstream of it: both bearings' F_za, both housing flanges' f) shifted ~0.11% at the
+    # routine 100x check factor -- monotonic in rtol (0.011% at rtol_factor 1, same case),
+    # so this is the ordinary two-rtols gap (skill 4/11.3), not a modeling defect. Tightening
+    # two decades, per 11.3's rule, lands the 100x-loosened run at 1e-8, where it already
+    # agrees to ~1e-5 relative -- 14/14 clean, ~125x margin under the 0.1% tolerance.
+    rtol: 1.0e-10
     modifiers: {}
     variables: [time, c_za, c_z, F_ax_target, s_target, gearMesh.F_ax1, gearMesh.r_b2,
                 gearMesh.phi_t, gearMesh.beta, bearing1.F_za, bearing1.s_mid,
