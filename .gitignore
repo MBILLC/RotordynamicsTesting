@@ -14,30 +14,23 @@ Testing/Resources/InteractiveReports/
 # Nightly cron daemon's own logs and PID file -- see nightly_regression_cron.py.
 Testing/Resources/CronLogs/
 
-# Per-case regression run artifacts (2026-09-02). The suite is now driven one
-# case per process for restart resilience -- see run_baseline.sh -- which leaves
-# a log per case plus its resume state on disk. All reproducible from a run;
-# ReferenceResults/ remains the stored baseline and stays tracked.
-Testing/Resources/HtmlReports_before/
-Testing/Resources/case_*.log
-Testing/Resources/baseline.log
-Testing/Resources/batch2*.log
-Testing/Resources/before_refactor.log
-Testing/Resources/jvm_watch.log
-Testing/Resources/_done.txt
-Testing/Resources/_remaining.txt
-Testing/Resources/_args.txt
-Testing/Resources/_cases_order.json
+# Per-case regression run artifacts. The suite is driven one case per process for
+# restart resilience -- see run_baseline.sh -- which leaves a log per case, a resume
+# state file, and a report directory per run. All of it is reproducible:
+# restore_reports.py re-renders any report from ReferenceResults/, which IS the stored
+# baseline and stays tracked.
+#
+# These are GLOBS on purpose. This block used to enumerate one session's filenames, so
+# the next session's names (HtmlReports_after*, after2_*, elsewhen_*, newcases_*) were
+# not covered, and 158 untracked files plus 1.8 GB of generated reports accumulated
+# before anyone noticed. Name a run whatever you like; it will be ignored.
+Testing/Resources/HtmlReports_*/
+Testing/Resources/*.log
+Testing/Resources/_*.txt
+Testing/Resources/_*.json
 Testing/Resources/_probe*.py
 Testing/Resources/_worksession/
-Testing/Resources/HtmlReports_rtol1/
-Testing/Resources/HtmlReports_verify/
-Testing/Resources/rtol1*.log
-Testing/Resources/vt*.log
-Testing/Resources/store_*.log
-Testing/Resources/verify_*.log
-Testing/Resources/restore_refs.log
-Testing/Resources/sideband_check.log
-# Pre-re-store copies of the four references. Belt-and-braces only: the previous
-# versions of these tracked .npz are already recoverable from git history.
-Testing/Resources/ReferenceResults_backup_20260902/
+
+# Pre-re-store copies of references. Belt-and-braces only: the previous versions of
+# these tracked .npz are already recoverable from git history.
+Testing/Resources/ReferenceResults_backup_*/
