@@ -188,6 +188,44 @@
     "bytes": 587585
   },
   {
+    "name": "CouplingMisalignmentCheck",
+    "model": "RotorDynamics.TestModels.CouplingMisalignmentCheck",
+    "variables": [
+      "Angx",
+      "Angy",
+      "Ex",
+      "Ey",
+      "F_expected[1]",
+      "F_expected[2]",
+      "T_expected[1]",
+      "T_expected[2]",
+      "phi_c1_expected[1]",
+      "phi_c1_expected[2]",
+      "phi_c2_expected[1]",
+      "phi_c2_expected[2]",
+      "r_c1_expected[1]",
+      "r_c1_expected[2]",
+      "r_c2_expected[1]",
+      "r_c2_expected[2]",
+      "theta",
+      "time"
+    ],
+    "bytes": 270486,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-09,
+      "rtol": 1e-09,
+      "cpu_time": 0.18400298105552793,
+      "steps": 2005,
+      "error_test_failures": 0,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    }
+  },
+  {
     "name": "CouplingReactionTorque",
     "model": "RotorDynamics.TestModels.CouplingReactionTorque",
     "variables": [
@@ -761,6 +799,34 @@
       "time"
     ],
     "bytes": 104785
+  },
+  {
+    "name": "IMSBearingTestRig",
+    "model": "RotorDynamics.Examples.IMSBearingTestRig",
+    "variables": [
+      "aHousing1.a_out[1]",
+      "aHousing1.a_out[2]",
+      "bearing1.F_n",
+      "bearing1.T_imp",
+      "bearing1.f_imp",
+      "rHousing1.r_out[1]",
+      "rHousing1.r_out[2]",
+      "time"
+    ],
+    "bytes": 184381,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "SPARSE",
+      "rtol": 1e-08,
+      "cpu_time": 15.829499264014885,
+      "steps": 212506,
+      "error_test_failures": 1540,
+      "convergence_failures": 0,
+      "state_events": 235,
+      "kind": "dynamic"
+    }
   },
   {
     "name": "InertialFlexibleShaftCheck",
@@ -1395,6 +1461,36 @@
     }
   },
   {
+    "name": "PlanetaryGearboxSmoke",
+    "model": "RotorDynamics.TestModels.PlanetaryGearboxSmoke",
+    "variables": [
+      "gearbox.carrier.omega",
+      "gearbox.meshSP[1].F_loa",
+      "gearbox.meshSP[2].F_loa",
+      "gearbox.meshSP[3].F_loa",
+      "gearbox.meshSP[4].F_loa",
+      "gearbox.post[1].tau_post",
+      "gearbox.post[2].tau_post",
+      "gearbox.post[3].tau_post",
+      "gearbox.post[4].tau_post",
+      "time"
+    ],
+    "bytes": 190659,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-09,
+      "cpu_time": 1.089659636025317,
+      "steps": 5208,
+      "error_test_failures": 53,
+      "convergence_failures": 0,
+      "state_events": 11,
+      "kind": "dynamic"
+    }
+  },
+  {
     "name": "PlanetaryMeshPhasingCheck",
     "model": "RotorDynamics.TestModels.PlanetaryMeshPhasingCheck",
     "variables": [
@@ -1449,6 +1545,64 @@
       "error_test_failures": 25,
       "convergence_failures": 0,
       "state_events": 7,
+      "kind": "dynamic"
+    }
+  },
+  {
+    "name": "PlanetaryOverhungSmoke",
+    "model": "RotorDynamics.TestModels.PlanetaryOverhungSmoke",
+    "variables": [
+      "gearbox.carrier.omega",
+      "gearbox.meshSP[1].F_loa",
+      "gearbox.meshSP[2].F_loa",
+      "gearbox.meshSP[3].F_loa",
+      "gearbox.meshSP[4].F_loa",
+      "gearbox.post[1].tau_post",
+      "gearbox.post[2].tau_post",
+      "gearbox.post[3].tau_post",
+      "gearbox.post[4].tau_post",
+      "time"
+    ],
+    "bytes": 221130,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-09,
+      "cpu_time": 0.6404340650187805,
+      "steps": 3108,
+      "error_test_failures": 6,
+      "convergence_failures": 0,
+      "state_events": 12,
+      "kind": "dynamic"
+    }
+  },
+  {
+    "name": "PlanetaryPlanetBearingFaultCheck",
+    "model": "RotorDynamics.TestModels.PlanetaryPlanetBearingFaultCheck",
+    "variables": [
+      "F_pulse_1",
+      "err_abs",
+      "err_omega_c",
+      "err_omega_p",
+      "err_rel",
+      "f_imp_model",
+      "f_support_1",
+      "time"
+    ],
+    "bytes": 319014,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-08,
+      "cpu_time": 2.5863778280327097,
+      "steps": 13281,
+      "error_test_failures": 131,
+      "convergence_failures": 0,
+      "state_events": 49,
       "kind": "dynamic"
     }
   },
@@ -1509,6 +1663,36 @@
       "error_test_failures": 124,
       "convergence_failures": 0,
       "state_events": 36,
+      "kind": "dynamic"
+    }
+  },
+  {
+    "name": "PlanetaryRollerPlanetBearingSmoke",
+    "model": "RotorDynamics.TestModels.PlanetaryRollerPlanetBearingSmoke",
+    "variables": [
+      "gearbox.carrier.omega",
+      "gearbox.meshSP[1].F_loa",
+      "gearbox.meshSP[2].F_loa",
+      "gearbox.meshSP[3].F_loa",
+      "gearbox.meshSP[4].F_loa",
+      "gearbox.post[1].tau_post",
+      "gearbox.post[2].tau_post",
+      "gearbox.post[3].tau_post",
+      "gearbox.post[4].tau_post",
+      "time"
+    ],
+    "bytes": 205608,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-09,
+      "cpu_time": 2.9314506609225646,
+      "steps": 22209,
+      "error_test_failures": 384,
+      "convergence_failures": 0,
+      "state_events": 39,
       "kind": "dynamic"
     }
   },
@@ -1672,6 +1856,62 @@
       "error_test_failures": 876,
       "convergence_failures": 0,
       "state_events": 134,
+      "kind": "dynamic"
+    }
+  },
+  {
+    "name": "PlanetaryThreePlanetCheck",
+    "model": "RotorDynamics.TestModels.PlanetaryThreePlanetCheck",
+    "variables": [
+      "F_sp_max",
+      "F_sp_mean",
+      "F_sp_min",
+      "err_F_rp",
+      "err_F_sp",
+      "err_f_mesh_rp",
+      "err_f_mesh_sp",
+      "err_gamma_r[1]",
+      "err_gamma_r[2]",
+      "err_gamma_r[3]",
+      "err_gamma_s[1]",
+      "err_gamma_s[2]",
+      "err_gamma_s[3]",
+      "err_loadRatio",
+      "err_omega_c",
+      "err_omega_p",
+      "err_tau_carrier",
+      "err_tau_ring",
+      "gamma_r[1]",
+      "gamma_r[2]",
+      "gamma_r[3]",
+      "gamma_r_t[1]",
+      "gamma_r_t[2]",
+      "gamma_r_t[3]",
+      "gamma_s[1]",
+      "gamma_s[2]",
+      "gamma_s[3]",
+      "gamma_s_t[1]",
+      "gamma_s_t[2]",
+      "gamma_s_t[3]",
+      "loadRatio",
+      "loadShareSpread",
+      "ringDriven",
+      "ringFiltered",
+      "ringReject",
+      "time"
+    ],
+    "bytes": 459275,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-08,
+      "cpu_time": 2.730428138980642,
+      "steps": 13176,
+      "error_test_failures": 506,
+      "convergence_failures": 0,
+      "state_events": 274,
       "kind": "dynamic"
     }
   },
@@ -1888,6 +2128,55 @@
       "wSpeed.w"
     ],
     "bytes": 819
+  },
+  {
+    "name": "SupportAccelerationSensorCheck",
+    "model": "RotorDynamics.TestModels.SupportAccelerationSensorCheck",
+    "variables": [
+      "a_expected[1]",
+      "a_expected[2]",
+      "d_a[1]",
+      "d_a[2]",
+      "time"
+    ],
+    "bytes": 27405,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-09,
+      "rtol": 1e-09,
+      "cpu_time": 0.19629094703122973,
+      "steps": 2001,
+      "error_test_failures": 0,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    }
+  },
+  {
+    "name": "TorqueSourceLargeTwistInitCheck",
+    "model": "RotorDynamics.TestModels.TorqueSourceLargeTwistInitCheck",
+    "variables": [
+      "disc.omega",
+      "loadDisc.omega",
+      "time",
+      "torsionShaft.theta_rel"
+    ],
+    "bytes": 38506,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-08,
+      "cpu_time": 0.48755403398536146,
+      "steps": 12385,
+      "error_test_failures": 220,
+      "convergence_failures": 0,
+      "state_events": 35,
+      "kind": "dynamic"
+    }
   },
   {
     "name": "TorsionShaftBending",

@@ -1479,3 +1479,184 @@ cases:
     integral_abs_variables: ["aHousing2.a_out*"]
     integral_tolerance: 0.03
     variables: [time, "aHousing2.a_out*"]
+
+  # ---------------------------------------------------------------------------------
+  # Added 2026-09-03 alongside PlanetaryGearboxPlan 4.27.4 (PartialRadialBearing, the
+  # replaceable/conditional planet bearings). Two groups:
+  #   (a) the four test models 4.27.4 itself added, which had no coverage at all;
+  #   (b) five models the credibility notebook already exercises but that were never
+  #       registered here -- long-standing gaps, found by diffing the model classes the
+  #       notebook references against the `model:` fields in this file.
+  # Array variables carry a trailing '*': a bare "x[1]" is read as a GLOB character
+  # class, matches the literal name "x1", and the variable then vanishes from the result.
+  # ---------------------------------------------------------------------------------
+
+  - name: PlanetaryGearboxSmoke
+    # Structural smoke test for the composite; the baseline the two 4.27.4 variants below
+    # are compared against. Straddle-mounted (the default), so it also pins the mounting
+    # that was there before 4.27.4 made the second bearing conditional.
+    enabled: true
+    model: RotorDynamics.TestModels.PlanetaryGearboxSmoke
+    start_time: 0.0
+    final_time: 0.06
+    ncp: 3000
+    rtol: 1.0e-9
+    modifiers: {}
+    # NOT ringFlex.*: PlanetaryGearboxSmoke sets useFlexibleRing = false, so the
+    # FlexibleRing component does not exist and those patterns match nothing --
+    # a filter that matches nothing stores nothing and fails silently (2 variables).
+    variables: [time, gearbox.carrier.omega, gearbox.meshSP*F_loa*, gearbox.post*tau_post*]
+
+  - name: PlanetaryOverhungSmoke
+    # 4.27.4's conditional planet bearing: straddleMounted = false removes pbB and routes
+    # the blank's far flange to its FreeEnd. straddleMounted is Evaluate = true and gates a
+    # conditional declaration, so it cannot be reached by a modifier here -- it needs its
+    # own model, which is why this is a separate case and not the smoke test with an override.
+    enabled: true
+    model: RotorDynamics.TestModels.PlanetaryOverhungSmoke
+    start_time: 0.0
+    # 0.01 s, not the 0.06 s of its straddle-mounted sibling: the overhung variant costs
+    # 403 s CPU for 0.06 s against 1.1 s for the same rig straddle-mounted, and the
+    # re-simulation did not reach the reference's end time -- which funnel reports as
+    # "Reference and test data maximum x values are different". The 370x integration cost
+    # is a real property of the overhung mounting and is NOT understood yet; see
+    # PlanetaryGearboxPlan 4.27.7. Shortened so the structural check still runs.
+    final_time: 0.01
+    ncp: 3000
+    rtol: 1.0e-9
+    modifiers: {}
+    # NOT ringFlex.*: PlanetaryGearboxSmoke sets useFlexibleRing = false, so the
+    # FlexibleRing component does not exist and those patterns match nothing --
+    # a filter that matches nothing stores nothing and fails silently (2 variables).
+    variables: [time, gearbox.carrier.omega, gearbox.meshSP*F_loa*, gearbox.post*tau_post*]
+
+  - name: PlanetaryRollerPlanetBearingSmoke
+    # The replaceable half of 4.27.4: planet bearings redeclared from PlainBearing to
+    # RollerBearing. Guards the constrainedby interface -- if PartialRadialBearing ever
+    # loses a parameter the redeclaration needs, this stops compiling.
+    enabled: true
+    model: RotorDynamics.TestModels.PlanetaryRollerPlanetBearingSmoke
+    start_time: 0.0
+    final_time: 0.06
+    ncp: 3000
+    rtol: 1.0e-9
+    modifiers: {}
+    # NOT ringFlex.*: PlanetaryGearboxSmoke sets useFlexibleRing = false, so the
+    # FlexibleRing component does not exist and those patterns match nothing --
+    # a filter that matches nothing stores nothing and fails silently (2 variables).
+    variables: [time, gearbox.carrier.omega, gearbox.meshSP*F_loa*, gearbox.post*tau_post*]
+
+  - name: PlanetaryPlanetBearingFaultCheck
+    # G7's FIFTH fault: a rolling-element defect on a planet bearing, the only bearing in
+    # the library whose support moves. err_abs/err_rel measure the ball-pass rate against
+    # both candidates (absolute planet spin vs spin relative to the carrier, 27% apart) and
+    # let the data say which the library produces -- so BOTH are stored deliberately.
+    enabled: true
+    model: RotorDynamics.TestModels.PlanetaryPlanetBearingFaultCheck
+    start_time: 0.0
+    final_time: 0.08
+    ncp: 8000
+    rtol: 1.0e-8
+    modifiers: {}
+    variables: [time, err_omega_c, err_omega_p, f_imp_model, err_abs, err_rel,
+                F_pulse_1, f_support_1]
+    # The err_* residuals settle to ~1e-7 of their own scale -- they are the MODEL's
+    # correctness assertions, and comparing two near-zero numbers under the suite's 100x
+    # looser re-simulation is a coin toss (they fail at the routine factor and pass at
+    # --rtol-factor 1). Nothing is lost: the case's actual result is carried by
+    # f_imp_model = 145.4545 Hz and err_abs = 0.272727 = 14/11 - 1, both O(1) or larger,
+    # which together say the ball-pass rate is the SUPPORT-RELATIVE one.
+    exclude_variables:
+      - err_omega_c
+      - err_omega_p
+      - err_rel
+
+  - name: PlanetaryThreePlanetCheck
+    # Three-planet set: the counting factors and mesh phasing differ from the four-planet
+    # Inalpolat stage every other planetary case uses, so this covers the N-dependence.
+    enabled: true
+    model: RotorDynamics.TestModels.PlanetaryThreePlanetCheck
+    start_time: 0.0
+    final_time: 0.06
+    ncp: 3000
+    rtol: 1.0e-8
+    modifiers: {}
+    variables: [time, F_sp_max, F_sp_min, F_sp_mean, loadShareSpread,
+                err_omega_c, err_omega_p, err_f_mesh_sp, err_f_mesh_rp,
+                err_F_sp, err_F_rp, err_tau_ring, err_tau_carrier,
+                loadRatio, err_loadRatio, ringDriven, ringFiltered, ringReject,
+                gamma_s*, gamma_r*, err_gamma_s*, err_gamma_r*]
+    # Three classes are stored but not compared:
+    #   err_*        near-zero residuals, as in PlanetaryPlanetBearingFaultCheck above:
+    #                16 of them fail at the routine 100x rtol factor and pass at 1.
+    #   gamma_s/r*   mesh phases wrapped by mod(...,1.0). A phase sitting near the wrap
+    #                comes back on the other side of it for an arbitrarily small timing
+    #                difference, giving a funnel error of exactly 0.999 -- one full wrap,
+    #                not a physical change. err_gamma_* is the unwrapped form (it carries
+    #                the +0.5 mod trick) and agrees to 1e-11, which is the real verdict.
+    #   ringFiltered a 1e-12 rejection floor.
+    # What is left is the physics at its own scale: the three mesh forces, the load-share
+    # spread and ratio, and the ring's driven/rejected amplitudes.
+    exclude_variables:
+      - "err_*"
+      - "gamma_s*"
+      - "gamma_r*"
+      - ringFiltered
+      # Both settle to ~5e-9 -- three identical planets share load perfectly and the ring
+      # rejects the non-driven order completely -- so the steady_state check compares two
+      # near-zero numbers and the 100x re-simulation moves them by 1e-7. Their large ptp
+      # (3.0 and 47.6) is start-up transient only. Load-sharing coverage is not lost:
+      # F_sp_max and F_sp_min are equal to F_sp_mean *because* sharing is perfect, so any
+      # defect that breaks it separates them at the 2.3e3 N scale where they are compared.
+      - loadShareSpread
+      - ringReject
+
+  - name: CouplingMisalignmentCheck
+    # final_time is one revolution at 150 rad/s (2*pi/150), matching the model's own
+    # experiment annotation.
+    enabled: true
+    model: RotorDynamics.TestModels.CouplingMisalignmentCheck
+    start_time: 0.0
+    final_time: 0.0418879020478639
+    ncp: 2000
+    rtol: 1.0e-9
+    modifiers: {}
+    variables: [time, theta, Ex, Ey, Angx, Angy,
+                r_c1_expected*, phi_c1_expected*, r_c2_expected*, phi_c2_expected*,
+                F_expected*, T_expected*]
+
+  - name: SupportAccelerationSensorCheck
+    enabled: true
+    model: RotorDynamics.TestModels.SupportAccelerationSensorCheck
+    start_time: 0.0
+    final_time: 0.02
+    ncp: 2000
+    rtol: 1.0e-9
+    modifiers: {}
+    variables: [time, a_expected*, d_a*]
+
+  - name: TorqueSourceLargeTwistInitCheck
+    # theta_rel is the point of the case: a ~1 degree steady twist (tau_drive/c approx
+    # 0.0177 rad) that is unambiguous rather than a fraction of a solver tolerance.
+    enabled: true
+    model: RotorDynamics.TestModels.TorqueSourceLargeTwistInitCheck
+    start_time: 0.0
+    final_time: 0.15
+    ncp: 1500
+    rtol: 1.0e-8
+    modifiers: {}
+    variables: [time, torsionShaft.theta_rel, disc.omega, loadDisc.omega]
+
+  - name: IMSBearingTestRig
+    # The full four-bearing rig. RampedIMSBearingTestRigCheck already covers the ramped
+    # variant with two checks; this covers the rig itself, which the credibility report
+    # leans on heavily (section 4.3) and which nothing guarded until now.
+    enabled: true
+    model: RotorDynamics.Examples.IMSBearingTestRig
+    start_time: 0.0
+    final_time: 1.0
+    ncp: 5000
+    rtol: 1.0e-8
+    modifiers: {}
+    variables: [time, aHousing1.a_out*, rHousing1.r_out*,
+                bearing1.f_imp, bearing1.F_n, bearing1.T_imp]
