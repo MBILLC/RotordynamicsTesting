@@ -134,7 +134,7 @@ co("""def parse(path):
 logs = {p.name: parse(p) for p in sorted(R.glob("*.log"))}
 full = logs.get("after_full.log", {})
 newer = {}
-for lg in ("newcases.log", "retune.log", "newcases_rtol1.log", "elsewhen.log"):
+for lg in ("newcases.log", "retune.log", "newcases_rtol1.log", "elsewhen.log", "fix_abcd.log"):
     newer.update(logs.get(lg, {}))
 rows = []
 for c in sorted(cases, key=lambda c: c["name"]):
