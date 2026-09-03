@@ -807,18 +807,18 @@
       "rHousing1.r_out[2]",
       "time"
     ],
-    "bytes": 184381,
+    "bytes": 30814,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "SPARSE",
       "rtol": 1e-08,
-      "cpu_time": 15.829499264014885,
-      "steps": 212506,
-      "error_test_failures": 1540,
+      "cpu_time": 3.344103678013198,
+      "steps": 45427,
+      "error_test_failures": 170,
       "convergence_failures": 0,
-      "state_events": 235,
+      "state_events": 35,
       "kind": "dynamic"
     }
   },
@@ -1951,7 +1951,19 @@
       "time",
       "zeta"
     ],
-    "bytes": 101123
+    "bytes": 43612,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-09,
+      "cpu_time": 0.3804374890169129,
+      "steps": 8503,
+      "error_test_failures": 247,
+      "convergence_failures": 74,
+      "kind": "dynamic"
+    }
   },
   {
     "name": "RampedFaultInitCheck",

@@ -1467,10 +1467,14 @@ cases:
     enabled: true
     model: RotorDynamics.TestModels.RampedEccentricRotorCheck
     start_time: 0.0
-    # 3 s at rho = 1 is ~75 whirl cycles; 6000 points is ~80 per cycle, comfortably inside
-    # tier 4's 50-100/period rule for a smooth continuous response.
-    final_time: 3.0
-    ncp: 6000
+    # final_time 1.25 s, not 3.0 s (2026-09-03): the unbalance ramp (t_ramp=1.0 s below)
+    # IS the transient offline analysis detects (transient_end measured at 0.9995 s, matching
+    # t_ramp almost exactly -- a useful cross-check that the heuristic found the right thing).
+    # The settled whirl afterward has a 0.040 s period; 5 cycles is 0.2 s, so 1.25 s clears
+    # the ramp with ~0.05 s (1.25 cycles) of margin on top. 2500 points keeps the same
+    # 2000/s density as the original 3.0 s / 6000 points (still ~50/cycle, tier 4's floor).
+    final_time: 1.25
+    ncp: 2500
     rtol: 1.0e-9
     # t_ramp = 1 s with rho = 1: unbalance ramped in over the first third of the run, at
     # resonance, which is also this library's only exercise of Rotor.initMode = SteadySpeed
@@ -1733,11 +1737,20 @@ cases:
     # The full four-bearing rig. RampedIMSBearingTestRigCheck already covers the ramped
     # variant with two checks; this covers the rig itself, which the credibility report
     # leans on heavily (section 4.3) and which nothing guarded until now.
+    #
+    # final_time 0.15 s, not the model's own 1.0 s default (2026-09-03): offline analysis of
+    # the stored reference found the dominant transient settles by t=0.034 s and the
+    # slowest significant content afterward has a 0.0205 s period, so 5 cycles fit inside
+    # 0.15 s with margin (regression-testing skill 12c). Confirmed SAFE to shorten
+    # independently of section 4.3's credibility-report analysis: the notebook runs this
+    # model through its OWN separate Impact experiment (run(IMSRIG, ..., t_final=T_FINAL,
+    # ...) in rotordynamics_validation.py), not from this stored reference, so the
+    # regression case's horizon has no bearing on the report's spectral claims.
     enabled: true
     model: RotorDynamics.Examples.IMSBearingTestRig
     start_time: 0.0
-    final_time: 1.0
-    ncp: 5000
+    final_time: 0.15
+    ncp: 750
     rtol: 1.0e-8
     modifiers: {}
     variables: [time, aHousing1.a_out*, rHousing1.r_out*,
