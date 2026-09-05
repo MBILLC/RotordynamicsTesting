@@ -1807,6 +1807,62 @@ cases:
     modifiers: {}
     variables: [time, a_expected*, d_a*]
 
+  # ---- the ideal sensors and the acceleration source (report section 3.75, 2026-09-05).
+  # Each flange is prescribed as an explicit function of time; the sensor's or source's
+  # own output is the check. The d_* residuals are kept only where they are exact zeros
+  # (an identity, not a computation); where they sit on a numerical floor they are left
+  # out and the raw output carries the check (regression-testing skill sections 11.2/11.4).
+  - name: AngleSensorCheck
+    enabled: true
+    model: RotorDynamics.TestModels.AngleSensorCheck
+    start_time: 0.0
+    final_time: 0.1
+    # 2000 points on 2.5 revolutions; the angle is a straight line, this is plenty.
+    ncp: 2000
+    rtol: 1.0e-9
+    modifiers: {}
+    # d_phi is phi minus the prescribed angle: exactly 0.0 in the reference (an identity).
+    variables: [time, angleSensor.phi, theta_expected, d_phi]
+
+  - name: AccelerationSensorCheck
+    enabled: true
+    model: RotorDynamics.TestModels.AccelerationSensorCheck
+    start_time: 0.0
+    final_time: 0.1
+    # 800 points per whirl cycle at 25 Hz; smooth-response tier.
+    ncp: 2000
+    rtol: 1.0e-9
+    modifiers: {}
+    # d_a sits at the floating-point floor (~1e-16), so it is not a regression signal;
+    # a_out against a_expected is the same check on a 2.5 m/s2 scale.
+    variables: [time, aSensor.a_out*, a_expected*]
+
+  - name: SupportDisplacementSensorCheck
+    enabled: true
+    model: RotorDynamics.TestModels.SupportDisplacementSensorCheck
+    start_time: 0.0
+    final_time: 0.02
+    ncp: 2000
+    rtol: 1.0e-9
+    modifiers: {}
+    # d_r is r_out minus the prescribed motion: exactly 0.0 in the reference (an identity).
+    variables: [time, supportSensor.r_out*, r_expected*, d_r*]
+
+  - name: AccelerateCheck
+    enabled: true
+    model: RotorDynamics.TestModels.AccelerateCheck
+    start_time: 0.0
+    final_time: 2.0
+    # A parabola and a straight line; 2000 points is generous.
+    ncp: 2000
+    # The model's annotation is 1e-9; 1e-11 here so the 100x check run lands back on it
+    # (skill section 11.3) -- the integrated angle is the one state in these four cases.
+    rtol: 1.0e-11
+    modifiers: {}
+    # d_theta/d_w are the integrator's own error (1e-10 rad on 376 rad), a numerical
+    # floor; the angle and speed themselves carry the check.
+    variables: [time, accelerate.flange.theta, accelerate.w, theta_expected]
+
   - name: TorqueSourceLargeTwistInitCheck
     # theta_rel is the point of the case: a ~1 degree steady twist (tau_drive/c approx
     # 0.0177 rad) that is unambiguous rather than a fraction of a solver tolerance.

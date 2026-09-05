@@ -1,5 +1,78 @@
 [
   {
+    "name": "AccelerateCheck",
+    "model": "RotorDynamics.TestModels.AccelerateCheck",
+    "variables": [
+      "accelerate.flange.theta",
+      "accelerate.w",
+      "theta_expected",
+      "time"
+    ],
+    "bytes": 43902,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-11,
+      "rtol": 1e-11,
+      "cpu_time": 0.18546753993723541,
+      "steps": 2016,
+      "error_test_failures": 0,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    }
+  },
+  {
+    "name": "AccelerationSensorCheck",
+    "model": "RotorDynamics.TestModels.AccelerationSensorCheck",
+    "variables": [
+      "aSensor.a_out[1]",
+      "aSensor.a_out[2]",
+      "a_expected[1]",
+      "a_expected[2]",
+      "time"
+    ],
+    "bytes": 63549,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-09,
+      "rtol": 1e-09,
+      "cpu_time": 0.20839673292357475,
+      "steps": 2001,
+      "error_test_failures": 0,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    }
+  },
+  {
+    "name": "AngleSensorCheck",
+    "model": "RotorDynamics.TestModels.AngleSensorCheck",
+    "variables": [
+      "angleSensor.phi",
+      "d_phi",
+      "theta_expected",
+      "time"
+    ],
+    "bytes": 36697,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-09,
+      "rtol": 1e-09,
+      "cpu_time": 0.2147707649273798,
+      "steps": 2001,
+      "error_test_failures": 0,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    }
+  },
+  {
     "name": "AngularContactFaultFrequencyCheck",
     "model": "RotorDynamics.TestModels.AngularContactFaultFrequencyCheck",
     "variables": [
@@ -2482,6 +2555,33 @@
       "atol": 1e-09,
       "rtol": 1e-09,
       "cpu_time": 0.19629094703122973,
+      "steps": 2001,
+      "error_test_failures": 0,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    }
+  },
+  {
+    "name": "SupportDisplacementSensorCheck",
+    "model": "RotorDynamics.TestModels.SupportDisplacementSensorCheck",
+    "variables": [
+      "d_r[1]",
+      "d_r[2]",
+      "r_expected[1]",
+      "r_expected[2]",
+      "supportSensor.r_out[1]",
+      "supportSensor.r_out[2]",
+      "time"
+    ],
+    "bytes": 72836,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-09,
+      "rtol": 1e-09,
+      "cpu_time": 0.1937638180097565,
       "steps": 2001,
       "error_test_failures": 0,
       "convergence_failures": 0,
