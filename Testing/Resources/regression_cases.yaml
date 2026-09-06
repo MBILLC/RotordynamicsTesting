@@ -2057,6 +2057,106 @@ cases:
     # carries the same information with real magnitude and IS checked.
     exclude_variables: [F_axialResidual1]
 
+  # ---- BevelGearMesh at shaft angles other than 90 deg (added 2026-09-06) ----
+  # Companions to the three cases above, lifted from Resources/Notebooks/
+  # BevelGearMesh_ShaftAngleCheck.ipynb (RotorDynamics repo), which extended the bevel claims'
+  # validity domain from Sigma = 90 deg to [45, 120] deg on the rigs and to 75 deg in the drive.
+  # The rule these serve (ValidationPlan.md, "One point is not a validation"): a parameter a
+  # closed form depends on nonlinearly is frozen at several points of its domain, because a
+  # single point can pass by two errors cancelling. The points chosen are the ones that
+  # discriminate: 75 deg is the demo task's own REQ-M-7 angle and breaks the 90-deg identity
+  # F_a1 = F_r2; 120 deg makes the wheel a crown wheel (gamma2 = 90 deg, F_r2 = 0), the edge
+  # of the domain; 45 deg on the spiral rig is where the wheel thrust has reversed sign.
+  # Same ncp/rtol reasoning and the same err_* exclusions as the 90-deg cases.
+  - name: BevelGearMeshRatioCheck_Sigma75
+    enabled: true
+    model: RotorDynamics.TestModels.BevelGearMeshRatioCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.0e-10
+    modifiers: {bevelMesh.Sigma: 1.3089969389957472}   # 75 deg
+    variables: [time, tau_load, phi_n,
+                bevelMesh.z1, bevelMesh.z2, bevelMesh.m_mean, bevelMesh.phi_n,
+                bevelMesh.Sigma, bevelMesh.gamma1, bevelMesh.gamma2,
+                bevelMesh.R_m1, bevelMesh.R_m2, bevelMesh.i_ratio,
+                bevelMesh.F_tang, bevelMesh.F_rc,
+                bevelMesh.F_a1, bevelMesh.F_r1, bevelMesh.F_a2, bevelMesh.F_r2,
+                bevelMesh.tau_1, bevelMesh.tau_2, gear1.omega, gear2.omega]
+    exclude_variables: [err_Ftang, err_Fa1, err_Fr1, err_Fa2, err_Fr2, err_tau1, P_net]
+
+  - name: BevelGearMeshRatioCheck_Sigma120
+    enabled: true
+    model: RotorDynamics.TestModels.BevelGearMeshRatioCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.0e-10
+    modifiers: {bevelMesh.Sigma: 2.0943951023931953}   # 120 deg: crown wheel, F_r2 = 0
+    variables: [time, tau_load, phi_n,
+                bevelMesh.z1, bevelMesh.z2, bevelMesh.m_mean, bevelMesh.phi_n,
+                bevelMesh.Sigma, bevelMesh.gamma1, bevelMesh.gamma2,
+                bevelMesh.R_m1, bevelMesh.R_m2, bevelMesh.i_ratio,
+                bevelMesh.F_tang, bevelMesh.F_rc,
+                bevelMesh.F_a1, bevelMesh.F_r1, bevelMesh.F_a2, bevelMesh.F_r2,
+                bevelMesh.tau_1, bevelMesh.tau_2, gear1.omega, gear2.omega]
+    exclude_variables: [err_Ftang, err_Fa1, err_Fr1, err_Fa2, err_Fr2, err_tau1, P_net]
+
+  - name: BevelGearMeshRatioCheck_Spiral_Sigma75
+    enabled: true
+    model: RotorDynamics.TestModels.BevelGearMeshRatioCheck_Spiral
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.0e-10
+    modifiers: {bevelMesh.Sigma: 1.3089969389957472}   # 75 deg
+    variables: [time, tau_load, phi_n, beta_m,
+                bevelMesh.z1, bevelMesh.z2, bevelMesh.m_mean, bevelMesh.phi_n,
+                bevelMesh.beta_m,                bevelMesh.Sigma, bevelMesh.gamma1, bevelMesh.gamma2,
+                bevelMesh.R_m1, bevelMesh.R_m2, bevelMesh.i_ratio,
+                bevelMesh.F_tang, bevelMesh.F_rc,
+                bevelMesh.F_a1, bevelMesh.F_r1, bevelMesh.F_a2, bevelMesh.F_r2,
+                bevelMesh.tau_1, bevelMesh.tau_2, gear1.omega, gear2.omega]
+    exclude_variables: [err_Ftang, err_Fa1, err_Fr1, err_Fa2, err_Fr2, err_tau1, P_net]
+
+  - name: BevelGearMeshRatioCheck_Spiral_Sigma45
+    enabled: true
+    model: RotorDynamics.TestModels.BevelGearMeshRatioCheck_Spiral
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.0e-10
+    modifiers: {bevelMesh.Sigma: 0.7853981633974483}   # 45 deg: wheel thrust reversed
+    variables: [time, tau_load, phi_n, beta_m,
+                bevelMesh.z1, bevelMesh.z2, bevelMesh.m_mean, bevelMesh.phi_n,
+                bevelMesh.beta_m,                bevelMesh.Sigma, bevelMesh.gamma1, bevelMesh.gamma2,
+                bevelMesh.R_m1, bevelMesh.R_m2, bevelMesh.i_ratio,
+                bevelMesh.F_tang, bevelMesh.F_rc,
+                bevelMesh.F_a1, bevelMesh.F_r1, bevelMesh.F_a2, bevelMesh.F_r2,
+                bevelMesh.tau_1, bevelMesh.tau_2, gear1.omega, gear2.omega]
+    exclude_variables: [err_Ftang, err_Fa1, err_Fr1, err_Fa2, err_Fr2, err_tau1, P_net]
+
+  - name: SpiralBevelDriveDemo_Sigma75
+    enabled: true
+    # The demo at its own task's offset-axis operating point (REQ-M-7, QOI
+    # drive.offset-axis-variant): Sigma = 75 deg, beta_m = 20 deg. Guards the load path at a
+    # non-right angle, where the two pedestal thrusts and the bearing reaction all differ from
+    # the 90-deg case (notebook table S3).
+    model: RotorDynamics.Examples.SpiralBevelDriveDemo
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.0e-10
+    modifiers: {bevelMesh.Sigma: 1.3089969389957472, beta_m: 0.3490658503988659}
+    variables: [time, tau_load, beta_m,
+                bevelMesh.Sigma, bevelMesh.gamma1, bevelMesh.gamma2, bevelMesh.R_m1, bevelMesh.R_m2,
+                bevelMesh.F_tang, bevelMesh.F_a1, bevelMesh.F_r1,
+                bevelMesh.F_a2, bevelMesh.F_r2, bevelMesh.tau_1, bevelMesh.tau_2,
+                spiralThrustFactor, F_mesh_resultant,
+                F_toHousing1, F_toHousing2, s_shaft1,
+                bearing1.F_za, bearing2.F_za, gear1.omega, gear2.omega]
+    exclude_variables: [F_axialResidual1]
+
   # ---- GearMesh Phase H2: helical contact-line attenuation ----
   - name: GearMeshOverlapAttenuationCheck
     enabled: true
