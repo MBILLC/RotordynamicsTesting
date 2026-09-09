@@ -2248,3 +2248,381 @@ cases:
     # lands on is set by the solver path. Its magnitude, its sign and its product with
     # v_slide are all pinned by other variables in this same list.
     exclude_variables: [gearMesh.F_fric]
+
+  # ══════════════════════════════════════════════════════════════════════════════════
+  # MULTI-POINT SWEEP POINTS (credibility report sections 3.77-3.85), added 2026-09-09.
+  #
+  # ValidationPlan.md's rule -- "one point is not a validation" -- says a closed-form
+  # check must run at several points across a nonlinear parameter's domain. The report
+  # sections do that; these cases FREEZE the same points as reference trajectories, so a
+  # future change cannot move one of them without the suite noticing.
+  #
+  # No new models: every case below is an existing rig with per-case `modifiers`, which is
+  # the same mechanism PlanetaryFaultSignature_* already uses. Each case inherits its base
+  # case's final_time, ncp, rtol, variable list and exclusions -- only the name and the
+  # modifiers differ -- so the numerics reasoning written at each base case still applies.
+  # ══════════════════════════════════════════════════════════════════════════════════
+
+  # --- report section 3.77: pressure angle, 14.5/20/25 deg (base case is the 20 deg point)
+  - name: GearMeshRatioCheck_phi14_5
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshRatioCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.000000000e-10
+    modifiers: {gearMesh.phi_n: 0.2530727415391778}
+    variables: [time, tau_load, omega1, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.a_centre, gearMesh.eps_alpha, gearMesh.k_mesh, gearMesh.c_mesh_used, gearMesh.i_ratio, gearMesh.delta, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_sep, gearMesh.tau_1, gearMesh.tau_2, gear1.omega, gear2.omega]
+  - name: GearMeshRatioCheck_phi25
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshRatioCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.000000000e-10
+    modifiers: {gearMesh.phi_n: 0.4363323129985824}
+    variables: [time, tau_load, omega1, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.a_centre, gearMesh.eps_alpha, gearMesh.k_mesh, gearMesh.c_mesh_used, gearMesh.i_ratio, gearMesh.delta, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_sep, gearMesh.tau_1, gearMesh.tau_2, gear1.omega, gear2.omega]
+
+  # --- report section 3.78: helix angle 10/20/30 deg in BOTH helix hands (base case is 20 deg, right hand)
+  - name: GearMeshHelicalThrustCheck_beta10
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshHelicalThrustCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.000000000e-10
+    modifiers: {gearMesh.beta: 0.17453292519943295}
+    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, thrust1.axialFlange.f, thrust2.axialFlange.f, gearMesh.F_sep]
+  - name: GearMeshHelicalThrustCheck_beta30
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshHelicalThrustCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.000000000e-10
+    modifiers: {gearMesh.beta: 0.5235987755982988}
+    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, thrust1.axialFlange.f, thrust2.axialFlange.f, gearMesh.F_sep]
+  - name: GearMeshHelicalThrustCheck_beta10_LH
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshHelicalThrustCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.000000000e-10
+    modifiers: {gearMesh.beta: 0.17453292519943295, gearMesh.rightHandGear1: false}
+    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, thrust1.axialFlange.f, thrust2.axialFlange.f, gearMesh.F_sep]
+  - name: GearMeshHelicalThrustCheck_beta20_LH
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshHelicalThrustCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.000000000e-10
+    modifiers: {gearMesh.rightHandGear1: false}
+    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, thrust1.axialFlange.f, thrust2.axialFlange.f, gearMesh.F_sep]
+  - name: GearMeshHelicalThrustCheck_beta30_LH
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshHelicalThrustCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.000000000e-10
+    modifiers: {gearMesh.beta: 0.5235987755982988, gearMesh.rightHandGear1: false}
+    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, thrust1.axialFlange.f, thrust2.axialFlange.f, gearMesh.F_sep]
+
+  # --- report section 3.79: helix angle 10/20/30 deg on the INTERNAL mesh (base case is 20 deg)
+  - name: GearMeshInternalHelicalThrustCheck_beta10
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshInternalHelicalThrustCheck
+    start_time: 0.0
+    final_time: 0.5
+    ncp: 2000
+    rtol: 1.000000000e-10
+    modifiers: {gearMesh.beta: 0.17453292519943295}
+    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.a_centre, gearMesh.s_int, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, err_Fax, err_M1, err_M2, err_omega2, thrust1.axialFlange.f, thrust2.axialFlange.f]
+    exclude_variables: [err_Fax, err_M1, err_M2, err_omega2]
+  - name: GearMeshInternalHelicalThrustCheck_beta30
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshInternalHelicalThrustCheck
+    start_time: 0.0
+    final_time: 0.5
+    ncp: 2000
+    rtol: 1.000000000e-10
+    modifiers: {gearMesh.beta: 0.5235987755982988}
+    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.a_centre, gearMesh.s_int, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, err_Fax, err_M1, err_M2, err_omega2, thrust1.axialFlange.f, thrust2.axialFlange.f]
+    exclude_variables: [err_Fax, err_M1, err_M2, err_omega2]
+
+  # --- report section 3.80: contact angle 15/25/35/45 deg (base case is 25 deg)
+  - name: RollerBearingThrustReactionCheck_alpha15
+    enabled: true
+    model: RotorDynamics.TestModels.RollerBearingThrustReactionCheck
+    start_time: 0.0
+    final_time: 0.05
+    ncp: 500
+    rtol: 1.000000000e-09
+    modifiers: {alpha_contact: 0.2617993877991494}
+    variables: [time, F_thrust, c_za, s_target, bearing1.F_za, bearing1.s_mid, bearing1.delta_za, bearing2.F_za, F_float, F_toGround]
+  - name: RollerBearingThrustReactionCheck_alpha35
+    enabled: true
+    model: RotorDynamics.TestModels.RollerBearingThrustReactionCheck
+    start_time: 0.0
+    final_time: 0.05
+    ncp: 500
+    rtol: 1.000000000e-09
+    modifiers: {alpha_contact: 0.6108652381980153}
+    variables: [time, F_thrust, c_za, s_target, bearing1.F_za, bearing1.s_mid, bearing1.delta_za, bearing2.F_za, F_float, F_toGround]
+  - name: RollerBearingThrustReactionCheck_alpha45
+    enabled: true
+    model: RotorDynamics.TestModels.RollerBearingThrustReactionCheck
+    start_time: 0.0
+    final_time: 0.05
+    ncp: 500
+    rtol: 1.000000000e-09
+    modifiers: {alpha_contact: 0.7853981633974483}
+    variables: [time, F_thrust, c_za, s_target, bearing1.F_za, bearing1.s_mid, bearing1.delta_za, bearing2.F_za, F_float, F_toGround]
+
+  # --- report section 3.81: misalignment angle 0.25-4 deg and lateral offset 50-800 um (base case is 0.5 deg / 200 um)
+  - name: CouplingMisalignmentCheck_ang0p25
+    enabled: true
+    model: RotorDynamics.TestModels.CouplingMisalignmentCheck
+    start_time: 0.0
+    final_time: 0.0418879020478639
+    ncp: 2000
+    rtol: 1.000000000e-09
+    modifiers: {a_ang: 0.004363323129985824}
+    variables: [time, theta, Ex, Ey, Angx, Angy, r_c1_expected*, phi_c1_expected*, r_c2_expected*, phi_c2_expected*, F_expected*, T_expected*]
+  - name: CouplingMisalignmentCheck_ang1
+    enabled: true
+    model: RotorDynamics.TestModels.CouplingMisalignmentCheck
+    start_time: 0.0
+    final_time: 0.0418879020478639
+    ncp: 2000
+    rtol: 1.000000000e-09
+    modifiers: {a_ang: 0.017453292519943295}
+    variables: [time, theta, Ex, Ey, Angx, Angy, r_c1_expected*, phi_c1_expected*, r_c2_expected*, phi_c2_expected*, F_expected*, T_expected*]
+  - name: CouplingMisalignmentCheck_ang2
+    enabled: true
+    model: RotorDynamics.TestModels.CouplingMisalignmentCheck
+    start_time: 0.0
+    final_time: 0.0418879020478639
+    ncp: 2000
+    rtol: 1.000000000e-09
+    modifiers: {a_ang: 0.03490658503988659}
+    variables: [time, theta, Ex, Ey, Angx, Angy, r_c1_expected*, phi_c1_expected*, r_c2_expected*, phi_c2_expected*, F_expected*, T_expected*]
+  - name: CouplingMisalignmentCheck_ang4
+    enabled: true
+    model: RotorDynamics.TestModels.CouplingMisalignmentCheck
+    start_time: 0.0
+    final_time: 0.0418879020478639
+    ncp: 2000
+    rtol: 1.000000000e-09
+    modifiers: {a_ang: 0.06981317007977318}
+    variables: [time, theta, Ex, Ey, Angx, Angy, r_c1_expected*, phi_c1_expected*, r_c2_expected*, phi_c2_expected*, F_expected*, T_expected*]
+  - name: CouplingMisalignmentCheck_off50um
+    enabled: true
+    model: RotorDynamics.TestModels.CouplingMisalignmentCheck
+    start_time: 0.0
+    final_time: 0.0418879020478639
+    ncp: 2000
+    rtol: 1.000000000e-09
+    modifiers: {e_off: 5.000000000e-05}
+    variables: [time, theta, Ex, Ey, Angx, Angy, r_c1_expected*, phi_c1_expected*, r_c2_expected*, phi_c2_expected*, F_expected*, T_expected*]
+  - name: CouplingMisalignmentCheck_off800um
+    enabled: true
+    model: RotorDynamics.TestModels.CouplingMisalignmentCheck
+    start_time: 0.0
+    final_time: 0.0418879020478639
+    ncp: 2000
+    rtol: 1.000000000e-09
+    modifiers: {e_off: 0.0008}
+    variables: [time, theta, Ex, Ey, Angx, Angy, r_c1_expected*, phi_c1_expected*, r_c2_expected*, phi_c2_expected*, F_expected*, T_expected*]
+
+  # --- report section 3.82: seven lever-arm geometries, including the two that must change nothing (base case is the first)
+  - name: MomentLeverArm_L1_50mm
+    enabled: true
+    model: RotorDynamics.TestModels.MomentLeverArm
+    start_time: 0.0
+    final_time: 0.01
+    ncp: 5
+    rtol: 1.000000000e-09
+    modifiers: {L1: 0.05}
+    variables: [time, bearing1.support.t*, M_expected, d_lever]
+  - name: MomentLeverArm_L1_300mm
+    enabled: true
+    model: RotorDynamics.TestModels.MomentLeverArm
+    start_time: 0.0
+    final_time: 0.01
+    ncp: 5
+    rtol: 1.000000000e-09
+    modifiers: {L1: 0.3}
+    variables: [time, bearing1.support.t*, M_expected, d_lever]
+  - name: MomentLeverArm_L2_200mm
+    enabled: true
+    model: RotorDynamics.TestModels.MomentLeverArm
+    start_time: 0.0
+    final_time: 0.01
+    ncp: 5
+    rtol: 1.000000000e-09
+    modifiers: {L2: 0.2}
+    variables: [time, bearing1.support.t*, M_expected, d_lever]
+  - name: MomentLeverArm_Lb_60mm
+    enabled: true
+    model: RotorDynamics.TestModels.MomentLeverArm
+    start_time: 0.0
+    final_time: 0.01
+    ncp: 5
+    rtol: 1.000000000e-09
+    modifiers: {L_b: 0.06}
+    variables: [time, bearing1.support.t*, M_expected, d_lever]
+  - name: MomentLeverArm_L3_20mm
+    enabled: true
+    model: RotorDynamics.TestModels.MomentLeverArm
+    start_time: 0.0
+    final_time: 0.01
+    ncp: 5
+    rtol: 1.000000000e-09
+    modifiers: {L3: 0.02}
+    variables: [time, bearing1.support.t*, M_expected, d_lever]
+  - name: MomentLeverArm_L3_300mm
+    enabled: true
+    model: RotorDynamics.TestModels.MomentLeverArm
+    start_time: 0.0
+    final_time: 0.01
+    ncp: 5
+    rtol: 1.000000000e-09
+    modifiers: {L3: 0.3}
+    variables: [time, bearing1.support.t*, M_expected, d_lever]
+
+  # --- report section 3.83: profile-shift sum -0.8 to +1.2, plus three pairs sharing one sum (base case is x1=0.4, x2=0.2)
+  - name: GearMeshProfileShiftCheck_x_neg0p8
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshProfileShiftCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.000000000e-10
+    modifiers: {x1: -0.5, x2: -0.3}
+    variables: [time, x1, x2, da_centre, tau1_settled, gearMesh.phi_t, gearMesh.phi_tw, gearMesh.x_sum, gearMesh.z_sum, gearMesh.a_centre, gearMesh.a_w, gearMesh.r_w1, gearMesh.r_w2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.r_a1, gearMesh.r_a2, gearMesh.eps_alpha, gearMesh.i_ratio, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_sep, gearMesh.delta, gearMesh.tau_1, gearMesh.tau_2, gear1.omega, gear2.omega]
+    exclude_variables: [err_tau1, err_omega2, err_involute, err_rw1, err_rw2, err_aw]
+  - name: GearMeshProfileShiftCheck_x_neg0p3
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshProfileShiftCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.000000000e-10
+    modifiers: {x1: -0.3, x2: 0.0}
+    variables: [time, x1, x2, da_centre, tau1_settled, gearMesh.phi_t, gearMesh.phi_tw, gearMesh.x_sum, gearMesh.z_sum, gearMesh.a_centre, gearMesh.a_w, gearMesh.r_w1, gearMesh.r_w2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.r_a1, gearMesh.r_a2, gearMesh.eps_alpha, gearMesh.i_ratio, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_sep, gearMesh.delta, gearMesh.tau_1, gearMesh.tau_2, gear1.omega, gear2.omega]
+    exclude_variables: [err_tau1, err_omega2, err_involute, err_rw1, err_rw2, err_aw]
+  - name: GearMeshProfileShiftCheck_x_zero
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshProfileShiftCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.000000000e-10
+    modifiers: {x1: 0.0, x2: 0.0}
+    variables: [time, x1, x2, da_centre, tau1_settled, gearMesh.phi_t, gearMesh.phi_tw, gearMesh.x_sum, gearMesh.z_sum, gearMesh.a_centre, gearMesh.a_w, gearMesh.r_w1, gearMesh.r_w2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.r_a1, gearMesh.r_a2, gearMesh.eps_alpha, gearMesh.i_ratio, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_sep, gearMesh.delta, gearMesh.tau_1, gearMesh.tau_2, gear1.omega, gear2.omega]
+    exclude_variables: [err_tau1, err_omega2, err_involute, err_rw1, err_rw2, err_aw]
+  - name: GearMeshProfileShiftCheck_x_asym0p4
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshProfileShiftCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.000000000e-10
+    modifiers: {x1: 0.6, x2: -0.2}
+    variables: [time, x1, x2, da_centre, tau1_settled, gearMesh.phi_t, gearMesh.phi_tw, gearMesh.x_sum, gearMesh.z_sum, gearMesh.a_centre, gearMesh.a_w, gearMesh.r_w1, gearMesh.r_w2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.r_a1, gearMesh.r_a2, gearMesh.eps_alpha, gearMesh.i_ratio, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_sep, gearMesh.delta, gearMesh.tau_1, gearMesh.tau_2, gear1.omega, gear2.omega]
+    exclude_variables: [err_tau1, err_omega2, err_involute, err_rw1, err_rw2, err_aw]
+  - name: GearMeshProfileShiftCheck_x_1p2
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshProfileShiftCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.000000000e-10
+    modifiers: {x1: 0.8, x2: 0.4}
+    variables: [time, x1, x2, da_centre, tau1_settled, gearMesh.phi_t, gearMesh.phi_tw, gearMesh.x_sum, gearMesh.z_sum, gearMesh.a_centre, gearMesh.a_w, gearMesh.r_w1, gearMesh.r_w2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.r_a1, gearMesh.r_a2, gearMesh.eps_alpha, gearMesh.i_ratio, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_sep, gearMesh.delta, gearMesh.tau_1, gearMesh.tau_2, gear1.omega, gear2.omega]
+    exclude_variables: [err_tau1, err_omega2, err_involute, err_rw1, err_rw2, err_aw]
+  - name: GearMeshProfileShiftCheck_x_split_6_0
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshProfileShiftCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.000000000e-10
+    modifiers: {x1: 0.6, x2: 0.0}
+    variables: [time, x1, x2, da_centre, tau1_settled, gearMesh.phi_t, gearMesh.phi_tw, gearMesh.x_sum, gearMesh.z_sum, gearMesh.a_centre, gearMesh.a_w, gearMesh.r_w1, gearMesh.r_w2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.r_a1, gearMesh.r_a2, gearMesh.eps_alpha, gearMesh.i_ratio, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_sep, gearMesh.delta, gearMesh.tau_1, gearMesh.tau_2, gear1.omega, gear2.omega]
+    exclude_variables: [err_tau1, err_omega2, err_involute, err_rw1, err_rw2, err_aw]
+  - name: GearMeshProfileShiftCheck_x_split_0_6
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshProfileShiftCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.000000000e-10
+    modifiers: {x1: 0.0, x2: 0.6}
+    variables: [time, x1, x2, da_centre, tau1_settled, gearMesh.phi_t, gearMesh.phi_tw, gearMesh.x_sum, gearMesh.z_sum, gearMesh.a_centre, gearMesh.a_w, gearMesh.r_w1, gearMesh.r_w2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.r_a1, gearMesh.r_a2, gearMesh.eps_alpha, gearMesh.i_ratio, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_sep, gearMesh.delta, gearMesh.tau_1, gearMesh.tau_2, gear1.omega, gear2.omega]
+    exclude_variables: [err_tau1, err_omega2, err_involute, err_rw1, err_rw2, err_aw]
+
+  # --- report section 3.84: helix 0/15/20/30 deg against pressure angle 14.5/20/25 deg (base case is spur, 20 deg)
+  - name: GearMeshFrictionCheck_beta15
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshFrictionCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 8000
+    rtol: 1.000000000e-10
+    modifiers: {gearMesh.beta: 0.2617993877991494}
+    variables: [time, tau_load, omega1, mu_f, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_t, gearMesh.r_b1, gearMesh.r_b2, gearMesh.mu_f, gearMesh.v_eps, gearMesh.xi, gearMesh.omega_rel, gearMesh.v_loa_rot, gearMesh.v_slide, gearMesh.F_fric, gearMesh.F_c, gearMesh.F_loa, gearMesh.lossPower, gearMesh.tau_1, gearMesh.tau_2, gear1.omega, gear2.omega, P_ports, P_mesh]
+    exclude_variables: [P_resid, err_power, gearMesh.F_fric]
+    variable_tolerances:
+      gearMesh.tau_*: 0.01
+  - name: GearMeshFrictionCheck_beta30
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshFrictionCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 8000
+    rtol: 1.000000000e-10
+    modifiers: {gearMesh.beta: 0.5235987755982988}
+    variables: [time, tau_load, omega1, mu_f, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_t, gearMesh.r_b1, gearMesh.r_b2, gearMesh.mu_f, gearMesh.v_eps, gearMesh.xi, gearMesh.omega_rel, gearMesh.v_loa_rot, gearMesh.v_slide, gearMesh.F_fric, gearMesh.F_c, gearMesh.F_loa, gearMesh.lossPower, gearMesh.tau_1, gearMesh.tau_2, gear1.omega, gear2.omega, P_ports, P_mesh]
+    exclude_variables: [P_resid, err_power, gearMesh.F_fric]
+    variable_tolerances:
+      gearMesh.tau_*: 0.01
+  - name: GearMeshFrictionCheck_phi14_5
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshFrictionCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 8000
+    rtol: 1.000000000e-10
+    modifiers: {gearMesh.phi_n: 0.2530727415391778}
+    variables: [time, tau_load, omega1, mu_f, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_t, gearMesh.r_b1, gearMesh.r_b2, gearMesh.mu_f, gearMesh.v_eps, gearMesh.xi, gearMesh.omega_rel, gearMesh.v_loa_rot, gearMesh.v_slide, gearMesh.F_fric, gearMesh.F_c, gearMesh.F_loa, gearMesh.lossPower, gearMesh.tau_1, gearMesh.tau_2, gear1.omega, gear2.omega, P_ports, P_mesh]
+    exclude_variables: [P_resid, err_power, gearMesh.F_fric]
+    variable_tolerances:
+      gearMesh.tau_*: 0.01
+  - name: GearMeshFrictionCheck_phi25
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshFrictionCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 8000
+    rtol: 1.000000000e-10
+    modifiers: {gearMesh.phi_n: 0.4363323129985824}
+    variables: [time, tau_load, omega1, mu_f, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_t, gearMesh.r_b1, gearMesh.r_b2, gearMesh.mu_f, gearMesh.v_eps, gearMesh.xi, gearMesh.omega_rel, gearMesh.v_loa_rot, gearMesh.v_slide, gearMesh.F_fric, gearMesh.F_c, gearMesh.F_loa, gearMesh.lossPower, gearMesh.tau_1, gearMesh.tau_2, gear1.omega, gear2.omega, P_ports, P_mesh]
+    exclude_variables: [P_resid, err_power, gearMesh.F_fric]
+    variable_tolerances:
+      gearMesh.tau_*: 0.01
+  - name: GearMeshFrictionCheck_beta20_phi25
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshFrictionCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 8000
+    rtol: 1.000000000e-10
+    modifiers: {gearMesh.beta: 0.3490658503988659, gearMesh.phi_n: 0.4363323129985824}
+    variables: [time, tau_load, omega1, mu_f, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_t, gearMesh.r_b1, gearMesh.r_b2, gearMesh.mu_f, gearMesh.v_eps, gearMesh.xi, gearMesh.omega_rel, gearMesh.v_loa_rot, gearMesh.v_slide, gearMesh.F_fric, gearMesh.F_c, gearMesh.F_loa, gearMesh.lossPower, gearMesh.tau_1, gearMesh.tau_2, gear1.omega, gear2.omega, P_ports, P_mesh]
+    exclude_variables: [P_resid, err_power, gearMesh.F_fric]
+    variable_tolerances:
+      gearMesh.tau_*: 0.01
