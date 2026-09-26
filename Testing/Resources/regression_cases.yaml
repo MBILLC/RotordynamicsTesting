@@ -2049,7 +2049,13 @@ cases:
                 bevelMesh.F_a2, bevelMesh.F_r2, bevelMesh.tau_1, bevelMesh.tau_2,
                 spiralThrustFactor, F_mesh_resultant,
                 F_toHousing1, F_toHousing2, s_shaft1,
-                bearing1.F_za, bearing2.F_za, gear1.omega, gear2.omega]
+                bearing1.F_za, bearing2.F_za, gear1.omega, gear2.omega,
+                # REQ-M-3, the pinion radial load. Added 2026-09-26 with the drive unclamp: until
+                # then the drive's lateral pin carried this load, bearing1.F_sd was identically
+                # zero, and nothing here could see it. Trailing * because it is an array.
+                # bearing2.F_sd: the wheel pedestal's radial load, zero for the same reason
+                # (a RigidSupport clamped the wheel shaft) until the same date.
+                bearing1.F_sd*, bearing2.F_sd*]
     # F_axialResidual1 is a STRUCTURAL zero (the axial equilibrium of a line whose far end is
     # free), i.e. exactly the "assigned rather than computed zero" skill 11.2 says is safe --
     # but it is assigned by a force balance the solver enforces, not by an if-branch, so it
@@ -2154,7 +2160,13 @@ cases:
                 bevelMesh.F_a2, bevelMesh.F_r2, bevelMesh.tau_1, bevelMesh.tau_2,
                 spiralThrustFactor, F_mesh_resultant,
                 F_toHousing1, F_toHousing2, s_shaft1,
-                bearing1.F_za, bearing2.F_za, gear1.omega, gear2.omega]
+                bearing1.F_za, bearing2.F_za, gear1.omega, gear2.omega,
+                # REQ-M-3, the pinion radial load. Added 2026-09-26 with the drive unclamp: until
+                # then the drive's lateral pin carried this load, bearing1.F_sd was identically
+                # zero, and nothing here could see it. Trailing * because it is an array.
+                # bearing2.F_sd: the wheel pedestal's radial load, zero for the same reason
+                # (a RigidSupport clamped the wheel shaft) until the same date.
+                bearing1.F_sd*, bearing2.F_sd*]
     exclude_variables: [F_axialResidual1]
 
   # ---- GearMesh Phase H2: helical contact-line attenuation ----

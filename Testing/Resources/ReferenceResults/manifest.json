@@ -337,7 +337,7 @@
       "tau_load",
       "time"
     ],
-    "bytes": 83435,
+    "bytes": 84073,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
@@ -345,12 +345,13 @@
       "linear_solver_type": "DENSE",
       "atol": 1e-10,
       "rtol": 1e-10,
-      "cpu_time": 0.18348532496020198,
+      "cpu_time": 0.19421750301262364,
       "steps": 2014,
       "error_test_failures": 1,
       "convergence_failures": 0,
       "kind": "dynamic"
-    }
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
   },
   {
     "name": "BevelGearMeshRatioCheck_Spiral_Sigma45",
@@ -4900,7 +4901,11 @@
       "F_mesh_resultant",
       "F_toHousing1",
       "F_toHousing2",
+      "bearing1.F_sd[1]",
+      "bearing1.F_sd[2]",
       "bearing1.F_za",
+      "bearing2.F_sd[1]",
+      "bearing2.F_sd[2]",
       "bearing2.F_za",
       "beta_m",
       "bevelMesh.F_a1",
@@ -4921,19 +4926,20 @@
       "tau_load",
       "time"
     ],
-    "bytes": 127832,
+    "bytes": 172457,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-10,
-      "cpu_time": 0.2552688609575853,
-      "steps": 2184,
-      "error_test_failures": 4,
+      "cpu_time": 0.3655781749985181,
+      "steps": 4947,
+      "error_test_failures": 44,
       "convergence_failures": 0,
       "kind": "dynamic"
-    }
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
   },
   {
     "name": "SpiralBevelDriveDemo_Sigma75",
@@ -4942,7 +4948,11 @@
       "F_mesh_resultant",
       "F_toHousing1",
       "F_toHousing2",
+      "bearing1.F_sd[1]",
+      "bearing1.F_sd[2]",
       "bearing1.F_za",
+      "bearing2.F_sd[1]",
+      "bearing2.F_sd[2]",
       "bearing2.F_za",
       "beta_m",
       "bevelMesh.F_a1",
@@ -4964,19 +4974,20 @@
       "tau_load",
       "time"
     ],
-    "bytes": 129686,
+    "bytes": 170241,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-10,
-      "cpu_time": 0.2498894640011713,
-      "steps": 2213,
-      "error_test_failures": 11,
+      "cpu_time": 0.37977803498506546,
+      "steps": 4903,
+      "error_test_failures": 31,
       "convergence_failures": 0,
       "kind": "dynamic"
-    }
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
   },
   {
     "name": "SupportAccelerationSensorCheck",
