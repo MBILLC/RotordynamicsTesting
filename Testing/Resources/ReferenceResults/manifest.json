@@ -526,6 +526,41 @@
     "bytes": 587585
   },
   {
+    "name": "CompliantCrossedAxisReversalCheck",
+    "model": "RotorDynamics.TestModels.CompliantCrossedAxisReversalCheck",
+    "variables": [
+      "meshHc.alpha_nLoaded",
+      "meshHc.lossPower",
+      "meshHc.sigma",
+      "meshHc.tau_1",
+      "meshPc.sigma",
+      "meshPc.tau_2",
+      "meshWc.lossPower",
+      "meshWc.sigma",
+      "meshWc.tau_1",
+      "meshXc.lossPower",
+      "meshXc.sigma",
+      "meshXc.tau_1",
+      "time"
+    ],
+    "bytes": 232145,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-09,
+      "rtol": 1e-09,
+      "cpu_time": 2.1353303589858115,
+      "steps": 18074,
+      "error_test_failures": 1002,
+      "convergence_failures": 1,
+      "state_events": 95,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
     "name": "CouplingMisalignmentCheck",
     "model": "RotorDynamics.TestModels.CouplingMisalignmentCheck",
     "variables": [
@@ -821,6 +856,47 @@
       "time"
     ],
     "bytes": 1453520
+  },
+  {
+    "name": "CrossedAxisReversalCheck",
+    "model": "RotorDynamics.TestModels.CrossedAxisReversalCheck",
+    "variables": [
+      "err_ZP_Fa1",
+      "err_ZP_Fa2",
+      "err_ZP_Fr1",
+      "err_ZP_Fr2",
+      "err_ZP_tau2",
+      "meshH.F_n",
+      "meshH.F_sep",
+      "meshH.alpha_nLoaded",
+      "meshP.F_a1",
+      "meshP.F_a2",
+      "meshP.F_r1",
+      "meshP.F_r2",
+      "meshS.F_a1",
+      "meshS.F_r1",
+      "meshS.F_tang",
+      "meshX.F_a1",
+      "meshX.F_n",
+      "meshX.F_r",
+      "time"
+    ],
+    "bytes": 104800,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-10,
+      "rtol": 1e-10,
+      "cpu_time": 0.27050116285681725,
+      "steps": 2019,
+      "error_test_failures": 1,
+      "convergence_failures": 0,
+      "state_events": 1,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
   },
   {
     "name": "CrossedHelicalMeshCheck",
@@ -1594,6 +1670,39 @@
       "state_events": 1,
       "kind": "dynamic"
     }
+  },
+  {
+    "name": "GearMeshFrictionMirrorCheck",
+    "model": "RotorDynamics.TestModels.GearMeshFrictionMirrorCheck",
+    "variables": [
+      "err_Fc",
+      "err_Ft",
+      "err_loss",
+      "err_sigma",
+      "err_tau1",
+      "err_tau2",
+      "meshA.lossPower",
+      "meshA.tau_1",
+      "meshB.lossPower",
+      "meshB.tau_1",
+      "meshC.sigma",
+      "time"
+    ],
+    "bytes": 617947,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-11,
+      "cpu_time": 8.675330876139924,
+      "steps": 324652,
+      "error_test_failures": 28226,
+      "convergence_failures": 10,
+      "state_events": 70,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
   },
   {
     "name": "GearMeshFrictionVibrationCheck",
@@ -2708,6 +2817,36 @@
       "state_events": 1,
       "kind": "dynamic"
     }
+  },
+  {
+    "name": "GearMeshReversalVariantsCheck",
+    "model": "RotorDynamics.TestModels.GearMeshReversalVariantsCheck",
+    "variables": [
+      "gear2HX.omega",
+      "gear2IH.omega",
+      "gear2IS.omega",
+      "meshHX.F_ax1",
+      "meshHX.sigma",
+      "meshIH.F_ax1",
+      "meshIH.sigma",
+      "meshIS.sigma",
+      "time"
+    ],
+    "bytes": 217535,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-09,
+      "cpu_time": 1.5871740852016956,
+      "steps": 40429,
+      "error_test_failures": 2180,
+      "convergence_failures": 0,
+      "state_events": 219,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
   },
   {
     "name": "GearMeshRippleTorqueCheck",
@@ -4330,6 +4469,38 @@
     }
   },
   {
+    "name": "PlanetaryReversalCheck",
+    "model": "RotorDynamics.TestModels.PlanetaryReversalCheck",
+    "variables": [
+      "gearbox.carrier.omega",
+      "gearbox.meshRP[1].sigma",
+      "gearbox.meshRP[2].sigma",
+      "gearbox.meshRP[3].sigma",
+      "gearbox.meshRP[4].sigma",
+      "gearbox.meshSP[1].sigma",
+      "gearbox.meshSP[2].sigma",
+      "gearbox.meshSP[3].sigma",
+      "gearbox.meshSP[4].sigma",
+      "sumTauSun",
+      "time"
+    ],
+    "bytes": 68476,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-09,
+      "cpu_time": 3.5358131711836904,
+      "steps": 31663,
+      "error_test_failures": 709,
+      "convergence_failures": 0,
+      "state_events": 165,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
     "name": "PlanetaryRollerPlanetBearingSmoke",
     "model": "RotorDynamics.TestModels.PlanetaryRollerPlanetBearingSmoke",
     "variables": [
@@ -4577,6 +4748,35 @@
       "state_events": 274,
       "kind": "dynamic"
     }
+  },
+  {
+    "name": "RackPinionReversalCheck_PinionBelow",
+    "model": "RotorDynamics.TestModels.RackPinionReversalCheck",
+    "variables": [
+      "err_F_rev",
+      "err_Frack",
+      "err_delta_coast",
+      "err_gap",
+      "nFlankChanges",
+      "rackPinion.sigma",
+      "rackPinion.v_rack",
+      "time"
+    ],
+    "bytes": 179741,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-11,
+      "cpu_time": 0.9123941271100193,
+      "steps": 22677,
+      "error_test_failures": 1027,
+      "convergence_failures": 0,
+      "state_events": 35,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
   },
   {
     "name": "RampedEccentricRotorCheck",
@@ -5218,5 +5418,34 @@
       "time"
     ],
     "bytes": 659
+  },
+  {
+    "name": "WormSelfLockingCreepCheck",
+    "model": "RotorDynamics.TestModels.WormSelfLockingCreepCheck",
+    "variables": [
+      "err_creep_L",
+      "err_creep_L4",
+      "meshL.F_c",
+      "meshL.v_s",
+      "meshL4.v_s",
+      "time",
+      "wheelL.omega"
+    ],
+    "bytes": 85382,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-09,
+      "rtol": 1e-09,
+      "cpu_time": 0.5154584341216832,
+      "steps": 9255,
+      "error_test_failures": 398,
+      "convergence_failures": 0,
+      "state_events": 35,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
   }
 ]
