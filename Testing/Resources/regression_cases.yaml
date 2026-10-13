@@ -2914,3 +2914,42 @@ cases:
     modifiers: {}
     variables: [time, err_creep_L, err_creep_L4, meshL.v_s, meshL4.v_s, wheelL.omega,
                 meshL.F_c]
+
+  # ---- PowerReversalPlan.md, the remaining reversal cases (report secs 3.95-3.97), 2026-10-12
+  - name: GearMeshFrictionReversalVariantsCheck
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshFrictionReversalVariantsCheck
+    start_time: 0.0
+    final_time: 1.2
+    ncp: 12000
+    # Pointwise friction ripple through every tooth pass: stored at 1e-11 so the 100x
+    # regression run lands at 1e-9 (the GearMeshFrictionMirrorCheck remedy).
+    rtol: 1.0e-11
+    timeout_seconds: 3600
+    modifiers: {}
+    variables: [time, meshIS_A.lossPower, meshIS_B.lossPower, meshHX_A.lossPower, meshHX_B.lossPower,
+                meshIH_A.lossPower, meshIH_B.lossPower, meshHX_A.F_ax1, meshHX_B.F_ax1,
+                meshIS_C.sigma, meshHX_C.sigma, meshIH_C.sigma, meshHX_C.tau_1, meshIH_C.tau_1]
+
+  - name: DoubleHelicalReversalCheck
+    enabled: true
+    model: RotorDynamics.TestModels.DoubleHelicalReversalCheck
+    start_time: 0.0
+    final_time: 0.7
+    ncp: 3500
+    rtol: 1.0e-10
+    timeout_seconds: 1800
+    modifiers: {}
+    variables: [time, meshA.F_ax1, meshB.F_ax1, meshA.sigma, meshB.sigma, meshA.tau_1, meshB.tau_1]
+
+  - name: RackPinionHelicalReversalCheck
+    enabled: true
+    model: RotorDynamics.TestModels.RackPinionHelicalReversalCheck
+    start_time: 0.0
+    final_time: 1.3
+    ncp: 6500
+    rtol: 1.0e-11
+    timeout_seconds: 1800
+    modifiers: {}
+    variables: [time, err_delta_coast, err_gap, nFlankChanges, rackPinion.sigma, rackPinion.F_ax1,
+                rackPinion.F_sep, rackPinion.v_rack]

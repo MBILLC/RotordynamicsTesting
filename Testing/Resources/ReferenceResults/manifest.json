@@ -1275,6 +1275,38 @@
     }
   },
   {
+    "name": "DoubleHelicalReversalCheck",
+    "model": "RotorDynamics.TestModels.DoubleHelicalReversalCheck",
+    "variables": [
+      "meshA.F_ax1",
+      "meshA.sigma",
+      "meshA.tau_1",
+      "meshB.F_ax1",
+      "meshB.sigma",
+      "meshB.tau_1",
+      "time"
+    ],
+    "bytes": 114110,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-10,
+      "rtol": 1e-10,
+      "cpu_time": 1.369903186103329,
+      "steps": 22616,
+      "rhs_evaluations": 35513,
+      "jacobian_evaluations": 1569,
+      "time_events": 5,
+      "error_test_failures": 1540,
+      "convergence_failures": 1,
+      "state_events": 1274,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
     "name": "EccentricBrakeCoupling",
     "model": "RotorDynamics.TestModels.EccentricBrakeCoupling",
     "variables": [
@@ -1700,6 +1732,44 @@
       "error_test_failures": 28226,
       "convergence_failures": 10,
       "state_events": 70,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
+    "name": "GearMeshFrictionReversalVariantsCheck",
+    "model": "RotorDynamics.TestModels.GearMeshFrictionReversalVariantsCheck",
+    "variables": [
+      "meshHX_A.F_ax1",
+      "meshHX_A.lossPower",
+      "meshHX_B.F_ax1",
+      "meshHX_B.lossPower",
+      "meshHX_C.sigma",
+      "meshHX_C.tau_1",
+      "meshIH_A.lossPower",
+      "meshIH_B.lossPower",
+      "meshIH_C.sigma",
+      "meshIH_C.tau_1",
+      "meshIS_A.lossPower",
+      "meshIS_B.lossPower",
+      "meshIS_C.sigma",
+      "time"
+    ],
+    "bytes": 781013,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-11,
+      "cpu_time": 34.34955233614892,
+      "steps": 443083,
+      "rhs_evaluations": 623538,
+      "jacobian_evaluations": 8199,
+      "time_events": 3,
+      "error_test_failures": 41670,
+      "convergence_failures": 6,
+      "state_events": 348,
       "kind": "dynamic"
     },
     "descriptor": "impact workspace 'rotordynamicsdevelopment'"
@@ -4748,6 +4818,38 @@
       "state_events": 274,
       "kind": "dynamic"
     }
+  },
+  {
+    "name": "RackPinionHelicalReversalCheck",
+    "model": "RotorDynamics.TestModels.RackPinionHelicalReversalCheck",
+    "variables": [
+      "err_delta_coast",
+      "err_gap",
+      "nFlankChanges",
+      "rackPinion.F_ax1",
+      "rackPinion.F_sep",
+      "rackPinion.sigma",
+      "rackPinion.v_rack",
+      "time"
+    ],
+    "bytes": 177952,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-11,
+      "cpu_time": 0.9109675008803606,
+      "steps": 23022,
+      "rhs_evaluations": 28261,
+      "jacobian_evaluations": 415,
+      "time_events": 3,
+      "error_test_failures": 931,
+      "convergence_failures": 0,
+      "state_events": 36,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
   },
   {
     "name": "RackPinionReversalCheck_PinionBelow",
