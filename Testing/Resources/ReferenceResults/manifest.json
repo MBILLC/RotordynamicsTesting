@@ -4820,6 +4820,40 @@
     }
   },
   {
+    "name": "RackPinionAxialCouplingReversalCheck",
+    "model": "RotorDynamics.TestModels.RackPinionAxialCouplingReversalCheck",
+    "variables": [
+      "L_lag",
+      "dz",
+      "err_delta_coast",
+      "err_gap",
+      "nFlankChanges",
+      "rackPinion.F_ax1",
+      "rackPinion.F_sep",
+      "rackPinion.sigma",
+      "rackPinion.v_rack",
+      "time"
+    ],
+    "bytes": 230151,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-11,
+      "cpu_time": 1.1906041529946378,
+      "steps": 52999,
+      "rhs_evaluations": 56358,
+      "jacobian_evaluations": 904,
+      "time_events": 3,
+      "error_test_failures": 273,
+      "convergence_failures": 0,
+      "state_events": 30,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
     "name": "RackPinionHelicalReversalCheck",
     "model": "RotorDynamics.TestModels.RackPinionHelicalReversalCheck",
     "variables": [
