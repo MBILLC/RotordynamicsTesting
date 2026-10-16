@@ -3154,3 +3154,14 @@ cases:
     rtol: 1.0e-10
     modifiers: {rotorWorld.lubricationRunTime: true}
     variables: [time, rackPinion.mu_m, rackPinion.lossPower, rackPinion.F_c, rackPinion.tau_1, rackPinion.v_rack, E_loss, E_in]
+
+  # ---- GearLubricationPlan.md L5, load-independent gear losses (report sec 3.102), 2026-10-16
+  - name: GearNoLoadLossCheck
+    enabled: true
+    model: RotorDynamics.TestModels.GearNoLoadLossCheck
+    start_time: 0.0
+    final_time: 2.0
+    ncp: 2000
+    rtol: 1.0e-10
+    modifiers: {}
+    variables: [time, lossA.lossPower, lossB.lossPower, lossC.lossPower, lossC.tau, rotorC.omega, E_kinC, E_lossC]

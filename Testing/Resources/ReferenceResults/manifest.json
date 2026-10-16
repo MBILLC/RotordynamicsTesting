@@ -2948,6 +2948,38 @@
     "bytes": 917133
   },
   {
+    "name": "GearNoLoadLossCheck",
+    "model": "RotorDynamics.TestModels.GearNoLoadLossCheck",
+    "variables": [
+      "E_kinC",
+      "E_lossC",
+      "lossA.lossPower",
+      "lossB.lossPower",
+      "lossC.lossPower",
+      "lossC.tau",
+      "rotorC.omega",
+      "time"
+    ],
+    "bytes": 78606,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-10,
+      "rtol": 1e-10,
+      "cpu_time": 0.20131557599961525,
+      "steps": 2032,
+      "rhs_evaluations": 2052,
+      "jacobian_evaluations": 36,
+      "time_events": 1,
+      "error_test_failures": 1,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
     "name": "GearboxToothFaultDemo",
     "model": "RotorDynamics.Examples.GearboxToothFaultDemo",
     "variables": [
