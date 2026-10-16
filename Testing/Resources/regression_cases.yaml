@@ -2705,10 +2705,13 @@ cases:
     modifiers: {screwMesh.z1: 18, screwMesh.z2: 25, screwMesh.m_n: 3.000000000e-03, screwMesh.phi_n: 3.490658504e-01, screwMesh.beta1: 7.330382858e-01, screwMesh.beta2: 6.632251158e-01, x_n1: 0.000000000e+00, x_n2: 0.000000000e+00, omega1: 2.094395102e+02, gear1.D: 7.266416740e-02, gear2.D: 9.517636613e-02, mu: 7.000000000e-02}
     variables: [time, mu, tau_load, omega1, ratio_teeth, ratio_radius, err_ratio_used, err_ratio_gap, err_ratio_kinematic, err_eta, P_ports, P_residual_rel, err_statics_u, err_statics_a, err_resultant, screwMesh.i_ratio, screwMesh.i_pitchRadius, screwMesh.Sigma, screwMesh.Sigma_w, screwMesh.d1, screwMesh.d2, screwMesh.a_centre, screwMesh.alpha_t1, screwMesh.alpha_t2, screwMesh.eta_forward, screwMesh.F_n, screwMesh.F_u1, screwMesh.F_u2, screwMesh.F_a1, screwMesh.F_a2, screwMesh.F_r, screwMesh.v_slide]
   - name: CrossedHelicalMeshCheck_niemann238_frictionless
-    # P_residual_rel is NOT compared here (removed 2026-10-12), for the reason given at
-    # HypoidGearMeshCheck_offset_35p0_35p0: with mu = 0 lossPower is exactly 0 and the variable
-    # is port-power roundoff over a 1e-9 W floor. PowerReversalPlan.md R2/R3 reordered the
-    # force arithmetic and moved that noise by 1.8e-3.
+    # P_residual_rel compared again since 2026-10-16 (owner). With mu = 0 lossPower is exactly 0,
+    # so the variable is port-power roundoff (9.1e-13 W) over the model's 1e-9 W floor. Removed
+    # from the filter on 2026-10-12 but the reference was not re-stored, so it read MISSING.
+    # PowerReversalPlan.md R2/R3 reordered the force arithmetic: the value went from -9.095e-4 to
+    # +9.095e-4 -- the exact same magnitude, opposite sign -- and is identical at rtol 1e-10 and
+    # 1e-8. Reference re-stored at the post-reversal value. A future reordering of the force
+    # arithmetic can flip it again; that is a re-store, not a regression.
     enabled: true
     model: RotorDynamics.TestModels.CrossedHelicalMeshCheck
     start_time: 0.000000000e+00
@@ -2716,7 +2719,7 @@ cases:
     ncp: 4000
     rtol: 1.000000000e-10
     modifiers: {screwMesh.z1: 18, screwMesh.z2: 25, screwMesh.m_n: 3.000000000e-03, screwMesh.phi_n: 3.490658504e-01, screwMesh.beta1: 7.330382858e-01, screwMesh.beta2: 6.632251158e-01, x_n1: 0.000000000e+00, x_n2: 0.000000000e+00, omega1: 2.094395102e+02, gear1.D: 7.266416740e-02, gear2.D: 9.517636613e-02, mu: 0.000000000e+00}
-    variables: [time, mu, tau_load, omega1, ratio_teeth, ratio_radius, err_ratio_used, err_ratio_gap, err_ratio_kinematic, err_eta, P_ports, err_statics_u, err_statics_a, err_resultant, screwMesh.i_ratio, screwMesh.i_pitchRadius, screwMesh.Sigma, screwMesh.Sigma_w, screwMesh.d1, screwMesh.d2, screwMesh.a_centre, screwMesh.alpha_t1, screwMesh.alpha_t2, screwMesh.eta_forward, screwMesh.F_n, screwMesh.F_u1, screwMesh.F_u2, screwMesh.F_a1, screwMesh.F_a2, screwMesh.F_r, screwMesh.v_slide]
+    variables: [time, mu, tau_load, omega1, ratio_teeth, ratio_radius, err_ratio_used, err_ratio_gap, err_ratio_kinematic, err_eta, P_ports, P_residual_rel, err_statics_u, err_statics_a, err_resultant, screwMesh.i_ratio, screwMesh.i_pitchRadius, screwMesh.Sigma, screwMesh.Sigma_w, screwMesh.d1, screwMesh.d2, screwMesh.a_centre, screwMesh.alpha_t1, screwMesh.alpha_t2, screwMesh.eta_forward, screwMesh.F_n, screwMesh.F_u1, screwMesh.F_u2, screwMesh.F_a1, screwMesh.F_a2, screwMesh.F_r, screwMesh.v_slide]
   - name: CrossedHelicalMeshCheck_Sigma30_b15_15
     enabled: true
     model: RotorDynamics.TestModels.CrossedHelicalMeshCheck
@@ -2765,11 +2768,12 @@ cases:
     modifiers: {hypoidMesh.beta_m1: 4.363323130e-01, hypoidMesh.beta_m2: 6.981317008e-01}
     variables: [time, mu, tau_load, omega1, ratio_teeth, err_conjugacy, err_ratio_gap, err_ratio_kinematic, err_eta, P_residual_rel, err_reduce_Fa1, err_reduce_Fr1, err_reduce_Fa2, err_reduce_Fr2, err_reduce_tau, err_reduce_vslide, err_reduce_loss, hypoidMesh.i_ratio, hypoidMesh.F_a1, hypoidMesh.F_r1, hypoidMesh.F_a2, hypoidMesh.F_r2, hypoidMesh.tau_1, hypoidMesh.tau_2, reducedMesh.d_m1, reducedMesh.F_a1, bevelMesh.F_a1]
   - name: HypoidGearMeshCheck_offset_35p0_35p0
-    # P_residual_rel is NOT compared here (removed 2026-10-12). At zero offset lossPower is
-    # exactly 0, so the variable is the port-power ROUNDOFF divided by its own 1e-9 W floor:
-    # the stored reference reads -7.3e-3, i.e. -7.3e-12 W of noise, and any reordering of the
-    # force arithmetic moves it (PowerReversalPlan.md R2 moved it to exactly 0). The power
-    # balance at zero offset is covered by err_reduce_* against BevelGearMesh instead.
+    # P_residual_rel compared again since 2026-10-16. It was removed on 2026-10-12, when at zero
+    # offset (lossPower exactly 0) it was port-power roundoff over a 1e-9 W floor (reference
+    # -7.3e-3). The SAME day HypoidGearMeshCheck floored the denominator at 1e-3 of the transmitted
+    # power, which makes it a real zero-loss power balance: -1.4e-13 at rtol 1e-10 and 1e-8, four
+    # decades inside the endpoint check's 1e-9 absolute floor. Reference re-stored (the old one
+    # still carried the variable, so it read MISSING).
     enabled: true
     model: RotorDynamics.TestModels.HypoidGearMeshCheck
     start_time: 0.000000000e+00
@@ -2777,7 +2781,7 @@ cases:
     ncp: 4000
     rtol: 1.000000000e-10
     modifiers: {hypoidMesh.beta_m1: 6.108652382e-01, hypoidMesh.beta_m2: 6.108652382e-01}
-    variables: [time, mu, tau_load, omega1, ratio_teeth, err_conjugacy, err_ratio_gap, err_ratio_kinematic, err_eta, err_reduce_Fa1, err_reduce_Fr1, err_reduce_Fa2, err_reduce_Fr2, err_reduce_tau, err_reduce_vslide, err_reduce_loss, hypoidMesh.i_ratio, hypoidMesh.F_a1, hypoidMesh.F_r1, hypoidMesh.F_a2, hypoidMesh.F_r2, hypoidMesh.tau_1, hypoidMesh.tau_2, reducedMesh.d_m1, reducedMesh.F_a1, bevelMesh.F_a1]
+    variables: [time, mu, tau_load, omega1, ratio_teeth, err_conjugacy, err_ratio_gap, err_ratio_kinematic, err_eta, P_residual_rel, err_reduce_Fa1, err_reduce_Fr1, err_reduce_Fa2, err_reduce_Fr2, err_reduce_tau, err_reduce_vslide, err_reduce_loss, hypoidMesh.i_ratio, hypoidMesh.F_a1, hypoidMesh.F_r1, hypoidMesh.F_a2, hypoidMesh.F_r2, hypoidMesh.tau_1, hypoidMesh.tau_2, reducedMesh.d_m1, reducedMesh.F_a1, bevelMesh.F_a1]
   - name: HypoidGearMeshCheck_offset_40p0_30p0
     enabled: true
     model: RotorDynamics.TestModels.HypoidGearMeshCheck
