@@ -3011,3 +3011,146 @@ cases:
                 meshXc.lossPower, meshHc.lossPower, meshWc.lossPower, meshPc.tau_2,
                 meshXc.tau_1, meshHc.tau_1, meshWc.tau_1, meshPc.delta_c, meshXc.delta_c,
                 meshHc.delta_c, meshWc.delta_c]
+
+  # ---- GearLubricationPlan.md L1/L2, lubricated tooth friction (report secs 3.100-3.101, 5.5), 2026-10-16
+  # Each rig runs at World.useLubrication = true (L1); the *_L2 cases switch to the run-time
+  # coefficient with a modifier on the World. P_resid/err_power are structural zeros and stay
+  # in the report; mu_m, the loss and the torques are what the next edit must not move.
+  - name: LubricatedSpurStageCheck
+    enabled: true
+    model: RotorDynamics.TestModels.LubricatedSpurStageCheck
+    start_time: 0.0
+    final_time: 0.4
+    ncp: 4000
+    rtol: 1.0e-10
+    timeout_seconds: 1800
+    modifiers: {}
+    # lossPower flips sign at the pitch point every tooth: at the loosened regression rtol the
+    # switching instants move and its funnel fails (it passes at --rtol-factor 1). E_loss, its
+    # integral, carries the same information smoothly.
+    variables: [time, gearMesh.mu_m, gearMesh.F_c, gearMesh.tau_1, gearMesh.tau_2, E_loss, E_in]
+
+  - name: LubricatedSpurStageCheck_L2
+    enabled: true
+    model: RotorDynamics.TestModels.LubricatedSpurStageCheck
+    start_time: 0.0
+    final_time: 0.4
+    ncp: 4000
+    rtol: 1.0e-10
+    timeout_seconds: 1800
+    modifiers: {rotorWorld.lubricationRunTime: true}
+    # lossPower flips sign at the pitch point every tooth: at the loosened regression rtol the
+    # switching instants move and its funnel fails (it passes at --rtol-factor 1). E_loss, its
+    # integral, carries the same information smoothly.
+    variables: [time, gearMesh.mu_m, gearMesh.F_c, gearMesh.tau_1, gearMesh.tau_2, E_loss, E_in]
+
+  - name: LubricatedSpurRunUpCheck
+    enabled: true
+    model: RotorDynamics.TestModels.LubricatedSpurRunUpCheck
+    start_time: 0.0
+    final_time: 4.0
+    ncp: 4000
+    rtol: 1.0e-10
+    timeout_seconds: 3600
+    modifiers: {}
+    variables: [time, gearMesh.mu_m, gearMesh.F_c, E_loss, E_in, gear1.omega]
+
+  - name: LubricatedBevelStageCheck
+    enabled: true
+    model: RotorDynamics.TestModels.LubricatedBevelStageCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.0e-10
+    modifiers: {}
+    variables: [time, bevelMesh.mu_m, bevelMesh.lossPower, bevelMesh.F_tang, bevelMesh.tau_1, bevelMesh.tau_2, E_loss, E_in]
+
+  - name: LubricatedBevelStageCheck_L2
+    enabled: true
+    model: RotorDynamics.TestModels.LubricatedBevelStageCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.0e-10
+    modifiers: {rotorWorld.lubricationRunTime: true}
+    variables: [time, bevelMesh.mu_m, bevelMesh.lossPower, bevelMesh.F_tang, bevelMesh.tau_1, bevelMesh.tau_2, E_loss, E_in]
+
+  - name: LubricatedHypoidCheck
+    enabled: true
+    model: RotorDynamics.TestModels.LubricatedHypoidCheck
+    start_time: 0.0
+    final_time: 0.1
+    ncp: 2000
+    rtol: 1.0e-10
+    modifiers: {}
+    variables: [time, hypoidMesh.mu_m, hypoidMesh.lossPower, hypoidMesh.F_n, hypoidMesh.tau_1, hypoidMesh.tau_2, reducedMesh.lossPower]
+
+  - name: LubricatedHypoidCheck_L2
+    enabled: true
+    model: RotorDynamics.TestModels.LubricatedHypoidCheck
+    start_time: 0.0
+    final_time: 0.1
+    ncp: 2000
+    rtol: 1.0e-10
+    modifiers: {rotorWorld.lubricationRunTime: true}
+    variables: [time, hypoidMesh.mu_m, hypoidMesh.lossPower, hypoidMesh.F_n, hypoidMesh.tau_1, hypoidMesh.tau_2]
+
+  - name: LubricatedWormCheck
+    enabled: true
+    model: RotorDynamics.TestModels.LubricatedWormCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.0e-10
+    modifiers: {}
+    variables: [time, wormMesh.mu_m, wormMesh.lossPower, wormMesh.v_slide, wormMesh.tau_1, wormMesh.tau_2]
+
+  - name: LubricatedWormCheck_L2
+    enabled: true
+    model: RotorDynamics.TestModels.LubricatedWormCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.0e-10
+    modifiers: {rotorWorld.lubricationRunTime: true}
+    variables: [time, wormMesh.mu_m, wormMesh.lossPower, wormMesh.v_slide, wormMesh.tau_1, wormMesh.tau_2]
+
+  - name: LubricatedCrossedHelicalCheck
+    enabled: true
+    model: RotorDynamics.TestModels.LubricatedCrossedHelicalCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.0e-10
+    modifiers: {}
+    variables: [time, screwMesh.mu_m, screwMesh.lossPower, screwMesh.F_n, screwMesh.tau_1, screwMesh.tau_2]
+
+  - name: LubricatedCrossedHelicalCheck_L2
+    enabled: true
+    model: RotorDynamics.TestModels.LubricatedCrossedHelicalCheck
+    start_time: 0.0
+    final_time: 0.2
+    ncp: 2000
+    rtol: 1.0e-10
+    modifiers: {rotorWorld.lubricationRunTime: true}
+    variables: [time, screwMesh.mu_m, screwMesh.lossPower, screwMesh.F_n, screwMesh.tau_1, screwMesh.tau_2]
+
+  - name: LubricatedRackPinionCheck
+    enabled: true
+    model: RotorDynamics.TestModels.LubricatedRackPinionCheck
+    start_time: 0.0
+    final_time: 0.6
+    ncp: 3000
+    rtol: 1.0e-10
+    modifiers: {}
+    variables: [time, rackPinion.mu_m, rackPinion.lossPower, rackPinion.F_c, rackPinion.tau_1, rackPinion.v_rack, E_loss, E_in]
+
+  - name: LubricatedRackPinionCheck_L2
+    enabled: true
+    model: RotorDynamics.TestModels.LubricatedRackPinionCheck
+    start_time: 0.0
+    final_time: 0.6
+    ncp: 3000
+    rtol: 1.0e-10
+    modifiers: {rotorWorld.lubricationRunTime: true}
+    variables: [time, rackPinion.mu_m, rackPinion.lossPower, rackPinion.F_c, rackPinion.tau_1, rackPinion.v_rack, E_loss, E_in]

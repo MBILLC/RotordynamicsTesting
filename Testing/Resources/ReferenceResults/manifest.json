@@ -3696,6 +3696,407 @@
     "bytes": 137087
   },
   {
+    "name": "LubricatedBevelStageCheck",
+    "model": "RotorDynamics.TestModels.LubricatedBevelStageCheck",
+    "variables": [
+      "E_in",
+      "E_loss",
+      "bevelMesh.F_tang",
+      "bevelMesh.lossPower",
+      "bevelMesh.mu_m",
+      "bevelMesh.tau_1",
+      "bevelMesh.tau_2",
+      "time"
+    ],
+    "bytes": 71017,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-10,
+      "rtol": 1e-10,
+      "cpu_time": 0.21014299399757874,
+      "steps": 2024,
+      "rhs_evaluations": 2040,
+      "jacobian_evaluations": 35,
+      "time_events": 1,
+      "error_test_failures": 0,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
+    "name": "LubricatedBevelStageCheck_L2",
+    "model": "RotorDynamics.TestModels.LubricatedBevelStageCheck",
+    "variables": [
+      "E_in",
+      "E_loss",
+      "bevelMesh.F_tang",
+      "bevelMesh.lossPower",
+      "bevelMesh.mu_m",
+      "bevelMesh.tau_1",
+      "bevelMesh.tau_2",
+      "time"
+    ],
+    "bytes": 76464,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-10,
+      "rtol": 1e-10,
+      "cpu_time": 0.23217897500217077,
+      "steps": 2063,
+      "rhs_evaluations": 2112,
+      "jacobian_evaluations": 35,
+      "time_events": 1,
+      "error_test_failures": 7,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
+    "name": "LubricatedCrossedHelicalCheck",
+    "model": "RotorDynamics.TestModels.LubricatedCrossedHelicalCheck",
+    "variables": [
+      "screwMesh.F_n",
+      "screwMesh.lossPower",
+      "screwMesh.mu_m",
+      "screwMesh.tau_1",
+      "screwMesh.tau_2",
+      "time"
+    ],
+    "bytes": 39630,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-10,
+      "rtol": 1e-10,
+      "cpu_time": 0.2215608369988331,
+      "steps": 2014,
+      "rhs_evaluations": 2026,
+      "jacobian_evaluations": 35,
+      "time_events": 1,
+      "error_test_failures": 1,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
+    "name": "LubricatedCrossedHelicalCheck_L2",
+    "model": "RotorDynamics.TestModels.LubricatedCrossedHelicalCheck",
+    "variables": [
+      "screwMesh.F_n",
+      "screwMesh.lossPower",
+      "screwMesh.mu_m",
+      "screwMesh.tau_1",
+      "screwMesh.tau_2",
+      "time"
+    ],
+    "bytes": 46919,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-10,
+      "rtol": 1e-10,
+      "cpu_time": 0.2365925869999046,
+      "steps": 2014,
+      "rhs_evaluations": 2026,
+      "jacobian_evaluations": 35,
+      "time_events": 1,
+      "error_test_failures": 1,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
+    "name": "LubricatedHypoidCheck",
+    "model": "RotorDynamics.TestModels.LubricatedHypoidCheck",
+    "variables": [
+      "hypoidMesh.F_n",
+      "hypoidMesh.lossPower",
+      "hypoidMesh.mu_m",
+      "hypoidMesh.tau_1",
+      "hypoidMesh.tau_2",
+      "reducedMesh.lossPower",
+      "time"
+    ],
+    "bytes": 42411,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-10,
+      "rtol": 1e-10,
+      "cpu_time": 0.25604470699909143,
+      "steps": 2014,
+      "rhs_evaluations": 2026,
+      "jacobian_evaluations": 35,
+      "time_events": 1,
+      "error_test_failures": 1,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
+    "name": "LubricatedHypoidCheck_L2",
+    "model": "RotorDynamics.TestModels.LubricatedHypoidCheck",
+    "variables": [
+      "hypoidMesh.F_n",
+      "hypoidMesh.lossPower",
+      "hypoidMesh.mu_m",
+      "hypoidMesh.tau_1",
+      "hypoidMesh.tau_2",
+      "time"
+    ],
+    "bytes": 46586,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-10,
+      "rtol": 1e-10,
+      "cpu_time": 0.3422490039993136,
+      "steps": 2014,
+      "rhs_evaluations": 2026,
+      "jacobian_evaluations": 35,
+      "time_events": 1,
+      "error_test_failures": 1,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
+    "name": "LubricatedRackPinionCheck",
+    "model": "RotorDynamics.TestModels.LubricatedRackPinionCheck",
+    "variables": [
+      "E_in",
+      "E_loss",
+      "rackPinion.F_c",
+      "rackPinion.lossPower",
+      "rackPinion.mu_m",
+      "rackPinion.tau_1",
+      "rackPinion.v_rack",
+      "time"
+    ],
+    "bytes": 134390,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-10,
+      "rtol": 1e-10,
+      "cpu_time": 0.4153780939996068,
+      "steps": 11197,
+      "rhs_evaluations": 12995,
+      "jacobian_evaluations": 190,
+      "time_events": 1,
+      "error_test_failures": 240,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
+    "name": "LubricatedRackPinionCheck_L2",
+    "model": "RotorDynamics.TestModels.LubricatedRackPinionCheck",
+    "variables": [
+      "E_in",
+      "E_loss",
+      "rackPinion.F_c",
+      "rackPinion.lossPower",
+      "rackPinion.mu_m",
+      "rackPinion.tau_1",
+      "rackPinion.v_rack",
+      "time"
+    ],
+    "bytes": 148934,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-10,
+      "rtol": 1e-10,
+      "cpu_time": 0.4066359940006805,
+      "steps": 11042,
+      "rhs_evaluations": 12919,
+      "jacobian_evaluations": 186,
+      "time_events": 1,
+      "error_test_failures": 272,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
+    "name": "LubricatedSpurRunUpCheck",
+    "model": "RotorDynamics.TestModels.LubricatedSpurRunUpCheck",
+    "variables": [
+      "E_in",
+      "E_loss",
+      "gear1.omega",
+      "gearMesh.F_c",
+      "gearMesh.mu_m",
+      "time"
+    ],
+    "bytes": 149973,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-10,
+      "cpu_time": 29.875743994001823,
+      "steps": 1204161,
+      "rhs_evaluations": 1600892,
+      "jacobian_evaluations": 21252,
+      "time_events": 1,
+      "error_test_failures": 90420,
+      "convergence_failures": 62,
+      "state_events": 1,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
+    "name": "LubricatedSpurStageCheck",
+    "model": "RotorDynamics.TestModels.LubricatedSpurStageCheck",
+    "variables": [
+      "E_in",
+      "E_loss",
+      "gearMesh.F_c",
+      "gearMesh.mu_m",
+      "gearMesh.tau_1",
+      "gearMesh.tau_2",
+      "time"
+    ],
+    "bytes": 147398,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-10,
+      "cpu_time": 10.181925965000119,
+      "steps": 517515,
+      "rhs_evaluations": 663328,
+      "jacobian_evaluations": 9554,
+      "time_events": 1,
+      "error_test_failures": 29638,
+      "convergence_failures": 1,
+      "state_events": 1,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
+    "name": "LubricatedSpurStageCheck_L2",
+    "model": "RotorDynamics.TestModels.LubricatedSpurStageCheck",
+    "variables": [
+      "E_in",
+      "E_loss",
+      "gearMesh.F_c",
+      "gearMesh.mu_m",
+      "gearMesh.tau_1",
+      "gearMesh.tau_2",
+      "time"
+    ],
+    "bytes": 173722,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-10,
+      "cpu_time": 10.842131811998115,
+      "steps": 513318,
+      "rhs_evaluations": 657118,
+      "jacobian_evaluations": 9485,
+      "time_events": 1,
+      "error_test_failures": 29030,
+      "convergence_failures": 0,
+      "state_events": 1,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
+    "name": "LubricatedWormCheck",
+    "model": "RotorDynamics.TestModels.LubricatedWormCheck",
+    "variables": [
+      "time",
+      "wormMesh.lossPower",
+      "wormMesh.mu_m",
+      "wormMesh.tau_1",
+      "wormMesh.tau_2",
+      "wormMesh.v_slide"
+    ],
+    "bytes": 37492,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-10,
+      "rtol": 1e-10,
+      "cpu_time": 0.20495211999877938,
+      "steps": 2011,
+      "rhs_evaluations": 2023,
+      "jacobian_evaluations": 35,
+      "time_events": 1,
+      "error_test_failures": 1,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
+    "name": "LubricatedWormCheck_L2",
+    "model": "RotorDynamics.TestModels.LubricatedWormCheck",
+    "variables": [
+      "time",
+      "wormMesh.lossPower",
+      "wormMesh.mu_m",
+      "wormMesh.tau_1",
+      "wormMesh.tau_2",
+      "wormMesh.v_slide"
+    ],
+    "bytes": 45289,
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-10,
+      "rtol": 1e-10,
+      "cpu_time": 0.21827892100191093,
+      "steps": 2011,
+      "rhs_evaluations": 2023,
+      "jacobian_evaluations": 35,
+      "time_events": 1,
+      "error_test_failures": 1,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
     "name": "MixedAxisGravity",
     "model": "RotorDynamics.TestModels.MixedAxisGravity",
     "variables": [
