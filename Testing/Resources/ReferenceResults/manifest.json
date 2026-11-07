@@ -2935,21 +2935,79 @@
       "meshIS.sigma",
       "time"
     ],
-    "bytes": 217535,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-09,
-      "cpu_time": 1.5871740852016956,
-      "steps": 40429,
-      "error_test_failures": 2180,
-      "convergence_failures": 0,
+      "cpu_time": 1.9169972619856708,
+      "steps": 41493,
+      "rhs_evaluations": 53865,
+      "jacobian_evaluations": 836,
+      "time_events": 3,
+      "error_test_failures": 2420,
+      "convergence_failures": 1,
       "state_events": 219,
       "kind": "dynamic"
     },
-    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "meshHX.F_ax1": "N",
+      "gear2HX.omega": "rad/s",
+      "gear2IS.omega": "rad/s",
+      "meshIH.F_ax1": "N",
+      "gear2IH.omega": "rad/s"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 216047,
+    "record": {
+      "schema": 1,
+      "record_id": "6ebcdda2b81d76e414b8c1ea93197eb8b7841fb843928125424884acfe60f50e",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-06T19:59:14",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "5ae6f24d9fdee6645271dfd04944e747",
+        "impact_fmu_id": "_dynamics_testmodels_gearmeshreversalvariantscheck_20261106_195851_ba076db",
+        "model_description_sha256": "ab78bf9cb3cc25bc6c4025f84c8a501e07bf7128f6af8e09531370bf90432519"
+      },
+      "experiment": {
+        "case_entry_sha256": "df445a289960705bb8675d8bcf6d871abc1851061e17a5203bb6a80d8b95e0ca",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_dynamics_testmodels_gearmeshreversalvariantscheck_20261106_195851_d7174a7",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "66a65577e6cc73b9107cf56aab9eac4e422c7eeca4c45b7e73442dabba1e80ea"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshReversalVariantsCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 216047,
+        "file": "GearMeshReversalVariantsCheck.npz",
+        "format": "npz",
+        "sha256": "b7bc574c3165a39537f569b4a084ad0fcfb5179e63c6ea63bb3857323e96a661"
+      },
+      "run": {
+        "utc": "2026-11-06T19:59:19+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "GearMeshRippleTorqueCheck",
@@ -2973,6 +3031,95 @@
       "time"
     ],
     "bytes": 917133
+  },
+  {
+    "name": "GearMeshSteadyInitCheck",
+    "model": "RotorDynamics.TestModels.GearMeshSteadyInitCheck",
+    "variables": [
+      "gear1.omega",
+      "gear1.r_c[1]",
+      "gear1.r_c[2]",
+      "gear2.omega",
+      "gear2.r_c[1]",
+      "gear2.r_c[2]",
+      "gearMesh.F_loa",
+      "gearMesh.v_kin",
+      "time"
+    ],
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-10,
+      "cpu_time": 0.20233952801208943,
+      "steps": 3686,
+      "rhs_evaluations": 4158,
+      "jacobian_evaluations": 62,
+      "error_test_failures": 64,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "gearMesh.v_kin": "m/s",
+      "gear1.omega": "rad/s",
+      "gear1.r_c[1]": "m",
+      "gear1.r_c[2]": "m",
+      "gearMesh.F_loa": "N",
+      "gear2.r_c[1]": "m",
+      "gear2.r_c[2]": "m",
+      "gear2.omega": "rad/s"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 62372,
+    "record": {
+      "schema": 1,
+      "record_id": "1c47416b31ed7ff695aa111ebd04e9e47777c3a35932009f87b4eba184cbe710",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-07T05:35:26",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "288e633943b37d3a9a8ffad0894bc16a",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshsteadyinitcheck_20261107_053516_11680aa",
+        "model_description_sha256": "a9ba85d6bf24bc40868d1f3c9f73f8776f42e1f63cbf51975e034e560facece6"
+      },
+      "experiment": {
+        "case_entry_sha256": "e413e2947b22148794bd08b42ffad514a0d4c885ee19f6208953a0011701775a",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshsteadyinitcheck_20261107_053516_d0138a1",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "cad873087222e55c2ef3cf62ad02b4ef5f1740194d732cec64a70b2281bee11a"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshSteadyInitCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 62372,
+        "file": "GearMeshSteadyInitCheck.npz",
+        "format": "npz",
+        "sha256": "ad115fa783368e80b8ac6aaef45d5d7e8dac0e1fdf1faa307785e568f7994dfc"
+      },
+      "run": {
+        "utc": "2026-11-07T05:35:28+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "GearNoLoadLossCheck",
@@ -3042,6 +3189,93 @@
       "convergence_failures": 0,
       "state_events": 3,
       "kind": "dynamic"
+    }
+  },
+  {
+    "name": "GearedRotorLateralTorsionalCheck",
+    "model": "RotorDynamics.TestModels.GearedRotorLateralTorsionalCheck",
+    "variables": [
+      "gear1.omega",
+      "gear1.r_c[1]",
+      "gear1.r_c[2]",
+      "gear2.omega",
+      "gear2.r_c[1]",
+      "gear2.r_c[2]",
+      "gearMesh.F_loa",
+      "time"
+    ],
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-10,
+      "cpu_time": 0.24584101198706776,
+      "steps": 5499,
+      "rhs_evaluations": 6328,
+      "jacobian_evaluations": 94,
+      "error_test_failures": 127,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "gear1.omega": "rad/s",
+      "gear2.omega": "rad/s",
+      "gear1.r_c[1]": "m",
+      "gear1.r_c[2]": "m",
+      "gearMesh.F_loa": "N",
+      "gear2.r_c[1]": "m",
+      "gear2.r_c[2]": "m"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 59063,
+    "record": {
+      "schema": 1,
+      "record_id": "323734cfb131dfc4c70629482ff0b3d1322baca0610deb58e50b4ab319ed438b",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-07T05:35:14",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "181b332d29ed7f5c71c9535717afa060",
+        "impact_fmu_id": "_amics_testmodels_gearedrotorlateraltorsionalcheck_20261107_053504_26336bc",
+        "model_description_sha256": "2e0d2d149271d48031b98357b00bf77e94b2f7994e0ba04376f91f02e09ca145"
+      },
+      "experiment": {
+        "case_entry_sha256": "05d60e0533837fc507977d3105510b194714d156df016bc63f0a52683f90989e",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_amics_testmodels_gearedrotorlateraltorsionalcheck_20261107_053504_f901695",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "0300dea49714b3fbea36c855039f933717efdb7a18f6aee2fcc34bbb30d5b20e"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearedRotorLateralTorsionalCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 59063,
+        "file": "GearedRotorLateralTorsionalCheck.npz",
+        "format": "npz",
+        "sha256": "6beafd4ecd9b9276ea89a1a72c8a26dbf9bbd0ead1df4852f7808a0a7236b03e"
+      },
+      "run": {
+        "utc": "2026-11-07T05:35:16+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -3662,6 +3896,107 @@
     }
   },
   {
+    "name": "IEEEFirstBenchmarkTorsionCheck",
+    "model": "RotorDynamics.TestModels.IEEEFirstBenchmarkTorsionCheck",
+    "variables": [
+      "mass[1].omega",
+      "mass[2].omega",
+      "mass[3].omega",
+      "mass[4].omega",
+      "mass[5].omega",
+      "mass[6].omega",
+      "span[1].theta_rel",
+      "span[2].theta_rel",
+      "span[3].theta_rel",
+      "span[4].theta_rel",
+      "span[5].theta_rel",
+      "time"
+    ],
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-10,
+      "cpu_time": 0.7088369440170936,
+      "steps": 5001,
+      "rhs_evaluations": 5005,
+      "jacobian_evaluations": 84,
+      "error_test_failures": 0,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "mass[6].omega": "rad/s",
+      "span[1].theta_rel": "rad",
+      "span[2].theta_rel": "rad",
+      "span[3].theta_rel": "rad",
+      "span[4].theta_rel": "rad",
+      "span[5].theta_rel": "rad",
+      "mass[1].omega": "rad/s",
+      "mass[2].omega": "rad/s",
+      "mass[3].omega": "rad/s",
+      "mass[4].omega": "rad/s",
+      "mass[5].omega": "rad/s"
+    },
+    "display_units": {
+      "span[1].theta_rel": "deg",
+      "span[2].theta_rel": "deg",
+      "span[3].theta_rel": "deg",
+      "span[4].theta_rel": "deg",
+      "span[5].theta_rel": "deg"
+    },
+    "format": "npz",
+    "bytes": 19687,
+    "record": {
+      "schema": 1,
+      "record_id": "61908a16e8664ca8024ed1bca84872cd9a59e912ad43c82595388719ce3a0ae9",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-07T05:36:35",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "1f2849cbd320fea27a52ad4bc6d0eece",
+        "impact_fmu_id": "_ynamics_testmodels_ieeefirstbenchmarktorsioncheck_20261107_053631_9c8ac21",
+        "model_description_sha256": "cabce99ce7b79d894fe8cca075a41bdb29c062bad368c8856dc2176673d64708"
+      },
+      "experiment": {
+        "case_entry_sha256": "1a9daeb699b5bc43f849eb4b6dcc3c1f8f5cc616f08ae72bce81f4830faedf50",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_ynamics_testmodels_ieeefirstbenchmarktorsioncheck_20261107_053631_2496045",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "01308696c1a1d3980fdaf0a1d39d02425e3a5ad8790acf4b613d1aa0cfd69a78"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.IEEEFirstBenchmarkTorsionCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 19687,
+        "file": "IEEEFirstBenchmarkTorsionCheck.npz",
+        "format": "npz",
+        "sha256": "02f0449b9550387d9c1fa323dfa1b4d4e59bae40ed780b75b60808748f9fbf2d"
+      },
+      "run": {
+        "utc": "2026-11-07T05:36:38+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
+  },
+  {
     "name": "IMSBearingTestRig",
     "model": "RotorDynamics.Examples.IMSBearingTestRig",
     "variables": [
@@ -3674,19 +4009,80 @@
       "rHousing1.r_out[2]",
       "time"
     ],
-    "bytes": 30814,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "SPARSE",
       "rtol": 1e-08,
-      "cpu_time": 3.344103678013198,
-      "steps": 45427,
-      "error_test_failures": 170,
+      "cpu_time": 3.3626986400340684,
+      "steps": 46453,
+      "rhs_evaluations": 50574,
+      "jacobian_evaluations": 814,
+      "time_events": 35,
+      "error_test_failures": 181,
       "convergence_failures": 0,
       "state_events": 35,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "rHousing1.r_out[1]": "m",
+      "rHousing1.r_out[2]": "m",
+      "bearing1.f_imp": "Hz",
+      "bearing1.T_imp": "s",
+      "bearing1.F_n": "N",
+      "aHousing1.a_out[1]": "m/s2",
+      "aHousing1.a_out[2]": "m/s2"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 30747,
+    "record": {
+      "schema": 1,
+      "record_id": "3bd5e569ed463252c33a71cb3bc5b41f3dd3f0771ba64a133f74290e5993e639",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-06T19:58:33",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "8c91162ed3d83909d3bff501d41f1a",
+        "impact_fmu_id": "rotordynamics_examples_imsbearingtestrig_20261106_195828_dd0a714",
+        "model_description_sha256": "93a2ef6a2a8170f1a22a9ac27b79e5583a326a126724b21867f7fcd6b6b64eeb"
+      },
+      "experiment": {
+        "case_entry_sha256": "415159dbee0f455234ed58ceb6462d7703226b6867230a14ede599d5fa1b4c92",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_examples_imsbearingtestrig_20261106_195828_31c0e1e",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "4339cd078809f401fa2074d938a6895c7d30ca527204d09886416d08668ecae3"
+      },
+      "model": {
+        "class": "RotorDynamics.Examples.IMSBearingTestRig",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 30747,
+        "file": "IMSBearingTestRig.npz",
+        "format": "npz",
+        "sha256": "2ca88ffe4e93c65972a2d0d6503d15179773d22f93dca347b74cc65b403f7ace"
+      },
+      "run": {
+        "utc": "2026-11-06T19:58:39+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -3757,6 +4153,246 @@
       "wDisc.w"
     ],
     "bytes": 137087
+  },
+  {
+    "name": "KahramanGearedRotorCheck",
+    "model": "RotorDynamics.TestModels.KahramanGearedRotorCheck",
+    "variables": [
+      "gearMesh.F_loa",
+      "node1[10].omega",
+      "node1[11].omega",
+      "node1[12].omega",
+      "node1[13].omega",
+      "node1[14].omega",
+      "node1[15].omega",
+      "node1[16].omega",
+      "node1[17].omega",
+      "node1[1].omega",
+      "node1[2].omega",
+      "node1[3].omega",
+      "node1[4].omega",
+      "node1[5].omega",
+      "node1[6].omega",
+      "node1[7].omega",
+      "node1[8].omega",
+      "node1[9].omega",
+      "node2[10].omega",
+      "node2[11].omega",
+      "node2[12].omega",
+      "node2[13].omega",
+      "node2[14].omega",
+      "node2[15].omega",
+      "node2[16].omega",
+      "node2[17].omega",
+      "node2[1].omega",
+      "node2[2].omega",
+      "node2[3].omega",
+      "node2[4].omega",
+      "node2[5].omega",
+      "node2[6].omega",
+      "node2[7].omega",
+      "node2[8].omega",
+      "node2[9].omega",
+      "seg1[10].theta_rel",
+      "seg1[11].theta_rel",
+      "seg1[12].theta_rel",
+      "seg1[13].theta_rel",
+      "seg1[14].theta_rel",
+      "seg1[15].theta_rel",
+      "seg1[16].theta_rel",
+      "seg1[1].theta_rel",
+      "seg1[2].theta_rel",
+      "seg1[3].theta_rel",
+      "seg1[4].theta_rel",
+      "seg1[5].theta_rel",
+      "seg1[6].theta_rel",
+      "seg1[7].theta_rel",
+      "seg1[8].theta_rel",
+      "seg1[9].theta_rel",
+      "seg2[10].theta_rel",
+      "seg2[11].theta_rel",
+      "seg2[12].theta_rel",
+      "seg2[13].theta_rel",
+      "seg2[14].theta_rel",
+      "seg2[15].theta_rel",
+      "seg2[16].theta_rel",
+      "seg2[1].theta_rel",
+      "seg2[2].theta_rel",
+      "seg2[3].theta_rel",
+      "seg2[4].theta_rel",
+      "seg2[5].theta_rel",
+      "seg2[6].theta_rel",
+      "seg2[7].theta_rel",
+      "seg2[8].theta_rel",
+      "seg2[9].theta_rel",
+      "time"
+    ],
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "SPARSE",
+      "rtol": 1e-10,
+      "cpu_time": 42.50772581202909,
+      "steps": 155312,
+      "rhs_evaluations": 160138,
+      "jacobian_evaluations": 2589,
+      "error_test_failures": 2,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "node1[17].omega": "rad/s",
+      "seg1[1].theta_rel": "rad",
+      "seg1[2].theta_rel": "rad",
+      "seg1[3].theta_rel": "rad",
+      "seg1[4].theta_rel": "rad",
+      "seg1[5].theta_rel": "rad",
+      "seg1[6].theta_rel": "rad",
+      "seg1[7].theta_rel": "rad",
+      "seg1[8].theta_rel": "rad",
+      "seg1[9].theta_rel": "rad",
+      "seg1[10].theta_rel": "rad",
+      "seg1[11].theta_rel": "rad",
+      "seg1[12].theta_rel": "rad",
+      "seg1[13].theta_rel": "rad",
+      "seg1[14].theta_rel": "rad",
+      "seg1[15].theta_rel": "rad",
+      "seg1[16].theta_rel": "rad",
+      "node2[17].omega": "rad/s",
+      "seg2[1].theta_rel": "rad",
+      "seg2[2].theta_rel": "rad",
+      "seg2[3].theta_rel": "rad",
+      "seg2[4].theta_rel": "rad",
+      "seg2[5].theta_rel": "rad",
+      "seg2[6].theta_rel": "rad",
+      "seg2[7].theta_rel": "rad",
+      "seg2[8].theta_rel": "rad",
+      "seg2[9].theta_rel": "rad",
+      "seg2[10].theta_rel": "rad",
+      "seg2[11].theta_rel": "rad",
+      "seg2[12].theta_rel": "rad",
+      "seg2[13].theta_rel": "rad",
+      "seg2[14].theta_rel": "rad",
+      "seg2[15].theta_rel": "rad",
+      "seg2[16].theta_rel": "rad",
+      "node1[1].omega": "rad/s",
+      "node1[2].omega": "rad/s",
+      "node1[3].omega": "rad/s",
+      "node1[4].omega": "rad/s",
+      "node1[5].omega": "rad/s",
+      "node1[6].omega": "rad/s",
+      "node1[7].omega": "rad/s",
+      "node1[8].omega": "rad/s",
+      "node1[9].omega": "rad/s",
+      "node1[10].omega": "rad/s",
+      "node1[11].omega": "rad/s",
+      "node1[12].omega": "rad/s",
+      "node1[13].omega": "rad/s",
+      "node1[14].omega": "rad/s",
+      "node1[15].omega": "rad/s",
+      "node1[16].omega": "rad/s",
+      "gearMesh.F_loa": "N",
+      "node2[1].omega": "rad/s",
+      "node2[2].omega": "rad/s",
+      "node2[3].omega": "rad/s",
+      "node2[4].omega": "rad/s",
+      "node2[5].omega": "rad/s",
+      "node2[6].omega": "rad/s",
+      "node2[7].omega": "rad/s",
+      "node2[8].omega": "rad/s",
+      "node2[9].omega": "rad/s",
+      "node2[10].omega": "rad/s",
+      "node2[11].omega": "rad/s",
+      "node2[12].omega": "rad/s",
+      "node2[13].omega": "rad/s",
+      "node2[14].omega": "rad/s",
+      "node2[15].omega": "rad/s",
+      "node2[16].omega": "rad/s"
+    },
+    "display_units": {
+      "seg1[1].theta_rel": "deg",
+      "seg1[2].theta_rel": "deg",
+      "seg1[3].theta_rel": "deg",
+      "seg1[4].theta_rel": "deg",
+      "seg1[5].theta_rel": "deg",
+      "seg1[6].theta_rel": "deg",
+      "seg1[7].theta_rel": "deg",
+      "seg1[8].theta_rel": "deg",
+      "seg1[9].theta_rel": "deg",
+      "seg1[10].theta_rel": "deg",
+      "seg1[11].theta_rel": "deg",
+      "seg1[12].theta_rel": "deg",
+      "seg1[13].theta_rel": "deg",
+      "seg1[14].theta_rel": "deg",
+      "seg1[15].theta_rel": "deg",
+      "seg1[16].theta_rel": "deg",
+      "seg2[1].theta_rel": "deg",
+      "seg2[2].theta_rel": "deg",
+      "seg2[3].theta_rel": "deg",
+      "seg2[4].theta_rel": "deg",
+      "seg2[5].theta_rel": "deg",
+      "seg2[6].theta_rel": "deg",
+      "seg2[7].theta_rel": "deg",
+      "seg2[8].theta_rel": "deg",
+      "seg2[9].theta_rel": "deg",
+      "seg2[10].theta_rel": "deg",
+      "seg2[11].theta_rel": "deg",
+      "seg2[12].theta_rel": "deg",
+      "seg2[13].theta_rel": "deg",
+      "seg2[14].theta_rel": "deg",
+      "seg2[15].theta_rel": "deg",
+      "seg2[16].theta_rel": "deg"
+    },
+    "format": "npz",
+    "bytes": 533307,
+    "record": {
+      "schema": 1,
+      "record_id": "b4279ac8871c00b0bd140513ed8eebcfa59d1ffd185047b30434162bd9ddd0b6",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-07T05:35:42",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "32b040348ed5848433cba01866700600",
+        "impact_fmu_id": "rotordynamics_testmodels_kahramangearedrotorcheck_20261107_053529_b5a18ad",
+        "model_description_sha256": "98200e8e6d08bbf6b7a52212591fb05edc5d047faed2cf061b28ee8c2fdc3df7"
+      },
+      "experiment": {
+        "case_entry_sha256": "b56afa500fb3a5b78ac61ec2f01e10948b817f9d6d63ea782a65ef895e9e25ea",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_kahramangearedrotorcheck_20261107_053528_847fd14",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "7ff76651a87055823071957e65c2d1dfe785384954636d4d7f15271dd4e678e2"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.KahramanGearedRotorCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 533307,
+        "file": "KahramanGearedRotorCheck.npz",
+        "format": "npz",
+        "sha256": "13cb05ae9dfb2ccfa74c690f49516ee6936b83dbf85797b7c7ac6ff868497aea"
+      },
+      "run": {
+        "utc": "2026-11-07T05:36:31+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "LubricatedBevelStageCheck",
@@ -5552,7 +6188,79 @@
       "aHousing2.a_out[2]",
       "time"
     ],
-    "bytes": 97601
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "SPARSE",
+      "rtol": 1e-08,
+      "cpu_time": 1.268365721043665,
+      "steps": 8643,
+      "rhs_evaluations": 9421,
+      "jacobian_evaluations": 160,
+      "time_events": 13,
+      "error_test_failures": 52,
+      "convergence_failures": 0,
+      "state_events": 11,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "aHousing2.a_out[1]": "m/s2",
+      "aHousing2.a_out[2]": "m/s2"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 97562,
+    "record": {
+      "schema": 1,
+      "record_id": "d72920c73edf62c4b1f1dfe3281358d5af02bebddfa78333ef98437a31ba2f44",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-06T19:58:46",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "533c6149dc66e461b3327546cb9c0b4",
+        "impact_fmu_id": "_rdynamics_testmodels_rampedimsbearingtestrigcheck_20261106_195841_2005295",
+        "model_description_sha256": "8f0690beee66d7065d455c71a1ecaba2ae9a577244956f2b535881e8e74aa178"
+      },
+      "experiment": {
+        "case_entry_sha256": "12c8b0222ffb5c1687337ec1e674e5854832cb5a874f103b12a1f89bcf2ce9c1",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_rdynamics_testmodels_rampedimsbearingtestrigcheck_20261106_195841_7743608",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "f38bc5352e0cf1fe6e0a05818f2f9b3fc27d870682ad38f7eb3cf00156d845f3"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.RampedIMSBearingTestRigCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "t_ramp": 0.02
+        }
+      },
+      "result": {
+        "bytes": 97562,
+        "file": "RampedIMSBearingTestRigCheck.npz",
+        "format": "npz",
+        "sha256": "64862a4b4faa3308de8b2c2cf282c3840da724a24c9d6397376e132fa217fb6c"
+      },
+      "run": {
+        "utc": "2026-11-06T19:58:50+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "RampedSpringLoadCheck",
@@ -6000,6 +6708,107 @@
       "time"
     ],
     "bytes": 1463
+  },
+  {
+    "name": "TorsionShaftInitModesCheck",
+    "model": "RotorDynamics.TestModels.TorsionShaftInitModesCheck",
+    "variables": [
+      "discA1.omega",
+      "discA2.omega",
+      "discB1.omega",
+      "discB2.omega",
+      "discC1.omega",
+      "discC2.omega",
+      "shaftA.theta_rel",
+      "shaftA.w_rel",
+      "shaftB.theta_rel",
+      "shaftB.w_rel",
+      "shaftC.theta_rel",
+      "shaftC.w_rel",
+      "time"
+    ],
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-10,
+      "cpu_time": 0.4082148259622045,
+      "steps": 5125,
+      "rhs_evaluations": 5228,
+      "jacobian_evaluations": 86,
+      "error_test_failures": 3,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "shaftA.theta_rel": "rad",
+      "shaftA.w_rel": "rad/s",
+      "discA2.omega": "rad/s",
+      "shaftB.theta_rel": "rad",
+      "shaftB.w_rel": "rad/s",
+      "discB2.omega": "rad/s",
+      "shaftC.theta_rel": "rad",
+      "shaftC.w_rel": "rad/s",
+      "discC2.omega": "rad/s",
+      "discA1.omega": "rad/s",
+      "discB1.omega": "rad/s",
+      "discC1.omega": "rad/s"
+    },
+    "display_units": {
+      "shaftA.theta_rel": "deg",
+      "shaftB.theta_rel": "deg",
+      "shaftC.theta_rel": "deg"
+    },
+    "format": "npz",
+    "bytes": 113478,
+    "record": {
+      "schema": 1,
+      "record_id": "b5b27c6898d4ab759a9ea8c66b96f0fd5359eb24ab91ab7b74b8a327bba55531",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-07T05:36:41",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "e2339ca98cd345560e60e0dd2c503e40",
+        "impact_fmu_id": "_tordynamics_testmodels_torsionshaftinitmodescheck_20261107_053638_c104243",
+        "model_description_sha256": "d47bfb95da65ad73f38a3d94d0eefb5176f68a2702fd0db961846393d745e1c8"
+      },
+      "experiment": {
+        "case_entry_sha256": "19e33268aeff00fae6fb23c6bbf7a2fbc5c2c180149b44e8d62a989d5c465b4a",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_tordynamics_testmodels_torsionshaftinitmodescheck_20261107_053638_77da14c",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "f5ad9eb40feb070bb2116d374d8dfbd64ef9b42e72068a5848177c73918a13ff"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.TorsionShaftInitModesCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 113478,
+        "file": "TorsionShaftInitModesCheck.npz",
+        "format": "npz",
+        "sha256": "661ec2d474162440a69feafc97e766f5ab8a23817ebb8222e23341a0e9f46ecc"
+      },
+      "run": {
+        "utc": "2026-11-07T05:36:45+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "TorsionalOscillation",

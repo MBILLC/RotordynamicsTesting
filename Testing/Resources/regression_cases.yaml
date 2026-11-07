@@ -3169,3 +3169,66 @@ cases:
     rtol: 1.0e-10
     modifiers: {}
     variables: [time, lossA.lossPower, lossB.lossPower, lossC.lossPower, lossC.tau, rotorC.omega, E_kinC, E_lossC]
+
+  # ==== 2026-11-07: train initialization and coupled lateral-torsional modes ====
+  # (decision record Rotordynamics/Resources/Documentation/Decisions/2026-11-06-...).
+  # rtol 1e-10 on every case: two decades under the models' own 1e-8, so the 100x check run
+  # lands on the tolerance the models were built for (skill regression-testing §11.3). The mesh
+  # deflection and every err_* are left out (cancellation / closed-form residuals, §11.1-11.2).
+
+  # ---- geared rotor on compliant bearings, loaded equilibrium from SteadyState init ----
+  - name: GearedRotorLateralTorsionalCheck
+    enabled: true
+    model: RotorDynamics.TestModels.GearedRotorLateralTorsionalCheck
+    start_time: 0.0
+    final_time: 0.02
+    ncp: 1000
+    rtol: 1.0e-10
+    modifiers: {}
+    variables: [time, gearMesh.F_loa, gear1.omega, gear2.omega, "gear1.r_c*", "gear2.r_c*"]
+
+  # ---- GearMesh.initSteadyState: the pair starts at running speed, no ring-down ----
+  - name: GearMeshSteadyInitCheck
+    enabled: true
+    model: RotorDynamics.TestModels.GearMeshSteadyInitCheck
+    start_time: 0.0
+    final_time: 0.02
+    ncp: 1000
+    rtol: 1.0e-10
+    modifiers: {}
+    variables: [time, gearMesh.F_loa, gearMesh.v_kin, gear1.omega, gear2.omega,
+                "gear1.r_c*", "gear2.r_c*"]
+
+  # ---- Kahraman et al. (NASA TM-102349) geared rotor, discretized shafts ----
+  - name: KahramanGearedRotorCheck
+    enabled: true
+    model: RotorDynamics.TestModels.KahramanGearedRotorCheck
+    start_time: 0.0
+    final_time: 0.01
+    ncp: 1000
+    rtol: 1.0e-10
+    modifiers: {}
+    variables: [time, gearMesh.F_loa, "seg1*.theta_rel", "seg2*.theta_rel",
+                "node1*.omega", "node2*.omega"]
+
+  # ---- IEEE First Benchmark Model: rated-load start of a six-mass turbine-generator train ----
+  - name: IEEEFirstBenchmarkTorsionCheck
+    enabled: true
+    model: RotorDynamics.TestModels.IEEEFirstBenchmarkTorsionCheck
+    start_time: 0.0
+    final_time: 0.5
+    ncp: 5000
+    rtol: 1.0e-10
+    modifiers: {}
+    variables: [time, "span*.theta_rel", "mass*.omega"]
+
+  # ---- FlexibleTorsionShaft.initMode: noInit / SteadyState / Fixed, rigs A, B, C ----
+  - name: TorsionShaftInitModesCheck
+    enabled: true
+    model: RotorDynamics.TestModels.TorsionShaftInitModesCheck
+    start_time: 0.0
+    final_time: 0.05
+    ncp: 2000
+    rtol: 1.0e-10
+    modifiers: {}
+    variables: [time, "shaft*.theta_rel", "shaft*.w_rel", "disc*.omega"]
