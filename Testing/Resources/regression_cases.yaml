@@ -1691,7 +1691,15 @@ cases:
     #
     # If this case ever gets FASTER or its trajectories change, the contact-switch behaviour
     # has moved -- which is worth knowing, whether or not it was intended.
-    enabled: true
+    #
+    # RETIRED 2026-11-09 (owner). It has moved, on purpose: since RotorDynamics PR #9 every
+    # flank-contact mesh asserts not (driveOn and coastOn), and with b_eff = 0 this rig is
+    # stopped by that assert (meshRP[4], t = 11.0 ms here, 11.4 us at the report's settings)
+    # instead of chattering. A refused run cannot be a trajectory reference, and the harness
+    # aborts the whole suite on a failed case. The behaviour is still checked, as "the
+    # assert fires", in the credibility report's validate_backlash_chatter(). Kept disabled,
+    # not deleted, so the record of the storm stays next to its pair.
+    enabled: false
     model: RotorDynamics.TestModels.PlanetaryOverhungSmoke
     start_time: 0.0
     final_time: 0.015

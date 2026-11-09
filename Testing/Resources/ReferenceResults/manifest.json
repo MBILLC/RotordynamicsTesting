@@ -1421,19 +1421,87 @@
       "housingA_acc.a_out[2]",
       "time"
     ],
-    "bytes": 807640,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-07,
-      "cpu_time": 3.7627195609966293,
-      "steps": 45254,
-      "error_test_failures": 1013,
+      "cpu_time": 3.6532279870007187,
+      "steps": 45903,
+      "rhs_evaluations": 52830,
+      "jacobian_evaluations": 776,
+      "time_events": 3,
+      "error_test_failures": 1088,
       "convergence_failures": 0,
-      "state_events": 1,
+      "state_events": 3,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "gearMesh.env1": "1",
+      "gearMesh.k_mesh": "N/m",
+      "gear1.flange_a.theta": "rad",
+      "gearMesh.delta": "m",
+      "gear2.omega": "rad/s",
+      "housingA_acc.a_out[1]": "m/s2",
+      "housingA_acc.a_out[2]": "m/s2",
+      "gear1.omega": "rad/s",
+      "gearMesh.e_ste": "m",
+      "gearMesh.k_t": "N/m",
+      "gearMesh.F_loa": "N",
+      "gearMesh.f_mesh": "Hz"
+    },
+    "display_units": {
+      "gear1.flange_a.theta": "deg"
+    },
+    "format": "npz",
+    "bytes": 763809,
+    "record": {
+      "schema": 1,
+      "record_id": "15ede81727d68dfe13ffa88acf615a6209df2d8c00dc430537de8f87dc043e1c",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:48:16",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "c16082ff5122f5a9d03b414536a9f775",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshexcitationcheck_20261109_184806_d351df5",
+        "model_description_sha256": "eb0e809b505bc734ab7c915936537ca64b0158d963fecc3750b18d38569a0528"
+      },
+      "experiment": {
+        "case_entry_sha256": "05ab6f4d8dbccb81d1a4719be3bde59b24d1023ea728612782f2e1421ebc09bf",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshexcitationcheck_20261109_184806_d058831",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "f65ed353590ebc240b3935402a7004aec0d701162e1156cf11323595fba20e90"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshExcitationCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 763809,
+        "file": "GearMeshExcitationCheck.npz",
+        "format": "npz",
+        "sha256": "4a26e66dcf037e0c7b179b7bca603b07ad32fea379a224365aafdc38f299fa33"
+      },
+      "run": {
+        "utc": "2026-11-09T18:48:22+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -1466,24 +1534,96 @@
       "tau_load",
       "time"
     ],
-    "bytes": 703562,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-10,
-      "cpu_time": 2.4791420840047067,
-      "steps": 32411,
-      "rhs_evaluations": 45105,
-      "jacobian_evaluations": 575,
+      "cpu_time": 2.53255345497746,
+      "steps": 35394,
+      "rhs_evaluations": 49426,
+      "jacobian_evaluations": 645,
       "time_events": 1,
-      "error_test_failures": 2920,
-      "convergence_failures": 1,
-      "state_events": 1,
+      "error_test_failures": 3220,
+      "convergence_failures": 2,
+      "state_events": 29,
       "kind": "dynamic"
     },
-    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "omega1": "rad/s",
+      "tau_load": "N.m",
+      "gearMesh.m_n": "m",
+      "gearMesh.v_eps": "m/s",
+      "gearMesh.phi_t": "rad",
+      "gearMesh.r_b1": "m",
+      "gearMesh.r_b2": "m",
+      "gear2.omega": "rad/s",
+      "gear1.omega": "rad/s",
+      "gearMesh.F_c": "N",
+      "gearMesh.F_loa": "N",
+      "gearMesh.tau_1": "N.m",
+      "gearMesh.tau_2": "N.m",
+      "gearMesh.xi": "m",
+      "gearMesh.v_loa_rot": "m/s",
+      "gearMesh.omega_rel": "rad/s",
+      "gearMesh.v_slide": "m/s",
+      "gearMesh.lossPower": "W",
+      "P_ports": "W",
+      "P_mesh": "W"
+    },
+    "display_units": {
+      "gearMesh.phi_t": "deg"
+    },
+    "format": "npz",
+    "bytes": 698124,
+    "record": {
+      "schema": 1,
+      "record_id": "bae80e62e82765247a834e7b8f9c8d02cb13b4bdcab252012eca5f545ead18ee",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:50:48",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "a6001ed5e0dc60ec88097629b4327959",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshfrictioncheck_20261109_185039_16158f3",
+        "model_description_sha256": "f4d0adffa4238eecaa6ec1a34a02b8567b078c5d29e6755bd24baec9a2c51516"
+      },
+      "experiment": {
+        "case_entry_sha256": "faf41df5b852de84e2cbaac79b07b0a1edfd32aa15b8d5fb157ea784d8af3aae",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshfrictioncheck_20261109_185039_a15828d",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "275519da19282379df8cfc4ee056cd1f8fd4824599335b2e69d5c7e17999bd2c"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshFrictionCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 698124,
+        "file": "GearMeshFrictionCheck.npz",
+        "format": "npz",
+        "sha256": "9ea3df46428d52a4f8cbc356539f9020488dbdcc802e843fa5a30051263734bf"
+      },
+      "run": {
+        "utc": "2026-11-09T18:51:05+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "GearMeshFrictionCheck_beta15",
@@ -1515,24 +1655,99 @@
       "tau_load",
       "time"
     ],
-    "bytes": 705421,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-10,
-      "cpu_time": 2.56285028399725,
-      "steps": 33329,
-      "rhs_evaluations": 46269,
-      "jacobian_evaluations": 591,
+      "cpu_time": 2.7575075040804222,
+      "steps": 36514,
+      "rhs_evaluations": 50985,
+      "jacobian_evaluations": 668,
       "time_events": 1,
-      "error_test_failures": 2972,
-      "convergence_failures": 1,
-      "state_events": 1,
+      "error_test_failures": 3274,
+      "convergence_failures": 0,
+      "state_events": 31,
       "kind": "dynamic"
     },
-    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "omega1": "rad/s",
+      "tau_load": "N.m",
+      "gearMesh.m_n": "m",
+      "gearMesh.v_eps": "m/s",
+      "gearMesh.phi_t": "rad",
+      "gearMesh.r_b1": "m",
+      "gearMesh.r_b2": "m",
+      "gear2.omega": "rad/s",
+      "gear1.omega": "rad/s",
+      "gearMesh.F_c": "N",
+      "gearMesh.F_loa": "N",
+      "gearMesh.tau_1": "N.m",
+      "gearMesh.tau_2": "N.m",
+      "gearMesh.xi": "m",
+      "gearMesh.v_loa_rot": "m/s",
+      "gearMesh.omega_rel": "rad/s",
+      "gearMesh.v_slide": "m/s",
+      "gearMesh.lossPower": "W",
+      "P_ports": "W",
+      "P_mesh": "W"
+    },
+    "display_units": {
+      "gearMesh.phi_t": "deg"
+    },
+    "format": "npz",
+    "bytes": 700605,
+    "record": {
+      "schema": 1,
+      "record_id": "8f434da772fad6a6c87eb4b42c975d215cd59a4072fa4809078cf7fae128ff6e",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:50:48",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "a6001ed5e0dc60ec88097629b4327959",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshfrictioncheck_20261109_185039_16158f3",
+        "model_description_sha256": "f4d0adffa4238eecaa6ec1a34a02b8567b078c5d29e6755bd24baec9a2c51516"
+      },
+      "experiment": {
+        "case_entry_sha256": "f28ec9a0c057fc01d38f77beef28dfa9ad4fbad089d68af06c8244b760fcf16b",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshfrictioncheck_20261109_185317_dddaaf2",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "fa493d77f41cde8910fdcc564ef2e13b7876a31c1fbe339c1208faf6afe8dca8"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshFrictionCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "gearMesh.beta": 0.2617993877991494
+        }
+      },
+      "result": {
+        "bytes": 700605,
+        "file": "GearMeshFrictionCheck_beta15.npz",
+        "format": "npz",
+        "sha256": "e4d943ffd216a95b6b19e42b71e4c6abc0606390d61c3fa083561d526e03659f"
+      },
+      "run": {
+        "utc": "2026-11-09T18:53:34+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "GearMeshFrictionCheck_beta20_phi25",
@@ -1564,24 +1779,100 @@
       "tau_load",
       "time"
     ],
-    "bytes": 705060,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-10,
-      "cpu_time": 2.6858321960025933,
-      "steps": 33815,
-      "rhs_evaluations": 46793,
-      "jacobian_evaluations": 596,
+      "cpu_time": 2.664721417007968,
+      "steps": 36720,
+      "rhs_evaluations": 51056,
+      "jacobian_evaluations": 667,
       "time_events": 1,
-      "error_test_failures": 2959,
+      "error_test_failures": 3241,
       "convergence_failures": 1,
-      "state_events": 1,
+      "state_events": 27,
       "kind": "dynamic"
     },
-    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "omega1": "rad/s",
+      "tau_load": "N.m",
+      "gearMesh.m_n": "m",
+      "gearMesh.v_eps": "m/s",
+      "gearMesh.phi_t": "rad",
+      "gearMesh.r_b1": "m",
+      "gearMesh.r_b2": "m",
+      "gear2.omega": "rad/s",
+      "gear1.omega": "rad/s",
+      "gearMesh.F_c": "N",
+      "gearMesh.F_loa": "N",
+      "gearMesh.tau_1": "N.m",
+      "gearMesh.tau_2": "N.m",
+      "gearMesh.xi": "m",
+      "gearMesh.v_loa_rot": "m/s",
+      "gearMesh.omega_rel": "rad/s",
+      "gearMesh.v_slide": "m/s",
+      "gearMesh.lossPower": "W",
+      "P_ports": "W",
+      "P_mesh": "W"
+    },
+    "display_units": {
+      "gearMesh.phi_t": "deg"
+    },
+    "format": "npz",
+    "bytes": 699055,
+    "record": {
+      "schema": 1,
+      "record_id": "de981d51abd814201afd5d9d112785e9f28add2df4ffe4bcfabbe1e5685098b0",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:50:48",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "a6001ed5e0dc60ec88097629b4327959",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshfrictioncheck_20261109_185039_16158f3",
+        "model_description_sha256": "f4d0adffa4238eecaa6ec1a34a02b8567b078c5d29e6755bd24baec9a2c51516"
+      },
+      "experiment": {
+        "case_entry_sha256": "46364978a413179a4469a7b1af77839b8e5d8b125155094375a20bf4d239830f",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshfrictioncheck_20261109_185518_1a63475",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "59cc9ddead45e081bd13f6e2ebec80f512f9c6c3dd90f73a0bc49f4cbcf2201a"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshFrictionCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "gearMesh.beta": 0.3490658503988659,
+          "gearMesh.phi_n": 0.4363323129985824
+        }
+      },
+      "result": {
+        "bytes": 699055,
+        "file": "GearMeshFrictionCheck_beta20_phi25.npz",
+        "format": "npz",
+        "sha256": "233154a6ed1c0df1cc77cde989bbea61cfafae98a22bd8244d506c7d340514c6"
+      },
+      "run": {
+        "utc": "2026-11-09T18:55:40+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "GearMeshFrictionCheck_beta30",
@@ -1613,24 +1904,99 @@
       "tau_load",
       "time"
     ],
-    "bytes": 705755,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-10,
-      "cpu_time": 2.6836712479998823,
-      "steps": 36454,
-      "rhs_evaluations": 50024,
-      "jacobian_evaluations": 641,
+      "cpu_time": 2.8472975769545883,
+      "steps": 39765,
+      "rhs_evaluations": 54973,
+      "jacobian_evaluations": 724,
       "time_events": 1,
-      "error_test_failures": 3064,
-      "convergence_failures": 1,
-      "state_events": 1,
+      "error_test_failures": 3394,
+      "convergence_failures": 0,
+      "state_events": 33,
       "kind": "dynamic"
     },
-    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "omega1": "rad/s",
+      "tau_load": "N.m",
+      "gearMesh.m_n": "m",
+      "gearMesh.v_eps": "m/s",
+      "gearMesh.phi_t": "rad",
+      "gearMesh.r_b1": "m",
+      "gearMesh.r_b2": "m",
+      "gear2.omega": "rad/s",
+      "gear1.omega": "rad/s",
+      "gearMesh.F_c": "N",
+      "gearMesh.F_loa": "N",
+      "gearMesh.tau_1": "N.m",
+      "gearMesh.tau_2": "N.m",
+      "gearMesh.xi": "m",
+      "gearMesh.v_loa_rot": "m/s",
+      "gearMesh.omega_rel": "rad/s",
+      "gearMesh.v_slide": "m/s",
+      "gearMesh.lossPower": "W",
+      "P_ports": "W",
+      "P_mesh": "W"
+    },
+    "display_units": {
+      "gearMesh.phi_t": "deg"
+    },
+    "format": "npz",
+    "bytes": 697401,
+    "record": {
+      "schema": 1,
+      "record_id": "01ed8548d4db6982f464303c864e51895343b1b14c0c3787892902244cb15773",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:50:48",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "a6001ed5e0dc60ec88097629b4327959",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshfrictioncheck_20261109_185039_16158f3",
+        "model_description_sha256": "f4d0adffa4238eecaa6ec1a34a02b8567b078c5d29e6755bd24baec9a2c51516"
+      },
+      "experiment": {
+        "case_entry_sha256": "17edcb670216fb0957e31e6f24e56a8c5f1c5b0056cf87280efdd3dd403e8f11",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshfrictioncheck_20261109_185419_7c9339f",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "f280c18f7efdc7a190888dae2b42e06b98c4b8de3ae3dd022bc945eb42b85ee4"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshFrictionCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "gearMesh.beta": 0.5235987755982988
+        }
+      },
+      "result": {
+        "bytes": 697401,
+        "file": "GearMeshFrictionCheck_beta30.npz",
+        "format": "npz",
+        "sha256": "471ac5301220b2432c501a3640d917d9721b3846dd093d0c5ebe0d8fc392374b"
+      },
+      "run": {
+        "utc": "2026-11-09T18:54:38+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "GearMeshFrictionCheck_phi14_5",
@@ -1662,24 +2028,99 @@
       "tau_load",
       "time"
     ],
-    "bytes": 704692,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-10,
-      "cpu_time": 2.7246398169954773,
-      "steps": 31858,
-      "rhs_evaluations": 44143,
-      "jacobian_evaluations": 563,
+      "cpu_time": 2.6086357689928263,
+      "steps": 34902,
+      "rhs_evaluations": 48729,
+      "jacobian_evaluations": 637,
       "time_events": 1,
-      "error_test_failures": 2839,
-      "convergence_failures": 1,
-      "state_events": 1,
+      "error_test_failures": 3133,
+      "convergence_failures": 0,
+      "state_events": 33,
       "kind": "dynamic"
     },
-    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "omega1": "rad/s",
+      "tau_load": "N.m",
+      "gearMesh.m_n": "m",
+      "gearMesh.v_eps": "m/s",
+      "gearMesh.phi_t": "rad",
+      "gearMesh.r_b1": "m",
+      "gearMesh.r_b2": "m",
+      "gear2.omega": "rad/s",
+      "gear1.omega": "rad/s",
+      "gearMesh.F_c": "N",
+      "gearMesh.F_loa": "N",
+      "gearMesh.tau_1": "N.m",
+      "gearMesh.tau_2": "N.m",
+      "gearMesh.xi": "m",
+      "gearMesh.v_loa_rot": "m/s",
+      "gearMesh.omega_rel": "rad/s",
+      "gearMesh.v_slide": "m/s",
+      "gearMesh.lossPower": "W",
+      "P_ports": "W",
+      "P_mesh": "W"
+    },
+    "display_units": {
+      "gearMesh.phi_t": "deg"
+    },
+    "format": "npz",
+    "bytes": 695939,
+    "record": {
+      "schema": 1,
+      "record_id": "e21cc8b171328af9cac04ef2e6e07dcd9462cae13cbed20d5f77d42e82938068",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:50:48",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "a6001ed5e0dc60ec88097629b4327959",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshfrictioncheck_20261109_185039_16158f3",
+        "model_description_sha256": "f4d0adffa4238eecaa6ec1a34a02b8567b078c5d29e6755bd24baec9a2c51516"
+      },
+      "experiment": {
+        "case_entry_sha256": "16d3d4643e689d242b74cf960d415e6f62e566d9179301172f9b0495f0cbc283",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshfrictioncheck_20261109_185438_6e43b57",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "5eff6db1ad7fca96e64781c333f07530fd03e3836815a71c2d6d3391fa60a9f5"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshFrictionCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "gearMesh.phi_n": 0.2530727415391778
+        }
+      },
+      "result": {
+        "bytes": 695939,
+        "file": "GearMeshFrictionCheck_phi14_5.npz",
+        "format": "npz",
+        "sha256": "ca4378bb68d14ed8822231b71088079407709fe1ed231b76c2f7cc690117d26b"
+      },
+      "run": {
+        "utc": "2026-11-09T18:54:57+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "GearMeshFrictionCheck_phi25",
@@ -1711,24 +2152,99 @@
       "tau_load",
       "time"
     ],
-    "bytes": 705505,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-10,
-      "cpu_time": 2.421644137997646,
-      "steps": 32493,
-      "rhs_evaluations": 45271,
-      "jacobian_evaluations": 579,
+      "cpu_time": 2.613277253927663,
+      "steps": 35417,
+      "rhs_evaluations": 49445,
+      "jacobian_evaluations": 651,
       "time_events": 1,
-      "error_test_failures": 2914,
+      "error_test_failures": 3148,
       "convergence_failures": 1,
-      "state_events": 1,
+      "state_events": 27,
       "kind": "dynamic"
     },
-    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "omega1": "rad/s",
+      "tau_load": "N.m",
+      "gearMesh.m_n": "m",
+      "gearMesh.v_eps": "m/s",
+      "gearMesh.phi_t": "rad",
+      "gearMesh.r_b1": "m",
+      "gearMesh.r_b2": "m",
+      "gear2.omega": "rad/s",
+      "gear1.omega": "rad/s",
+      "gearMesh.F_c": "N",
+      "gearMesh.F_loa": "N",
+      "gearMesh.tau_1": "N.m",
+      "gearMesh.tau_2": "N.m",
+      "gearMesh.xi": "m",
+      "gearMesh.v_loa_rot": "m/s",
+      "gearMesh.omega_rel": "rad/s",
+      "gearMesh.v_slide": "m/s",
+      "gearMesh.lossPower": "W",
+      "P_ports": "W",
+      "P_mesh": "W"
+    },
+    "display_units": {
+      "gearMesh.phi_t": "deg"
+    },
+    "format": "npz",
+    "bytes": 699745,
+    "record": {
+      "schema": 1,
+      "record_id": "10caacee0fec0ab99a65d144392a33fbb7b2c8416544dc01d3c64dc9a3bb9b9a",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:50:48",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "a6001ed5e0dc60ec88097629b4327959",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshfrictioncheck_20261109_185039_16158f3",
+        "model_description_sha256": "f4d0adffa4238eecaa6ec1a34a02b8567b078c5d29e6755bd24baec9a2c51516"
+      },
+      "experiment": {
+        "case_entry_sha256": "496a06700c6c08798a6f9641f9cd171b52331534a037f5388caf9583a13afad1",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshfrictioncheck_20261109_185457_5bde5cb",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "fd35c795d7c0e9386e23d72b02be5e98c8db280e177d9be87b9001631e32df06"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshFrictionCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "gearMesh.phi_n": 0.4363323129985824
+        }
+      },
+      "result": {
+        "bytes": 699745,
+        "file": "GearMeshFrictionCheck_phi25.npz",
+        "format": "npz",
+        "sha256": "f815225378a9b38aa23702d30b5dae7bf37c563eda9413b616ab079520a70952"
+      },
+      "run": {
+        "utc": "2026-11-09T18:55:18+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "GearMeshFrictionMirrorCheck",
@@ -1780,24 +2296,84 @@
       "meshIS_C.sigma",
       "time"
     ],
-    "bytes": 771965,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-11,
-      "cpu_time": 35.52052421699773,
-      "steps": 437776,
-      "rhs_evaluations": 627103,
-      "jacobian_evaluations": 8064,
+      "cpu_time": 35.814226066926494,
+      "steps": 439601,
+      "rhs_evaluations": 629773,
+      "jacobian_evaluations": 8120,
       "time_events": 3,
-      "error_test_failures": 41795,
-      "convergence_failures": 10,
-      "state_events": 356,
+      "error_test_failures": 41962,
+      "convergence_failures": 6,
+      "state_events": 392,
       "kind": "dynamic"
     },
-    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "meshIS_A.lossPower": "W",
+      "meshIS_B.lossPower": "W",
+      "meshHX_A.F_ax1": "N",
+      "meshHX_A.lossPower": "W",
+      "meshHX_B.F_ax1": "N",
+      "meshHX_B.lossPower": "W",
+      "meshHX_C.tau_1": "N.m",
+      "meshIH_A.lossPower": "W",
+      "meshIH_B.lossPower": "W",
+      "meshIH_C.tau_1": "N.m"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 773685,
+    "record": {
+      "schema": 1,
+      "record_id": "61ac242e796a39bcd601c6946bb4c58a517cc7608f223ff57a00d5cf8fad5357",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:56:48",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "53506a1ad2681351d689bdc032426975",
+        "impact_fmu_id": "__testmodels_gearmeshfrictionreversalvariantscheck_20261109_185540_2ea2a5e",
+        "model_description_sha256": "6216779f4ddb84230bb40dcf6d3632fc9ec63423c38bc36c108256fe65b4638c"
+      },
+      "experiment": {
+        "case_entry_sha256": "7e23c6ceda6f36286b82e79a2e2edbae22bda05513d74a991c958eb4fd404b2f",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "__testmodels_gearmeshfrictionreversalvariantscheck_20261109_185540_58a7400",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "5a56be45b5dced9f7cdd6617ba7c0f239e85f9379e10a4714fdf5b206b14ff3d"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshFrictionReversalVariantsCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 773685,
+        "file": "GearMeshFrictionReversalVariantsCheck.npz",
+        "format": "npz",
+        "sha256": "52a0d02c8e2238b37bf31045172dd343ba93ea2c464920baeddee24630d88598"
+      },
+      "run": {
+        "utc": "2026-11-09T18:57:31+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "GearMeshFrictionVibrationCheck",
@@ -1818,24 +2394,89 @@
       "mu_f",
       "time"
     ],
-    "bytes": 802299,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-09,
-      "cpu_time": 8.181873844005167,
-      "steps": 148382,
-      "rhs_evaluations": 177811,
-      "jacobian_evaluations": 2540,
+      "cpu_time": 8.123839332023636,
+      "steps": 151882,
+      "rhs_evaluations": 182164,
+      "jacobian_evaluations": 2600,
       "time_events": 3,
-      "error_test_failures": 5636,
+      "error_test_failures": 5827,
       "convergence_failures": 0,
-      "state_events": 1,
+      "state_events": 11,
       "kind": "dynamic"
     },
-    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "gearMesh.delta": "m",
+      "gear2.omega": "rad/s",
+      "housingA_acc.a_out[1]": "m/s2",
+      "housingA_acc.a_out[2]": "m/s2",
+      "gear1.omega": "rad/s",
+      "gearMesh.k_t": "N/m",
+      "gearMesh.F_loa": "N",
+      "gearMesh.tau_1": "N.m",
+      "gearMesh.tau_2": "N.m",
+      "gearMesh.f_mesh": "Hz",
+      "gearMesh.v_slide": "m/s",
+      "gearMesh.lossPower": "W"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 791325,
+    "record": {
+      "schema": 1,
+      "record_id": "7fd64cac9895205570101e3b499f38ef5a796738ac754c6b367fd3734aadbb52",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:52:26",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "65e89a6539c50022a01d0f6814217c7b",
+        "impact_fmu_id": "_ynamics_testmodels_gearmeshfrictionvibrationcheck_20261109_185216_b3da7ec",
+        "model_description_sha256": "f440664ebf24649cbfe2636f48769142d008a1b3e1c6574f63fb662b33e2c16b"
+      },
+      "experiment": {
+        "case_entry_sha256": "df7e09628be50d1ed7099e9c8d6f4ca741f66e1f4d9802b96f3e0ecfdc7d7405",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_ynamics_testmodels_gearmeshfrictionvibrationcheck_20261109_185216_ba1d88a",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "1c8d0352263b2d7e5d94e0733c50153ac64254f34d78288638228199cceda3cc"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshFrictionVibrationCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "mu_f": 0.05
+        }
+      },
+      "result": {
+        "bytes": 791325,
+        "file": "GearMeshFrictionVibrationCheck.npz",
+        "format": "npz",
+        "sha256": "940d44af444ecb68f7ea850308e432aacd074f89b64cf8536c763d5b4f3e93ea"
+      },
+      "run": {
+        "utc": "2026-11-09T18:52:37+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "GearMeshGeometryCheck",
@@ -1859,7 +2500,91 @@
       "rAnchor2.resolveInFrame",
       "time"
     ],
-    "bytes": 7566
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-08,
+      "cpu_time": 0.1818368349922821,
+      "steps": 5123,
+      "rhs_evaluations": 6223,
+      "jacobian_evaluations": 90,
+      "time_events": 1,
+      "error_test_failures": 197,
+      "convergence_failures": 0,
+      "state_events": 5,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "rAnchor1.r[1]": "m",
+      "rAnchor1.r[2]": "m",
+      "rAnchor1.r[3]": "m",
+      "a_nom": "m",
+      "gearMesh.phi_centreline": "rad",
+      "rAnchor2.r[1]": "m",
+      "rAnchor2.r[2]": "m",
+      "rAnchor2.r[3]": "m",
+      "gearMesh.r_b2": "m",
+      "gearMesh.a_centre": "m",
+      "gearMesh.a_actual": "m",
+      "gearMesh.phi_actual": "rad",
+      "gearMesh.delta": "m",
+      "gearMesh.F_loa": "N"
+    },
+    "display_units": {
+      "gearMesh.phi_centreline": "deg",
+      "gearMesh.phi_actual": "deg"
+    },
+    "format": "npz",
+    "bytes": 7641,
+    "record": {
+      "schema": 1,
+      "record_id": "5236bb07234447806231bbec1b4f8765069abf025e6c4cb5471df90ce5d656bc",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:49:15",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "825ff8c03351563cb01aee3aed35dcfa",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshgeometrycheck_20261109_184905_08302f8",
+        "model_description_sha256": "a46f7504a0a245cb8a113c9db44dc733804a3a126ecc6c0b917d4571f8e0db29"
+      },
+      "experiment": {
+        "case_entry_sha256": "455ea859ab2d92823a7c608617e2ae242eb91d313acbbc9c72940af24c7d8941",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshgeometrycheck_20261109_184905_271c894",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "b52ac330f6ccc1dfa754f01a48bc1217e86ea053f84f6198f064ae96a1ec7fe8"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshGeometryCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 7641,
+        "file": "GearMeshGeometryCheck.npz",
+        "format": "npz",
+        "sha256": "b6d996f21d4df8a10ff5175b1cd8f6ad3b4364b53f883f3e948d7b63468de20e"
+      },
+      "run": {
+        "utc": "2026-11-09T18:49:17+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "GearMeshHelicalThrustCheck",
@@ -2326,7 +3051,108 @@
       "tau_load",
       "time"
     ],
-    "bytes": 159891
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-10,
+      "cpu_time": 1.0820102869765833,
+      "steps": 13995,
+      "rhs_evaluations": 17653,
+      "jacobian_evaluations": 267,
+      "time_events": 1,
+      "error_test_failures": 709,
+      "convergence_failures": 2,
+      "state_events": 35,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "omega1": "rad/s",
+      "tau_load": "N.m",
+      "gearMesh.m_n": "m",
+      "gearMesh.phi_n": "rad",
+      "gearMesh.beta": "rad",
+      "gearMesh.k_mesh": "N/m",
+      "gearMesh.phi_t": "rad",
+      "gearMesh.m_t": "m",
+      "gearMesh.r_p1": "m",
+      "gearMesh.r_p2": "m",
+      "gearMesh.r_b1": "m",
+      "gearMesh.r_a1": "m",
+      "gearMesh.r_b2": "m",
+      "gearMesh.r_a2": "m",
+      "gearMesh.a_centre": "m",
+      "gearMesh.m_eq": "kg",
+      "gearMesh.c_mesh_used": "N.s/m",
+      "gear2.omega": "rad/s",
+      "gear1.omega": "rad/s",
+      "gearMesh.delta": "m",
+      "gearMesh.F_loa": "N",
+      "gearMesh.F_tang": "N",
+      "gearMesh.F_sep": "N",
+      "gearMesh.F_1[1]": "N",
+      "gearMesh.F_1[2]": "N",
+      "gearMesh.F_2[1]": "N",
+      "gearMesh.F_2[2]": "N",
+      "gearMesh.tau_1": "N.m",
+      "gearMesh.tau_2": "N.m",
+      "gearMesh.f_mesh": "Hz"
+    },
+    "display_units": {
+      "gearMesh.phi_n": "deg",
+      "gearMesh.beta": "deg",
+      "gearMesh.phi_t": "deg"
+    },
+    "format": "npz",
+    "bytes": 162909,
+    "record": {
+      "schema": 1,
+      "record_id": "78907ef5928899e936d95073d2a9a4a0986126cc426bed71905c5f777e832c45",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:32:38",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "79aca71291ec4883be355ac4bdd63f18",
+        "impact_fmu_id": "_tordynamics_testmodels_gearmeshinternalratiocheck_20261109_183229_9a40629",
+        "model_description_sha256": "1c78effb09d88947f50b5ab68f9573ddbed5c3762f07491a7f7eeccba2e94777"
+      },
+      "experiment": {
+        "case_entry_sha256": "3722e2827fe3a4bae99e5b18260db1dfaeba963a70edc712c6823a45e422b785",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_tordynamics_testmodels_gearmeshinternalratiocheck_20261109_183229_65c67d9",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "0037702dec7507db3ca9b2d4e0a8cf42209db484d32b96f5b92199d5da4725cc"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshInternalRatioCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 162909,
+        "file": "GearMeshInternalRatioCheck.npz",
+        "format": "npz",
+        "sha256": "31eefbb20320a6b1ea3230d8fc2892cd67bdb6b2f0c3dce56eb6a8cff04f79f1"
+      },
+      "run": {
+        "utc": "2026-11-09T18:32:51+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "GearMeshOrbitInvarianceCheck",
@@ -2350,24 +3176,88 @@
       "tau_load",
       "time"
     ],
-    "bytes": 522062,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-10,
-      "cpu_time": 6.5243834360007895,
-      "steps": 49206,
-      "rhs_evaluations": 66277,
-      "jacobian_evaluations": 1249,
+      "cpu_time": 5.862732887966558,
+      "steps": 40796,
+      "rhs_evaluations": 53045,
+      "jacobian_evaluations": 905,
       "time_events": 1,
-      "error_test_failures": 3210,
-      "convergence_failures": 8,
-      "state_events": 427,
+      "error_test_failures": 2398,
+      "convergence_failures": 3,
+      "state_events": 246,
       "kind": "dynamic"
     },
-    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "omega1": "rad/s",
+      "tau_load": "N.m",
+      "psi_c": "rad",
+      "gearMeshA.theta_m": "rad",
+      "gearMeshA.delta": "m",
+      "gearMeshA.e_ste": "m",
+      "gearMeshA.k_t": "N/m",
+      "gearMeshA.F_1[1]": "N",
+      "gearMeshA.F_1[2]": "N",
+      "gearMeshB.theta_m": "rad"
+    },
+    "display_units": {
+      "psi_c": "deg",
+      "gearMeshA.theta_m": "deg",
+      "gearMeshB.theta_m": "deg"
+    },
+    "format": "npz",
+    "bytes": 485396,
+    "record": {
+      "schema": 1,
+      "record_id": "87de6e20d39ee898a317179df694e28c32d365006a7326865fa8529205f2a9a9",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:33:08",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "cd3747a6cb610d81ed6f658905f389a4",
+        "impact_fmu_id": "_rdynamics_testmodels_gearmeshorbitinvariancecheck_20261109_183252_bc8bbe5",
+        "model_description_sha256": "d32113166e5fda617347fd46aab917f449fec4f9c62e45eb2cff4b57201c08a6"
+      },
+      "experiment": {
+        "case_entry_sha256": "e97c191e51117aa89b843aea62ad255c6dad2b67b6735a059451c2b6461e0868",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_rdynamics_testmodels_gearmeshorbitinvariancecheck_20261109_183251_54feb58",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "12786f32c7942b30b26e067abf26feeb3279667a4ac65872e4dadbd6baf4c41f"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshOrbitInvarianceCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 485396,
+        "file": "GearMeshOrbitInvarianceCheck.npz",
+        "format": "npz",
+        "sha256": "8faf772f2b2ec894a58bc1c033881705246e2e9e6eff811dede41b9be3b96228"
+      },
+      "run": {
+        "utc": "2026-11-09T18:34:27+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "GearMeshOverlapAttenuationCheck",
@@ -2393,7 +3283,6 @@
       "tau2",
       "time"
     ],
-    "bytes": 463814,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
@@ -2401,12 +3290,80 @@
       "linear_solver_type": "DENSE",
       "atol": 1e-10,
       "rtol": 1e-10,
-      "cpu_time": 1.1645167509559542,
-      "steps": 22946,
-      "error_test_failures": 880,
-      "convergence_failures": 0,
-      "state_events": 1,
+      "cpu_time": 1.083175012958236,
+      "steps": 26292,
+      "rhs_evaluations": 32396,
+      "jacobian_evaluations": 470,
+      "time_events": 1,
+      "error_test_failures": 1203,
+      "convergence_failures": 1,
+      "state_events": 39,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "b_face": "m",
+      "gearMesh.k_mesh": "N/m",
+      "gearMesh.theta_m": "rad",
+      "gearMesh.delta": "m",
+      "gearMesh.k_t": "N/m",
+      "gearMesh.F_loa": "N",
+      "gearMesh.tau_1": "N.m",
+      "tau2": "N.m"
+    },
+    "display_units": {
+      "gearMesh.theta_m": "deg"
+    },
+    "format": "npz",
+    "bytes": 426124,
+    "record": {
+      "schema": 1,
+      "record_id": "221fcea4d54276439ce992a8e0d1887d622ae49174611518fd622b157a80c496",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:51:15",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "5b04ed836b0386badfca4c4bc06fc449",
+        "impact_fmu_id": "_namics_testmodels_gearmeshoverlapattenuationcheck_20261109_185105_7747182",
+        "model_description_sha256": "0a0966e096e0d0b7adf7ebdf7ac6bcdec6ef0142d1fd82e563a62014079e847b"
+      },
+      "experiment": {
+        "case_entry_sha256": "a9b8221aaa70161c01ba3466ff9dbf4b872774eff3140ded9629a0b295764933",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_namics_testmodels_gearmeshoverlapattenuationcheck_20261109_185105_18b294b",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "e98d1072a6203679fc4331faea866fe532adc2a4e75eea260c772cd79e828b0d"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshOverlapAttenuationCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "epsBetaTarget": 0.5
+        }
+      },
+      "result": {
+        "bytes": 426124,
+        "file": "GearMeshOverlapAttenuationCheck.npz",
+        "format": "npz",
+        "sha256": "bddb3ffe535d95386618d4860f6388ce171ffea6a537172a86b62a53c2e33a47"
+      },
+      "run": {
+        "utc": "2026-11-09T18:51:20+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -2441,7 +3398,6 @@
       "x1",
       "x2"
     ],
-    "bytes": 123988,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
@@ -2449,12 +3405,90 @@
       "linear_solver_type": "DENSE",
       "atol": 1e-10,
       "rtol": 1e-10,
-      "cpu_time": 0.3162238890072331,
-      "steps": 8371,
-      "error_test_failures": 379,
-      "convergence_failures": 0,
-      "state_events": 1,
+      "cpu_time": 0.3885535500012338,
+      "steps": 13572,
+      "rhs_evaluations": 17673,
+      "jacobian_evaluations": 266,
+      "time_events": 1,
+      "error_test_failures": 807,
+      "convergence_failures": 1,
+      "state_events": 47,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "gearMesh.phi_t": "rad",
+      "gearMesh.r_b1": "m",
+      "gearMesh.r_a1": "m",
+      "gearMesh.r_b2": "m",
+      "gearMesh.r_a2": "m",
+      "gearMesh.a_centre": "m",
+      "gearMesh.phi_tw": "rad",
+      "gearMesh.a_w": "m",
+      "gearMesh.r_w1": "m",
+      "gearMesh.r_w2": "m",
+      "da_centre": "m",
+      "gear2.omega": "rad/s",
+      "gear1.omega": "rad/s",
+      "gearMesh.delta": "m",
+      "gearMesh.F_loa": "N",
+      "gearMesh.F_tang": "N",
+      "gearMesh.F_sep": "N",
+      "gearMesh.tau_2": "N.m",
+      "gearMesh.tau_1": "N.m",
+      "tau1_settled": "N.m"
+    },
+    "display_units": {
+      "gearMesh.phi_t": "deg",
+      "gearMesh.phi_tw": "deg"
+    },
+    "format": "npz",
+    "bytes": 120026,
+    "record": {
+      "schema": 1,
+      "record_id": "7687ac527d1b471269f6578f93d8873456a23f896e0f076329fc67c7cb7f805f",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:52:14",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "d83ca2a71d93afb78bd1520e6ebcdc9a",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshprofileshiftcheck_20261109_185205_10d8829",
+        "model_description_sha256": "31f37674fb31307dc558937b8fa4f7c1192df433b8e9933c1583dbeb5ef85c5a"
+      },
+      "experiment": {
+        "case_entry_sha256": "987f8f2ebb98b0c993a3b2e109238a7c12fdfd66b21e63f7b9832d725796dab2",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshprofileshiftcheck_20261109_185205_666ac82",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "d4b955f8b95a7416ed0d8a566416146536461680a6869026c7aa661574ba064e"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshProfileShiftCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 120026,
+        "file": "GearMeshProfileShiftCheck.npz",
+        "format": "npz",
+        "sha256": "fb14f476480a4aae717b54ed20bce99afc2e89e053de6950ad6066ceadd0a378"
+      },
+      "run": {
+        "utc": "2026-11-09T18:52:16+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -2489,7 +3523,6 @@
       "x1",
       "x2"
     ],
-    "bytes": 124297,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
@@ -2497,12 +3530,94 @@
       "linear_solver_type": "DENSE",
       "atol": 1e-10,
       "rtol": 1e-10,
-      "cpu_time": 0.32456074799847556,
-      "steps": 8526,
-      "error_test_failures": 358,
-      "convergence_failures": 0,
-      "state_events": 1,
+      "cpu_time": 0.3594117739703506,
+      "steps": 13879,
+      "rhs_evaluations": 18134,
+      "jacobian_evaluations": 269,
+      "time_events": 1,
+      "error_test_failures": 852,
+      "convergence_failures": 1,
+      "state_events": 47,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "gearMesh.phi_t": "rad",
+      "gearMesh.r_b1": "m",
+      "gearMesh.r_a1": "m",
+      "gearMesh.r_b2": "m",
+      "gearMesh.r_a2": "m",
+      "gearMesh.a_centre": "m",
+      "gearMesh.phi_tw": "rad",
+      "gearMesh.a_w": "m",
+      "gearMesh.r_w1": "m",
+      "gearMesh.r_w2": "m",
+      "da_centre": "m",
+      "gear2.omega": "rad/s",
+      "gear1.omega": "rad/s",
+      "gearMesh.delta": "m",
+      "gearMesh.F_loa": "N",
+      "gearMesh.F_tang": "N",
+      "gearMesh.F_sep": "N",
+      "gearMesh.tau_2": "N.m",
+      "gearMesh.tau_1": "N.m",
+      "tau1_settled": "N.m"
+    },
+    "display_units": {
+      "gearMesh.phi_t": "deg",
+      "gearMesh.phi_tw": "deg"
+    },
+    "format": "npz",
+    "bytes": 120537,
+    "record": {
+      "schema": 1,
+      "record_id": "a97461bcf123f5cb530e1b3744d70f92e439e5918f10c31aec8c5b1a3c20993c",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:52:14",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "d83ca2a71d93afb78bd1520e6ebcdc9a",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshprofileshiftcheck_20261109_185205_10d8829",
+        "model_description_sha256": "31f37674fb31307dc558937b8fa4f7c1192df433b8e9933c1583dbeb5ef85c5a"
+      },
+      "experiment": {
+        "case_entry_sha256": "1e7b320664876ba4e7a370ee1c077cd6657559ddfac081265395fbd9531ab4b6",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshprofileshiftcheck_20261109_185311_1fdd2f5",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "9840fbb1a4b8c4b6da38039bb5cbda3368082ba51ba8967677ab1ea5b2e72815"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshProfileShiftCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "x1": 0.8,
+          "x2": 0.4
+        }
+      },
+      "result": {
+        "bytes": 120537,
+        "file": "GearMeshProfileShiftCheck_x_1p2.npz",
+        "format": "npz",
+        "sha256": "90029fbac2cca25c1e2e515b9e8b08991557a6bc4b31e983a08dbd799b08ab79"
+      },
+      "run": {
+        "utc": "2026-11-09T18:53:13+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -2537,7 +3652,6 @@
       "x1",
       "x2"
     ],
-    "bytes": 124174,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
@@ -2545,12 +3659,94 @@
       "linear_solver_type": "DENSE",
       "atol": 1e-10,
       "rtol": 1e-10,
-      "cpu_time": 0.3062986520017148,
-      "steps": 8384,
-      "error_test_failures": 381,
-      "convergence_failures": 0,
-      "state_events": 1,
+      "cpu_time": 0.3586250519147143,
+      "steps": 13687,
+      "rhs_evaluations": 17874,
+      "jacobian_evaluations": 266,
+      "time_events": 1,
+      "error_test_failures": 836,
+      "convergence_failures": 1,
+      "state_events": 47,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "gearMesh.phi_t": "rad",
+      "gearMesh.r_b1": "m",
+      "gearMesh.r_a1": "m",
+      "gearMesh.r_b2": "m",
+      "gearMesh.r_a2": "m",
+      "gearMesh.a_centre": "m",
+      "gearMesh.phi_tw": "rad",
+      "gearMesh.a_w": "m",
+      "gearMesh.r_w1": "m",
+      "gearMesh.r_w2": "m",
+      "da_centre": "m",
+      "gear2.omega": "rad/s",
+      "gear1.omega": "rad/s",
+      "gearMesh.delta": "m",
+      "gearMesh.F_loa": "N",
+      "gearMesh.F_tang": "N",
+      "gearMesh.F_sep": "N",
+      "gearMesh.tau_2": "N.m",
+      "gearMesh.tau_1": "N.m",
+      "tau1_settled": "N.m"
+    },
+    "display_units": {
+      "gearMesh.phi_t": "deg",
+      "gearMesh.phi_tw": "deg"
+    },
+    "format": "npz",
+    "bytes": 120528,
+    "record": {
+      "schema": 1,
+      "record_id": "07ced17fb07d373ce50be13d3b758d79887e003368e348c8b2ff78f0a026cd96",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:52:14",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "d83ca2a71d93afb78bd1520e6ebcdc9a",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshprofileshiftcheck_20261109_185205_10d8829",
+        "model_description_sha256": "31f37674fb31307dc558937b8fa4f7c1192df433b8e9933c1583dbeb5ef85c5a"
+      },
+      "experiment": {
+        "case_entry_sha256": "9b73293a1d1416b05b3c9ba5446e1e9681f3794488fdc8b54357d64a00ee6afe",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshprofileshiftcheck_20261109_185310_ebca1fa",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "39f4e5f1689909957acb5fe170470e46ce873b93ccf269c6a9c4474f6ec39a07"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshProfileShiftCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "x1": 0.6,
+          "x2": -0.2
+        }
+      },
+      "result": {
+        "bytes": 120528,
+        "file": "GearMeshProfileShiftCheck_x_asym0p4.npz",
+        "format": "npz",
+        "sha256": "8934826cc21cc732bb608ac87f84f23ea73410021171366753b68d6188919c23"
+      },
+      "run": {
+        "utc": "2026-11-09T18:53:11+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -2585,7 +3781,6 @@
       "x1",
       "x2"
     ],
-    "bytes": 123992,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
@@ -2593,12 +3788,94 @@
       "linear_solver_type": "DENSE",
       "atol": 1e-10,
       "rtol": 1e-10,
-      "cpu_time": 0.3471952220061212,
-      "steps": 8291,
-      "error_test_failures": 356,
+      "cpu_time": 0.36168226902373135,
+      "steps": 13499,
+      "rhs_evaluations": 17549,
+      "jacobian_evaluations": 261,
+      "time_events": 1,
+      "error_test_failures": 805,
       "convergence_failures": 0,
-      "state_events": 1,
+      "state_events": 47,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "gearMesh.phi_t": "rad",
+      "gearMesh.r_b1": "m",
+      "gearMesh.r_a1": "m",
+      "gearMesh.r_b2": "m",
+      "gearMesh.r_a2": "m",
+      "gearMesh.a_centre": "m",
+      "gearMesh.phi_tw": "rad",
+      "gearMesh.a_w": "m",
+      "gearMesh.r_w1": "m",
+      "gearMesh.r_w2": "m",
+      "da_centre": "m",
+      "gear2.omega": "rad/s",
+      "gear1.omega": "rad/s",
+      "gearMesh.delta": "m",
+      "gearMesh.F_loa": "N",
+      "gearMesh.F_tang": "N",
+      "gearMesh.F_sep": "N",
+      "gearMesh.tau_2": "N.m",
+      "gearMesh.tau_1": "N.m",
+      "tau1_settled": "N.m"
+    },
+    "display_units": {
+      "gearMesh.phi_t": "deg",
+      "gearMesh.phi_tw": "deg"
+    },
+    "format": "npz",
+    "bytes": 120012,
+    "record": {
+      "schema": 1,
+      "record_id": "abee1029268db57faf65efc0357f6a468753c19467fcd67746bed9d67951a0f6",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:52:14",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "d83ca2a71d93afb78bd1520e6ebcdc9a",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshprofileshiftcheck_20261109_185205_10d8829",
+        "model_description_sha256": "31f37674fb31307dc558937b8fa4f7c1192df433b8e9933c1583dbeb5ef85c5a"
+      },
+      "experiment": {
+        "case_entry_sha256": "fc9a1f19378e736d3dcbde82af9f3a9dc49aa6ed5c21c2b92eca8ea36e063930",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshprofileshiftcheck_20261109_185306_d7f8d2a",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "794c34edbb262c84d73eb710edd5207e33a2aba26641b01ec6b4521fd1a31274"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshProfileShiftCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "x1": -0.3,
+          "x2": 0.0
+        }
+      },
+      "result": {
+        "bytes": 120012,
+        "file": "GearMeshProfileShiftCheck_x_neg0p3.npz",
+        "format": "npz",
+        "sha256": "07e8469722080a0c8cc8024a46972024f4112fd4817e53120824f0f84e35fc70"
+      },
+      "run": {
+        "utc": "2026-11-09T18:53:08+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -2633,7 +3910,6 @@
       "x1",
       "x2"
     ],
-    "bytes": 124024,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
@@ -2641,12 +3917,94 @@
       "linear_solver_type": "DENSE",
       "atol": 1e-10,
       "rtol": 1e-10,
-      "cpu_time": 0.3578187219973188,
-      "steps": 8379,
-      "error_test_failures": 364,
-      "convergence_failures": 0,
-      "state_events": 1,
+      "cpu_time": 0.36482043704017997,
+      "steps": 13626,
+      "rhs_evaluations": 17639,
+      "jacobian_evaluations": 264,
+      "time_events": 1,
+      "error_test_failures": 805,
+      "convergence_failures": 1,
+      "state_events": 47,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "gearMesh.phi_t": "rad",
+      "gearMesh.r_b1": "m",
+      "gearMesh.r_a1": "m",
+      "gearMesh.r_b2": "m",
+      "gearMesh.r_a2": "m",
+      "gearMesh.a_centre": "m",
+      "gearMesh.phi_tw": "rad",
+      "gearMesh.a_w": "m",
+      "gearMesh.r_w1": "m",
+      "gearMesh.r_w2": "m",
+      "da_centre": "m",
+      "gear2.omega": "rad/s",
+      "gear1.omega": "rad/s",
+      "gearMesh.delta": "m",
+      "gearMesh.F_loa": "N",
+      "gearMesh.F_tang": "N",
+      "gearMesh.F_sep": "N",
+      "gearMesh.tau_2": "N.m",
+      "gearMesh.tau_1": "N.m",
+      "tau1_settled": "N.m"
+    },
+    "display_units": {
+      "gearMesh.phi_t": "deg",
+      "gearMesh.phi_tw": "deg"
+    },
+    "format": "npz",
+    "bytes": 120143,
+    "record": {
+      "schema": 1,
+      "record_id": "17e4805dfd4ba92e5b96d02a45a5858ee94d61a4caf6da52b1809ae6e6a64ebd",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:52:14",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "d83ca2a71d93afb78bd1520e6ebcdc9a",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshprofileshiftcheck_20261109_185205_10d8829",
+        "model_description_sha256": "31f37674fb31307dc558937b8fa4f7c1192df433b8e9933c1583dbeb5ef85c5a"
+      },
+      "experiment": {
+        "case_entry_sha256": "798e55622657a85ed1daa58664c0f2052e701cca0db6aee888d5d9c23a15af27",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshprofileshiftcheck_20261109_185301_ec22603",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "524e63d281b32b5cee963904b809be2221e624b16fe0538e445c91526677cd55"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshProfileShiftCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "x1": -0.5,
+          "x2": -0.3
+        }
+      },
+      "result": {
+        "bytes": 120143,
+        "file": "GearMeshProfileShiftCheck_x_neg0p8.npz",
+        "format": "npz",
+        "sha256": "53895825ef8438211f156d8ee8ad042462d87e17863956ca3e3c9d16164d36b2"
+      },
+      "run": {
+        "utc": "2026-11-09T18:53:06+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -2681,7 +4039,6 @@
       "x1",
       "x2"
     ],
-    "bytes": 124003,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
@@ -2689,12 +4046,94 @@
       "linear_solver_type": "DENSE",
       "atol": 1e-10,
       "rtol": 1e-10,
-      "cpu_time": 0.31151418200170156,
-      "steps": 8516,
-      "error_test_failures": 361,
-      "convergence_failures": 0,
-      "state_events": 1,
+      "cpu_time": 0.37250210205093026,
+      "steps": 13572,
+      "rhs_evaluations": 17673,
+      "jacobian_evaluations": 266,
+      "time_events": 1,
+      "error_test_failures": 807,
+      "convergence_failures": 1,
+      "state_events": 47,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "gearMesh.phi_t": "rad",
+      "gearMesh.r_b1": "m",
+      "gearMesh.r_a1": "m",
+      "gearMesh.r_b2": "m",
+      "gearMesh.r_a2": "m",
+      "gearMesh.a_centre": "m",
+      "gearMesh.phi_tw": "rad",
+      "gearMesh.a_w": "m",
+      "gearMesh.r_w1": "m",
+      "gearMesh.r_w2": "m",
+      "da_centre": "m",
+      "gear2.omega": "rad/s",
+      "gear1.omega": "rad/s",
+      "gearMesh.delta": "m",
+      "gearMesh.F_loa": "N",
+      "gearMesh.F_tang": "N",
+      "gearMesh.F_sep": "N",
+      "gearMesh.tau_2": "N.m",
+      "gearMesh.tau_1": "N.m",
+      "tau1_settled": "N.m"
+    },
+    "display_units": {
+      "gearMesh.phi_t": "deg",
+      "gearMesh.phi_tw": "deg"
+    },
+    "format": "npz",
+    "bytes": 120008,
+    "record": {
+      "schema": 1,
+      "record_id": "8b0184470b9fc8f3138a67a6b2eb00e3bb3c6c4eaa22829287e099d2268afb54",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:52:14",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "d83ca2a71d93afb78bd1520e6ebcdc9a",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshprofileshiftcheck_20261109_185205_10d8829",
+        "model_description_sha256": "31f37674fb31307dc558937b8fa4f7c1192df433b8e9933c1583dbeb5ef85c5a"
+      },
+      "experiment": {
+        "case_entry_sha256": "4d49684384b027cc1aa5d202b78c6b746c70c46f409a60e453fc3209da370595",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshprofileshiftcheck_20261109_185315_465262d",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "fc38664c2745a7b712ff0bc737838ce167796c9895accea660403387edbbdacb"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshProfileShiftCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "x1": 0.0,
+          "x2": 0.6
+        }
+      },
+      "result": {
+        "bytes": 120008,
+        "file": "GearMeshProfileShiftCheck_x_split_0_6.npz",
+        "format": "npz",
+        "sha256": "b58ae92a63cfc838904a501e083ed535e815cdf84822565d75649dcf9be38002"
+      },
+      "run": {
+        "utc": "2026-11-09T18:53:17+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -2729,7 +4168,6 @@
       "x1",
       "x2"
     ],
-    "bytes": 124426,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
@@ -2737,12 +4175,94 @@
       "linear_solver_type": "DENSE",
       "atol": 1e-10,
       "rtol": 1e-10,
-      "cpu_time": 0.29529374199773883,
-      "steps": 8575,
-      "error_test_failures": 357,
-      "convergence_failures": 0,
-      "state_events": 1,
+      "cpu_time": 0.37847736896947026,
+      "steps": 13572,
+      "rhs_evaluations": 17673,
+      "jacobian_evaluations": 266,
+      "time_events": 1,
+      "error_test_failures": 807,
+      "convergence_failures": 1,
+      "state_events": 47,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "gearMesh.phi_t": "rad",
+      "gearMesh.r_b1": "m",
+      "gearMesh.r_a1": "m",
+      "gearMesh.r_b2": "m",
+      "gearMesh.r_a2": "m",
+      "gearMesh.a_centre": "m",
+      "gearMesh.phi_tw": "rad",
+      "gearMesh.a_w": "m",
+      "gearMesh.r_w1": "m",
+      "gearMesh.r_w2": "m",
+      "da_centre": "m",
+      "gear2.omega": "rad/s",
+      "gear1.omega": "rad/s",
+      "gearMesh.delta": "m",
+      "gearMesh.F_loa": "N",
+      "gearMesh.F_tang": "N",
+      "gearMesh.F_sep": "N",
+      "gearMesh.tau_2": "N.m",
+      "gearMesh.tau_1": "N.m",
+      "tau1_settled": "N.m"
+    },
+    "display_units": {
+      "gearMesh.phi_t": "deg",
+      "gearMesh.phi_tw": "deg"
+    },
+    "format": "npz",
+    "bytes": 120008,
+    "record": {
+      "schema": 1,
+      "record_id": "953f46b2e8bd65e072a26525af05208df94a57f3c8293aaf7ad281b0196e483c",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:52:14",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "d83ca2a71d93afb78bd1520e6ebcdc9a",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshprofileshiftcheck_20261109_185205_10d8829",
+        "model_description_sha256": "31f37674fb31307dc558937b8fa4f7c1192df433b8e9933c1583dbeb5ef85c5a"
+      },
+      "experiment": {
+        "case_entry_sha256": "84d1d13f8482c71c479c925c7f114ede63632584e0368840c4810e375dde0593",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshprofileshiftcheck_20261109_185313_c44a42b",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "13dcad4c8d2b4afdc0027ae14f96ad35428aa31a9462cf6929a78e2975a491fe"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshProfileShiftCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "x1": 0.6,
+          "x2": 0.0
+        }
+      },
+      "result": {
+        "bytes": 120008,
+        "file": "GearMeshProfileShiftCheck_x_split_6_0.npz",
+        "format": "npz",
+        "sha256": "ba214a273893d244f0f0bcb7100e43145e191ad4c1b3dd8c1cf491474feb22f1"
+      },
+      "run": {
+        "utc": "2026-11-09T18:53:15+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -2777,7 +4297,6 @@
       "x1",
       "x2"
     ],
-    "bytes": 124238,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
@@ -2785,12 +4304,94 @@
       "linear_solver_type": "DENSE",
       "atol": 1e-10,
       "rtol": 1e-10,
-      "cpu_time": 0.3120885710013681,
-      "steps": 8310,
-      "error_test_failures": 329,
+      "cpu_time": 0.3606388589832932,
+      "steps": 13591,
+      "rhs_evaluations": 17555,
+      "jacobian_evaluations": 266,
+      "time_events": 1,
+      "error_test_failures": 763,
       "convergence_failures": 0,
-      "state_events": 1,
+      "state_events": 47,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "gearMesh.phi_t": "rad",
+      "gearMesh.r_b1": "m",
+      "gearMesh.r_a1": "m",
+      "gearMesh.r_b2": "m",
+      "gearMesh.r_a2": "m",
+      "gearMesh.a_centre": "m",
+      "gearMesh.phi_tw": "rad",
+      "gearMesh.a_w": "m",
+      "gearMesh.r_w1": "m",
+      "gearMesh.r_w2": "m",
+      "da_centre": "m",
+      "gear2.omega": "rad/s",
+      "gear1.omega": "rad/s",
+      "gearMesh.delta": "m",
+      "gearMesh.F_loa": "N",
+      "gearMesh.F_tang": "N",
+      "gearMesh.F_sep": "N",
+      "gearMesh.tau_2": "N.m",
+      "gearMesh.tau_1": "N.m",
+      "tau1_settled": "N.m"
+    },
+    "display_units": {
+      "gearMesh.phi_t": "deg",
+      "gearMesh.phi_tw": "deg"
+    },
+    "format": "npz",
+    "bytes": 120197,
+    "record": {
+      "schema": 1,
+      "record_id": "1838e562df210042d1379c005532d03ab135bb8e6b50cb9a0dc44ec86781cd30",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:52:14",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "d83ca2a71d93afb78bd1520e6ebcdc9a",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshprofileshiftcheck_20261109_185205_10d8829",
+        "model_description_sha256": "31f37674fb31307dc558937b8fa4f7c1192df433b8e9933c1583dbeb5ef85c5a"
+      },
+      "experiment": {
+        "case_entry_sha256": "5d5008c4048c46fd902f5ac14e64540122cc745c0af74e09ac6aa5d08aae4cb2",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshprofileshiftcheck_20261109_185308_86e47d5",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "71db8dc0059869ecfde691e984e6969e3057950a688ea90ea5ca33b7300ce1e3"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshProfileShiftCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "x1": 0.0,
+          "x2": 0.0
+        }
+      },
+      "result": {
+        "bytes": 120197,
+        "file": "GearMeshProfileShiftCheck_x_zero.npz",
+        "format": "npz",
+        "sha256": "d880e72486bc1fd9f7a00234678c2992f0f46a49071f7956fdfc904fc88aa3df"
+      },
+      "run": {
+        "utc": "2026-11-09T18:53:09+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -2825,7 +4426,100 @@
       "tau_load",
       "time"
     ],
-    "bytes": 102302
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-10,
+      "cpu_time": 1.10130285192281,
+      "steps": 13792,
+      "rhs_evaluations": 17602,
+      "jacobian_evaluations": 265,
+      "time_events": 1,
+      "error_test_failures": 744,
+      "convergence_failures": 0,
+      "state_events": 39,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "omega1": "rad/s",
+      "tau_load": "N.m",
+      "gearMesh.m_n": "m",
+      "gearMesh.phi_n": "rad",
+      "gearMesh.beta": "rad",
+      "gearMesh.k_mesh": "N/m",
+      "gearMesh.phi_t": "rad",
+      "gearMesh.m_t": "m",
+      "gearMesh.r_p1": "m",
+      "gearMesh.r_p2": "m",
+      "gearMesh.r_b1": "m",
+      "gearMesh.r_b2": "m",
+      "gearMesh.a_centre": "m",
+      "gearMesh.c_mesh_used": "N.s/m",
+      "gear2.omega": "rad/s",
+      "gear1.omega": "rad/s",
+      "gearMesh.delta": "m",
+      "gearMesh.F_loa": "N",
+      "gearMesh.F_tang": "N",
+      "gearMesh.F_sep": "N",
+      "gearMesh.tau_1": "N.m",
+      "gearMesh.tau_2": "N.m"
+    },
+    "display_units": {
+      "gearMesh.phi_n": "deg",
+      "gearMesh.beta": "deg",
+      "gearMesh.phi_t": "deg"
+    },
+    "format": "npz",
+    "bytes": 107129,
+    "record": {
+      "schema": 1,
+      "record_id": "bc717c4ee6103b4a34d6f29d0986c5dae2e36b7dc4135cdb914863ce535de016",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:32:17",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "542af772718c5908c921100be42b3278",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshratiocheck_20261109_183208_3506b03",
+        "model_description_sha256": "59d364560148e4124a8a9e32539a1d9474c5ad28f811230ce023e6521b19ed60"
+      },
+      "experiment": {
+        "case_entry_sha256": "3881ba45f38eab9139687d84d1d1472e761692ea60d11a086788720fdace938c",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshratiocheck_20261109_183208_75d7f70",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "81ac2d34a21a5428016ca0ecbd1e10cb115a9f9011d7074ef78fd7ac58f5635d"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshRatioCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 107129,
+        "file": "GearMeshRatioCheck.npz",
+        "format": "npz",
+        "sha256": "31da646de6ca4cfd01c52a10a233163ee0ec6fd1509771e5c467a22e9221fe48"
+      },
+      "run": {
+        "utc": "2026-11-09T18:32:29+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "GearMeshRatioCheck_phi14_5",
@@ -2859,19 +4553,102 @@
       "tau_load",
       "time"
     ],
-    "bytes": 106264,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-10,
-      "cpu_time": 0.8897615090027102,
-      "steps": 9985,
-      "error_test_failures": 428,
+      "cpu_time": 1.1512446000706404,
+      "steps": 14063,
+      "rhs_evaluations": 17938,
+      "jacobian_evaluations": 268,
+      "time_events": 1,
+      "error_test_failures": 770,
       "convergence_failures": 0,
-      "state_events": 1,
+      "state_events": 39,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "omega1": "rad/s",
+      "tau_load": "N.m",
+      "gearMesh.m_n": "m",
+      "gearMesh.phi_n": "rad",
+      "gearMesh.beta": "rad",
+      "gearMesh.k_mesh": "N/m",
+      "gearMesh.phi_t": "rad",
+      "gearMesh.m_t": "m",
+      "gearMesh.r_p1": "m",
+      "gearMesh.r_p2": "m",
+      "gearMesh.r_b1": "m",
+      "gearMesh.r_b2": "m",
+      "gearMesh.a_centre": "m",
+      "gearMesh.c_mesh_used": "N.s/m",
+      "gear2.omega": "rad/s",
+      "gear1.omega": "rad/s",
+      "gearMesh.delta": "m",
+      "gearMesh.F_loa": "N",
+      "gearMesh.F_tang": "N",
+      "gearMesh.F_sep": "N",
+      "gearMesh.tau_1": "N.m",
+      "gearMesh.tau_2": "N.m"
+    },
+    "display_units": {
+      "gearMesh.phi_n": "deg",
+      "gearMesh.beta": "deg",
+      "gearMesh.phi_t": "deg"
+    },
+    "format": "npz",
+    "bytes": 107317,
+    "record": {
+      "schema": 1,
+      "record_id": "497dd1a1fc7982425c0eca96b94cf9b909dc0fcb54d3a4626d3c85214d338367",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:32:17",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "542af772718c5908c921100be42b3278",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshratiocheck_20261109_183208_3506b03",
+        "model_description_sha256": "59d364560148e4124a8a9e32539a1d9474c5ad28f811230ce023e6521b19ed60"
+      },
+      "experiment": {
+        "case_entry_sha256": "1a6a9bbfb50af34af8334e3c14e525a000f3163526bcbac498f014a99a58004e",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshratiocheck_20261109_185237_ab2c926",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "0cc9317097bd8e3a7fdb09bdeeaa284cd0f141a7165b8b8b69222eca367fcda6"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshRatioCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "gearMesh.phi_n": 0.2530727415391778
+        }
+      },
+      "result": {
+        "bytes": 107317,
+        "file": "GearMeshRatioCheck_phi14_5.npz",
+        "format": "npz",
+        "sha256": "1a146be91d889774f6a172ca49ca5828d9893c8e368e5426569193d16a717c0a"
+      },
+      "run": {
+        "utc": "2026-11-09T18:52:48+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -2906,19 +4683,102 @@
       "tau_load",
       "time"
     ],
-    "bytes": 106086,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-10,
-      "cpu_time": 0.8509561309983837,
-      "steps": 9630,
-      "error_test_failures": 336,
-      "convergence_failures": 0,
-      "state_events": 1,
+      "cpu_time": 1.0584599350113422,
+      "steps": 13815,
+      "rhs_evaluations": 17611,
+      "jacobian_evaluations": 269,
+      "time_events": 1,
+      "error_test_failures": 748,
+      "convergence_failures": 1,
+      "state_events": 37,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "omega1": "rad/s",
+      "tau_load": "N.m",
+      "gearMesh.m_n": "m",
+      "gearMesh.phi_n": "rad",
+      "gearMesh.beta": "rad",
+      "gearMesh.k_mesh": "N/m",
+      "gearMesh.phi_t": "rad",
+      "gearMesh.m_t": "m",
+      "gearMesh.r_p1": "m",
+      "gearMesh.r_p2": "m",
+      "gearMesh.r_b1": "m",
+      "gearMesh.r_b2": "m",
+      "gearMesh.a_centre": "m",
+      "gearMesh.c_mesh_used": "N.s/m",
+      "gear2.omega": "rad/s",
+      "gear1.omega": "rad/s",
+      "gearMesh.delta": "m",
+      "gearMesh.F_loa": "N",
+      "gearMesh.F_tang": "N",
+      "gearMesh.F_sep": "N",
+      "gearMesh.tau_1": "N.m",
+      "gearMesh.tau_2": "N.m"
+    },
+    "display_units": {
+      "gearMesh.phi_n": "deg",
+      "gearMesh.beta": "deg",
+      "gearMesh.phi_t": "deg"
+    },
+    "format": "npz",
+    "bytes": 107469,
+    "record": {
+      "schema": 1,
+      "record_id": "621aa48edbdb808656bca55d13240b919da80f613cfd257d0ed45e5eb8040cff",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:32:17",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "542af772718c5908c921100be42b3278",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshratiocheck_20261109_183208_3506b03",
+        "model_description_sha256": "59d364560148e4124a8a9e32539a1d9474c5ad28f811230ce023e6521b19ed60"
+      },
+      "experiment": {
+        "case_entry_sha256": "2c064396daa4e51300e8a4d34ebd01bf704c53fdd2c1baa666b4ef62c65b10f2",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshratiocheck_20261109_185249_0a4b542",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "cb3d50bba127fc1c24f343c03b1638e8d04aa5f376dae8071851946949f353e8"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshRatioCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "gearMesh.phi_n": 0.4363323129985824
+        }
+      },
+      "result": {
+        "bytes": 107469,
+        "file": "GearMeshRatioCheck_phi25.npz",
+        "format": "npz",
+        "sha256": "0bc23c31525f695ffff5695efb585da0b1d4d29a6b2aac81c285408f37840f5d"
+      },
+      "run": {
+        "utc": "2026-11-09T18:53:01+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -3030,7 +4890,87 @@
       "tau_mean",
       "time"
     ],
-    "bytes": 917133
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-07,
+      "cpu_time": 7.169329533004202,
+      "steps": 114719,
+      "rhs_evaluations": 145240,
+      "jacobian_evaluations": 2021,
+      "time_events": 1,
+      "error_test_failures": 5760,
+      "convergence_failures": 0,
+      "state_events": 7,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "tau_mean": "N.m",
+      "D_load": "N.m.s/rad",
+      "gear1.omega": "rad/s",
+      "gear2.omega": "rad/s",
+      "housingA_acc.a_out[1]": "m/s2",
+      "housingA_acc.a_out[2]": "m/s2",
+      "gear1.flange_a.theta": "rad",
+      "P_in": "W",
+      "P_out": "W",
+      "P_loss": "W",
+      "P_resid": "W"
+    },
+    "display_units": {
+      "gear1.flange_a.theta": "deg"
+    },
+    "format": "npz",
+    "bytes": 915626,
+    "record": {
+      "schema": 1,
+      "record_id": "1fa4bf952e7cce325a3648810dda0d32718d5ca95008cb5e9b1e57115cdc9926",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:48:34",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "b6b561f287a1306988c2f6c9ee73272e",
+        "impact_fmu_id": "rotordynamics_testmodels_gearmeshrippletorquecheck_20261109_184822_5a6e1e1",
+        "model_description_sha256": "82243902ffa55c048c407da10dd0ace3139b41a519e9d834d70edc6e44eda2eb"
+      },
+      "experiment": {
+        "case_entry_sha256": "479a7b214ca3f5aceb6601d70160b161212f981e25922792af57ba397af03272",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_gearmeshrippletorquecheck_20261109_184822_cb35c06",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "02858627eb3032dfba52158722c7249cc23fda58ddc8a57c1705c97d607371f3"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.GearMeshRippleTorqueCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 915626,
+        "file": "GearMeshRippleTorqueCheck.npz",
+        "format": "npz",
+        "sha256": "feca8728b58e60f4eba9da7f9894e5dc8781a23ea9693cb9d475bc4a2b048ef6"
+      },
+      "run": {
+        "utc": "2026-11-09T18:48:43+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "GearMeshSteadyInitCheck",
@@ -4654,24 +6594,78 @@
       "gearMesh.mu_m",
       "time"
     ],
-    "bytes": 148818,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-10,
-      "cpu_time": 28.182942424005887,
-      "steps": 1187001,
-      "rhs_evaluations": 1603202,
-      "jacobian_evaluations": 20819,
+      "cpu_time": 28.09111814200878,
+      "steps": 1190803,
+      "rhs_evaluations": 1607846,
+      "jacobian_evaluations": 20873,
       "time_events": 1,
-      "error_test_failures": 92047,
-      "convergence_failures": 2,
-      "state_events": 1,
+      "error_test_failures": 92070,
+      "convergence_failures": 1,
+      "state_events": 9,
       "kind": "dynamic"
     },
-    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "E_loss": "J",
+      "E_in": "J",
+      "gear1.omega": "rad/s",
+      "gearMesh.F_c": "N"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 149270,
+    "record": {
+      "schema": 1,
+      "record_id": "8c8c245516fc9a68692341c40df9608d123a6b7f62276aa8dcbc5baaac79e0eb",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:58:23",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "d4789cab9f20512de646e556b1c35d66",
+        "impact_fmu_id": "rotordynamics_testmodels_lubricatedspurrunupcheck_20261109_185814_9778283",
+        "model_description_sha256": "9b34f0711ad6f050d6a469a3fd3fefeb3bce901d2d05c5836c27fd463b220a05"
+      },
+      "experiment": {
+        "case_entry_sha256": "828f5da07b2a9857fda32d633d98e7fd94cd4a7b25eadc6786f7d7451fb1c2a6",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_lubricatedspurrunupcheck_20261109_185814_23d40d9",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "f5bd08d54dc7566d09e7c53e6a71458dd6353de37a080a5241471b68a199e5d5"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.LubricatedSpurRunUpCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 149270,
+        "file": "LubricatedSpurRunUpCheck.npz",
+        "format": "npz",
+        "sha256": "278c1ea5571b940f7139269c526ca5499638db7fbcf400f68e9b22b1e023d4f6"
+      },
+      "run": {
+        "utc": "2026-11-09T18:58:53+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "LubricatedSpurStageCheck",
@@ -4685,24 +6679,79 @@
       "gearMesh.tau_2",
       "time"
     ],
-    "bytes": 146982,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-10,
-      "cpu_time": 9.75592548900022,
-      "steps": 498664,
-      "rhs_evaluations": 636117,
-      "jacobian_evaluations": 8930,
+      "cpu_time": 9.865501630934887,
+      "steps": 503838,
+      "rhs_evaluations": 641511,
+      "jacobian_evaluations": 9030,
       "time_events": 1,
-      "error_test_failures": 28388,
-      "convergence_failures": 0,
-      "state_events": 1,
+      "error_test_failures": 28245,
+      "convergence_failures": 1,
+      "state_events": 17,
       "kind": "dynamic"
     },
-    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "E_loss": "J",
+      "E_in": "J",
+      "gearMesh.F_c": "N",
+      "gearMesh.tau_1": "N.m",
+      "gearMesh.tau_2": "N.m"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 147653,
+    "record": {
+      "schema": 1,
+      "record_id": "7d23e45a3ae14bb5b90b61acd3a1d09792c5028cc6ca361eaefd831d3e28b0aa",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:57:40",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "46b8ab92cb4a98786d95f1afdbd45564",
+        "impact_fmu_id": "rotordynamics_testmodels_lubricatedspurstagecheck_20261109_185731_41b09e3",
+        "model_description_sha256": "02ce94bde01f8e6fa924bba3507dc79c52303e2a1e83336a9a2b7596a726803a"
+      },
+      "experiment": {
+        "case_entry_sha256": "8c468aa93d5d89e82a8784523622913fa36f4cd7df243855d5e89a21bef7ee18",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_lubricatedspurstagecheck_20261109_185731_92724da",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "97fd220d3fa6996104ed2676a6ab080704b6a0ea90b8fa3a9c068922dc784c48"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.LubricatedSpurStageCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 147653,
+        "file": "LubricatedSpurStageCheck.npz",
+        "format": "npz",
+        "sha256": "a943eca1625d7c7f662cae8447fdaf9cd10bd8f76ead0d5806685ceea4002fd2"
+      },
+      "run": {
+        "utc": "2026-11-09T18:57:51+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "LubricatedSpurStageCheck_L2",
@@ -4716,24 +6765,82 @@
       "gearMesh.tau_2",
       "time"
     ],
-    "bytes": 172929,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-10,
-      "cpu_time": 9.97991214600188,
-      "steps": 497717,
-      "rhs_evaluations": 632246,
-      "jacobian_evaluations": 8932,
+      "cpu_time": 9.95936434098985,
+      "steps": 497657,
+      "rhs_evaluations": 634209,
+      "jacobian_evaluations": 8936,
       "time_events": 1,
-      "error_test_failures": 27735,
+      "error_test_failures": 28181,
       "convergence_failures": 0,
-      "state_events": 1,
+      "state_events": 9,
       "kind": "dynamic"
     },
-    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "E_loss": "J",
+      "E_in": "J",
+      "gearMesh.F_c": "N",
+      "gearMesh.tau_1": "N.m",
+      "gearMesh.tau_2": "N.m"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 173296,
+    "record": {
+      "schema": 1,
+      "record_id": "ac64eae142c63e38f546ac02a777cf84ea4cd811f3aa3504f1a31f029035b548",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:58:02",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "57ae1080059e8719c8f6461867c4c818",
+        "impact_fmu_id": "rotordynamics_testmodels_lubricatedspurstagecheck_20261109_185752_73ed86b",
+        "model_description_sha256": "3af98a54313733ffd2b04a8ee517bd3638e3261ca16cfdc29a3c3a7da206eb83"
+      },
+      "experiment": {
+        "case_entry_sha256": "718bbf77482e80ed74cda52c9724280cd37849676ceb009c2f25143d78297a95",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_lubricatedspurstagecheck_20261109_185752_8dfd5fb",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "37a48305b81e33480a7e2228b9b6c5b869364f7b6cb66af29d566de863f2d597"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.LubricatedSpurStageCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "rotorWorld.lubricationRunTime": true
+        }
+      },
+      "result": {
+        "bytes": 173296,
+        "file": "LubricatedSpurStageCheck_L2.npz",
+        "format": "npz",
+        "sha256": "b64281e9ad81639f08c1d78588d82493b4990f150bb4b5b016af60244cc62f85"
+      },
+      "run": {
+        "utc": "2026-11-09T18:58:14+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "LubricatedWormCheck",
@@ -5118,7 +7225,6 @@
       "f_planet_t",
       "f_sun_t",
       "loadShare1",
-      "loadShareSpread",
       "nPlanet",
       "nPlanetR",
       "nRing",
@@ -5128,19 +7234,86 @@
       "z_r",
       "z_s"
     ],
-    "bytes": 128950,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-08,
-      "cpu_time": 33.13999388902448,
-      "steps": 239776,
-      "error_test_failures": 1974,
+      "cpu_time": 31.10285803093575,
+      "steps": 242404,
+      "rhs_evaluations": 267282,
+      "jacobian_evaluations": 4132,
+      "time_events": 3,
+      "error_test_failures": 2299,
       "convergence_failures": 0,
-      "state_events": 11,
+      "state_events": 95,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "F_sp_t": "N",
+      "f_c_t": "Hz",
+      "f_mesh_t": "Hz",
+      "T_ring_t": "s",
+      "f_sun_t": "Hz",
+      "f_planet_t": "Hz",
+      "T_sun_t": "s",
+      "T_planet_t": "s",
+      "F_sp_mean": "N",
+      "T_sun": "s",
+      "T_planet": "s",
+      "T_planetR": "s",
+      "T_ring": "s"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 94363,
+    "record": {
+      "schema": 1,
+      "record_id": "5835e4d2de3feab589925178cdf40bbd9cb3362510c394f551508c8c7bb58c26",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:38:41",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "d4ed9a9a89110dbe8f1d8549ce6a4bec",
+        "impact_fmu_id": "_rdynamics_testmodels_planetaryfaultsignaturecheck_20261109_183815_6f7c144",
+        "model_description_sha256": "dcd74cbcb660b95880908a36e8c566d890d80e08855b846614a65b4d19a910a3"
+      },
+      "experiment": {
+        "case_entry_sha256": "c8abbc4e55052741acff8a2352631b523d9ebdf45edd75da16cc6d0eb5996708",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_rdynamics_testmodels_planetaryfaultsignaturecheck_20261109_183815_2f00595",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "dfc439de913761801448f44a9c8953981198908f4e029b6e99f90202b07d6243"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.PlanetaryFaultSignatureCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 94363,
+        "file": "PlanetaryFaultSignature_Healthy.npz",
+        "format": "npz",
+        "sha256": "feb24a685dad2537ae27192f86aae30155eed198c7db95b425a5afd0dfb29d4c"
+      },
+      "run": {
+        "utc": "2026-11-09T18:39:15+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -5181,19 +7354,89 @@
       "z_r",
       "z_s"
     ],
-    "bytes": 175038,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-08,
-      "cpu_time": 41.6288020448992,
-      "steps": 263570,
-      "error_test_failures": 3360,
-      "convergence_failures": 0,
-      "state_events": 1197,
+      "cpu_time": 32.209711070987396,
+      "steps": 243634,
+      "rhs_evaluations": 268946,
+      "jacobian_evaluations": 4149,
+      "time_events": 3,
+      "error_test_failures": 2410,
+      "convergence_failures": 3,
+      "state_events": 96,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "F_sp_t": "N",
+      "f_c_t": "Hz",
+      "f_mesh_t": "Hz",
+      "T_ring_t": "s",
+      "f_sun_t": "Hz",
+      "f_planet_t": "Hz",
+      "T_sun_t": "s",
+      "T_planet_t": "s",
+      "F_sp_mean": "N",
+      "T_sun": "s",
+      "T_planet": "s",
+      "T_planetR": "s",
+      "T_ring": "s"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 129786,
+    "record": {
+      "schema": 1,
+      "record_id": "0ed0f11caa393e281e1eb164d5f3489be8979367c7231be4bcfb1942b58b71d1",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:38:41",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "d4ed9a9a89110dbe8f1d8549ce6a4bec",
+        "impact_fmu_id": "_rdynamics_testmodels_planetaryfaultsignaturecheck_20261109_183815_6f7c144",
+        "model_description_sha256": "dcd74cbcb660b95880908a36e8c566d890d80e08855b846614a65b4d19a910a3"
+      },
+      "experiment": {
+        "case_entry_sha256": "52905d396e8d644ab22f84c1720446e0082858b10ff53c9d225537e026a8bbe0",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_rdynamics_testmodels_planetaryfaultsignaturecheck_20261109_184414_76d0f92",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "dae71179d15b3c4728219db1c4dada08bade46fbe8de2e93f8e386c58a135810"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.PlanetaryFaultSignatureCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "dr_pin1": 1e-06
+        }
+      },
+      "result": {
+        "bytes": 129786,
+        "file": "PlanetaryFaultSignature_PinError.npz",
+        "format": "npz",
+        "sha256": "36085800b453355e9ae02c528473ab8ccf1d3ed19dda7c2c8c27581dd74848ca"
+      },
+      "run": {
+        "utc": "2026-11-09T18:45:19+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -5234,24 +7477,90 @@
       "z_r",
       "z_s"
     ],
-    "bytes": 278607,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-10,
-      "cpu_time": 76.34065049199853,
-      "steps": 573482,
-      "rhs_evaluations": 622005,
-      "jacobian_evaluations": 9819,
+      "cpu_time": 71.38520645000972,
+      "steps": 555717,
+      "rhs_evaluations": 595338,
+      "jacobian_evaluations": 9365,
       "time_events": 3,
-      "error_test_failures": 3925,
-      "convergence_failures": 19,
-      "state_events": 391,
+      "error_test_failures": 1894,
+      "convergence_failures": 1,
+      "state_events": 160,
       "kind": "dynamic"
     },
-    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "F_sp_t": "N",
+      "f_c_t": "Hz",
+      "f_mesh_t": "Hz",
+      "T_ring_t": "s",
+      "f_sun_t": "Hz",
+      "f_planet_t": "Hz",
+      "T_sun_t": "s",
+      "T_planet_t": "s",
+      "F_sp_mean": "N",
+      "T_sun": "s",
+      "T_planet": "s",
+      "T_planetR": "s",
+      "T_ring": "s"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 261916,
+    "record": {
+      "schema": 1,
+      "record_id": "749f62e7f79e185ca1c251bf1cd110b305b3366ed2c54068964c303110ec521d",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:41:18",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "7c2e8a78630876d8f6685cc53bc6ec",
+        "impact_fmu_id": "_rdynamics_testmodels_planetaryfaultsignaturecheck_20261109_184054_70c76b0",
+        "model_description_sha256": "08da15525c0fcaba0232fd9fa02db52a83accf91d495e9e2ab603abd44475cf1"
+      },
+      "experiment": {
+        "case_entry_sha256": "794d76ab6b0d055d857ea006439ff93708e2e217662eca8bbc97fc04d9046a5e",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_rdynamics_testmodels_planetaryfaultsignaturecheck_20261109_184054_7c8a630",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "87f8e127cd66fc2871ec8ba2e605eb752bcaf865c0f41accf0f407ddad927d01"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.PlanetaryFaultSignatureCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "usePlanetFault": true
+        }
+      },
+      "result": {
+        "bytes": 261916,
+        "file": "PlanetaryFaultSignature_PlanetTooth.npz",
+        "format": "npz",
+        "sha256": "3e0d4cb0a44abc47679d139192fbd97ba6c2493f8a7cafddf170d1f50c742ac3"
+      },
+      "run": {
+        "utc": "2026-11-09T18:42:33+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "PlanetaryFaultSignature_RingTooth",
@@ -5291,24 +7600,90 @@
       "z_r",
       "z_s"
     ],
-    "bytes": 192603,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-10,
-      "cpu_time": 66.38884271899587,
-      "steps": 536566,
-      "rhs_evaluations": 573616,
-      "jacobian_evaluations": 8986,
+      "cpu_time": 72.22001701302361,
+      "steps": 551134,
+      "rhs_evaluations": 590877,
+      "jacobian_evaluations": 9287,
       "time_events": 3,
-      "error_test_failures": 1437,
+      "error_test_failures": 1923,
       "convergence_failures": 1,
-      "state_events": 57,
+      "state_events": 138,
       "kind": "dynamic"
     },
-    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "F_sp_t": "N",
+      "f_c_t": "Hz",
+      "f_mesh_t": "Hz",
+      "T_ring_t": "s",
+      "f_sun_t": "Hz",
+      "f_planet_t": "Hz",
+      "T_sun_t": "s",
+      "T_planet_t": "s",
+      "F_sp_mean": "N",
+      "T_sun": "s",
+      "T_planet": "s",
+      "T_planetR": "s",
+      "T_ring": "s"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 180289,
+    "record": {
+      "schema": 1,
+      "record_id": "4423fc0bca014e5c0ffe300b06b54abb503a47ce6276e5e089f88a1b27cc3531",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:42:58",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "ea0327df9de2a17825be2e8103f6d8a1",
+        "impact_fmu_id": "_rdynamics_testmodels_planetaryfaultsignaturecheck_20261109_184234_83d2722",
+        "model_description_sha256": "84f7f569617493c70f730e6071433c6791a18154daea6bfd80753802bee6084f"
+      },
+      "experiment": {
+        "case_entry_sha256": "8c43842fb9e373dd79ec7e98b7a177119a8ff62ab1720c2c58e6c0e3560d3695",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_rdynamics_testmodels_planetaryfaultsignaturecheck_20261109_184233_388d7cb",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "6d66dd60ff5e6cbd9a7053f94da6cd8b18c4b25feefce188dbb470a1f93b17ba"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.PlanetaryFaultSignatureCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "useRingFault": true
+        }
+      },
+      "result": {
+        "bytes": 180289,
+        "file": "PlanetaryFaultSignature_RingTooth.npz",
+        "format": "npz",
+        "sha256": "f75cd61719d1f695f9ed52f240256e4a41d53605f7470bd5260e22b218484236"
+      },
+      "run": {
+        "utc": "2026-11-09T18:44:14+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "PlanetaryFaultSignature_SunTooth",
@@ -5348,24 +7723,90 @@
       "z_r",
       "z_s"
     ],
-    "bytes": 210725,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-10,
-      "cpu_time": 67.46337525700801,
-      "steps": 538905,
-      "rhs_evaluations": 574933,
-      "jacobian_evaluations": 9020,
+      "cpu_time": 70.8271728529362,
+      "steps": 553264,
+      "rhs_evaluations": 592149,
+      "jacobian_evaluations": 9313,
       "time_events": 3,
-      "error_test_failures": 1259,
+      "error_test_failures": 1768,
       "convergence_failures": 1,
-      "state_events": 63,
+      "state_events": 144,
       "kind": "dynamic"
     },
-    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "F_sp_t": "N",
+      "f_c_t": "Hz",
+      "f_mesh_t": "Hz",
+      "T_ring_t": "s",
+      "f_sun_t": "Hz",
+      "f_planet_t": "Hz",
+      "T_sun_t": "s",
+      "T_planet_t": "s",
+      "F_sp_mean": "N",
+      "T_sun": "s",
+      "T_planet": "s",
+      "T_planetR": "s",
+      "T_ring": "s"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 202927,
+    "record": {
+      "schema": 1,
+      "record_id": "94c503dfa0ac374b7aa9a2253d4b9b9280273175d69729ec8366aaf5a6dc279a",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:39:40",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "4dba50b1df9ddaa4c98961a76cc4c5de",
+        "impact_fmu_id": "_rdynamics_testmodels_planetaryfaultsignaturecheck_20261109_183916_0f41a3d",
+        "model_description_sha256": "b622df931a7f5c27b0057106fa7ae0e8488001454eaae570bc01d1f9943ddee3"
+      },
+      "experiment": {
+        "case_entry_sha256": "01b1da346672edad61ce5faa6eba086f8c27ee0803e3fcffcc995dc7397247bc",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_rdynamics_testmodels_planetaryfaultsignaturecheck_20261109_183916_97d12e0",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "8cef80b24e427f525ac437ab9032597d5dde911703de65b8d66cfb684cbc9bcc"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.PlanetaryFaultSignatureCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "useSunFault": true
+        }
+      },
+      "result": {
+        "bytes": 202927,
+        "file": "PlanetaryFaultSignature_SunTooth.npz",
+        "format": "npz",
+        "sha256": "49c477dbfb33b7878e2a0c4903185d8b83441d9292a5d9743ea4389e444d1fa6"
+      },
+      "run": {
+        "utc": "2026-11-09T18:40:54+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "PlanetaryFlexibleRingCheck",
@@ -5401,19 +7842,86 @@
       "z_r",
       "z_s"
     ],
-    "bytes": 368579,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-09,
-      "cpu_time": 3.851932969992049,
-      "steps": 11648,
-      "error_test_failures": 263,
+      "cpu_time": 2.7209424360189587,
+      "steps": 13087,
+      "rhs_evaluations": 15253,
+      "jacobian_evaluations": 292,
+      "time_events": 1,
+      "error_test_failures": 288,
       "convergence_failures": 0,
-      "state_events": 175,
+      "state_events": 77,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "h_rim": "m",
+      "ringQuasiStatic": "m",
+      "gearbox.ringFlex.f_n[1]": "Hz",
+      "gearbox.ringFlex.f_n[2]": "Hz",
+      "gearbox.ringFlex.f_n[3]": "Hz",
+      "gearbox.ringFlex.f_n[4]": "Hz",
+      "gearbox.carrier.omega": "rad/s",
+      "gearbox.planet[1].omega": "rad/s",
+      "gearbox.planet[2].omega": "rad/s",
+      "gearbox.planet[3].omega": "rad/s",
+      "gearbox.planet[4].omega": "rad/s",
+      "F_sp_mean": "N",
+      "F_sp_t": "N"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 360838,
+    "record": {
+      "schema": 1,
+      "record_id": "859042043d751af4d2ef0e60823f71ff2b201edcaa4b73ac3f027225045f0152",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:35:38",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "ac327442f686982f36b8d6414aed76a8",
+        "impact_fmu_id": "_tordynamics_testmodels_planetaryflexibleringcheck_20261109_183516_2262091",
+        "model_description_sha256": "bdbd34cf8d3d75cba3f253c1af4de76e1172f8ffb44f04c4aa805f02c37f9439"
+      },
+      "experiment": {
+        "case_entry_sha256": "f38373fcdc7a7934306c23387b5b693e3a726695a85191a510def103e6114a76",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_tordynamics_testmodels_planetaryflexibleringcheck_20261109_183516_5dfc546",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "11494a126712764ad82a8bb5e3fd13020d450d4c56f1f4264cbeec51d27b90d8"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.PlanetaryFlexibleRingCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 360838,
+        "file": "PlanetaryFlexibleRingCheck.npz",
+        "format": "npz",
+        "sha256": "f6c7c03b717eb4a49a1cf59be3f7c7d446805b0eeb3fc9af57319fd29b513e48"
+      },
+      "run": {
+        "utc": "2026-11-09T18:35:44+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -5453,19 +7961,90 @@
       "z_r",
       "z_s"
     ],
-    "bytes": 367908,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-08,
-      "cpu_time": 24.37191896303557,
-      "steps": 173682,
-      "error_test_failures": 1451,
+      "cpu_time": 23.348294861032628,
+      "steps": 177239,
+      "rhs_evaluations": 195787,
+      "jacobian_evaluations": 3053,
+      "time_events": 3,
+      "error_test_failures": 1731,
       "convergence_failures": 0,
-      "state_events": 11,
+      "state_events": 95,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "h_rim": "m",
+      "k_sun": "N/m",
+      "F_sp_t": "N",
+      "f_c_t": "Hz",
+      "f_mesh_t": "Hz",
+      "f_pass_t": "Hz",
+      "F_sp[1]": "N",
+      "F_sp[2]": "N",
+      "F_sp[3]": "N",
+      "F_sp[4]": "N",
+      "F_rp[1]": "N",
+      "F_rp[2]": "N",
+      "F_rp[3]": "N",
+      "F_rp[4]": "N",
+      "F_sp_mean": "N",
+      "tau_out": "N.m",
+      "sunOffset": "m"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 363501,
+    "record": {
+      "schema": 1,
+      "record_id": "3a2a1a928148715a4fe44f1278579a9f6e758918455f5d4617c4f4d6468f4f65",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:36:10",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "ad21a3a62683f98ae666bb7d5c25d8a4",
+        "impact_fmu_id": "rotordynamics_examples_planetarygearboxdemo_20261109_183544_8cb6dd3",
+        "model_description_sha256": "6f0eb516640c27ce897290044c1df131b8fba7c51ddaa37eb4e7e8ab3ab949d2"
+      },
+      "experiment": {
+        "case_entry_sha256": "d56b631b97bc4e737c457d01dbae47c566da1a400067f58a9305be57cb3a6ca3",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_examples_planetarygearboxdemo_20261109_183544_8f35940",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "a2066160f5b4467a44dbe26419fe4a8babc79331f2bfc24b428047149deaa87d"
+      },
+      "model": {
+        "class": "RotorDynamics.Examples.PlanetaryGearboxDemo",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 363501,
+        "file": "PlanetaryGearboxDemo.npz",
+        "format": "npz",
+        "sha256": "8ffcb8c5dd05ca575641d9a28830ebedb5341a37e8bb7cb91a150d0bb63ace4d"
+      },
+      "run": {
+        "utc": "2026-11-09T18:36:37+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -5505,19 +8084,93 @@
       "z_r",
       "z_s"
     ],
-    "bytes": 370538,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-08,
-      "cpu_time": 23.993221151991747,
-      "steps": 174314,
-      "error_test_failures": 1460,
-      "convergence_failures": 0,
-      "state_events": 11,
+      "cpu_time": 23.12688169302419,
+      "steps": 177556,
+      "rhs_evaluations": 196123,
+      "jacobian_evaluations": 3068,
+      "time_events": 3,
+      "error_test_failures": 1763,
+      "convergence_failures": 1,
+      "state_events": 95,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "h_rim": "m",
+      "k_sun": "N/m",
+      "F_sp_t": "N",
+      "f_c_t": "Hz",
+      "f_mesh_t": "Hz",
+      "f_pass_t": "Hz",
+      "F_sp[1]": "N",
+      "F_sp[2]": "N",
+      "F_sp[3]": "N",
+      "F_sp[4]": "N",
+      "F_rp[1]": "N",
+      "F_rp[2]": "N",
+      "F_rp[3]": "N",
+      "F_rp[4]": "N",
+      "F_sp_mean": "N",
+      "tau_out": "N.m",
+      "sunOffset": "m"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 364015,
+    "record": {
+      "schema": 1,
+      "record_id": "d1a4e47503c7bffd29a1005f723e26278dab98bcc8e21e48684e83422e2bda35",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:37:02",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "cb05c35e11f4b8d90d491b84d5977de9",
+        "impact_fmu_id": "rotordynamics_examples_planetarygearboxdemo_20261109_183637_7e65eb3",
+        "model_description_sha256": "daa52d24eb89c6de283740452b593d7f41525094078258ed680ee58dbd581989"
+      },
+      "experiment": {
+        "case_entry_sha256": "81ea33538eb1b496cf349a5c3dba3682b57336bcf13288d1e2b065dd9b1badfa",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_examples_planetarygearboxdemo_20261109_183637_b71b200",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "b30200829357508351384457f931499a9b74edf58839e9fcab210580e1fe4a27"
+      },
+      "model": {
+        "class": "RotorDynamics.Examples.PlanetaryGearboxDemo",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "floatingSun": true
+        }
+      },
+      "result": {
+        "bytes": 364015,
+        "file": "PlanetaryGearboxDemo_FloatingSun.npz",
+        "format": "npz",
+        "sha256": "3abd04983ba3ce514327c0649e5240c68e394bb86e001f7e96f1360f32c38563"
+      },
+      "run": {
+        "utc": "2026-11-09T18:38:15+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -5593,24 +8246,82 @@
       "z_r",
       "z_s"
     ],
-    "bytes": 1331334,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-09,
-      "cpu_time": 8.939972337000654,
-      "steps": 89234,
-      "rhs_evaluations": 94234,
-      "jacobian_evaluations": 1497,
+      "cpu_time": 9.861797227989882,
+      "steps": 102853,
+      "rhs_evaluations": 112466,
+      "jacobian_evaluations": 1804,
       "time_events": 3,
-      "error_test_failures": 31,
-      "convergence_failures": 0,
-      "state_events": 7,
+      "error_test_failures": 805,
+      "convergence_failures": 1,
+      "state_events": 120,
       "kind": "dynamic"
     },
-    "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "a_c": "m",
+      "omega_c_t": "rad/s",
+      "f_mesh_t": "Hz",
+      "F_sp_t": "N",
+      "F_sum_sp": "N",
+      "tau_sun": "N.m",
+      "F_sun_x": "N",
+      "F_sun_y": "N"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 1322822,
+    "record": {
+      "schema": 1,
+      "record_id": "4667706d3bb46785ebeffe94ed190f127c2b3667b01fe58a97e77de200f52e7f",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:34:53",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "e990de6a67ae20d7f95742ce60de9d89",
+        "impact_fmu_id": "rotordynamics_testmodels_planetarymeshphasingcheck_20261109_183427_edd84ce",
+        "model_description_sha256": "5572447751fc1e353ea3f256bacc4630fe621fb06aa17c94a8bac7e71bee327d"
+      },
+      "experiment": {
+        "case_entry_sha256": "e0315c4f86e5952bf6dc3bcdf3eeb5ec509dc54fd6b6a4f72f5c0e16ac0f98d9",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_planetarymeshphasingcheck_20261109_183427_ba2ac02",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "f712c4a416397f7d23262bbe244d08509296b447250a5b2dc326f1c2df812b04"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.PlanetaryMeshPhasingCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 1322822,
+        "file": "PlanetaryMeshPhasingCheck.npz",
+        "format": "npz",
+        "sha256": "f8a5f8b608774ba2bda11fc4fc886e2754cf02636c5e2fb9563194e02409d547"
+      },
+      "run": {
+        "utc": "2026-11-09T18:35:16+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "PlanetaryOverhungSmoke",
@@ -5678,26 +8389,80 @@
     "variables": [
       "F_pulse_1",
       "err_abs",
-      "err_omega_c",
-      "err_omega_p",
-      "err_rel",
       "f_imp_model",
       "f_support_1",
       "time"
     ],
-    "bytes": 319014,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-08,
-      "cpu_time": 2.5863778280327097,
-      "steps": 13281,
-      "error_test_failures": 131,
-      "convergence_failures": 0,
-      "state_events": 49,
+      "cpu_time": 3.3637484970968217,
+      "steps": 18515,
+      "rhs_evaluations": 21490,
+      "jacobian_evaluations": 431,
+      "time_events": 11,
+      "error_test_failures": 377,
+      "convergence_failures": 2,
+      "state_events": 126,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "f_imp_model": "Hz",
+      "F_pulse_1": "N",
+      "f_support_1": "N"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 180401,
+    "record": {
+      "schema": 1,
+      "record_id": "94c9a960eefc676ad9c6e306a42edcfe026d531ae6393b1496429ee09463a4a6",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:50:09",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "cc31380e569592f9c370e0e16549883a",
+        "impact_fmu_id": "_amics_testmodels_planetaryplanetbearingfaultcheck_20261109_184946_d67bea7",
+        "model_description_sha256": "c7361fb4d58a8d477478e5ccbdf70013e3b53ece83d09e484f90bac6b0e4ab76"
+      },
+      "experiment": {
+        "case_entry_sha256": "0d9b0b812f3f764f806c905493d2796392edfee3df4272b6a51d2765bcd452da",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_amics_testmodels_planetaryplanetbearingfaultcheck_20261109_184946_fce0b87",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "94da3cb43c97c6f0a1bdaf5aece34e114c88f269e8dcb4e6a6f4b2f80d10e03c"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.PlanetaryPlanetBearingFaultCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 180401,
+        "file": "PlanetaryPlanetBearingFaultCheck.npz",
+        "format": "npz",
+        "sha256": "49d3315968ee1a3ac0a98ab7b103a4aed43f9b8258e9d76534b9eddebbabde8d"
+      },
+      "run": {
+        "utc": "2026-11-09T18:50:14+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -5807,19 +8572,82 @@
       "gearbox.post[4].tau_post",
       "time"
     ],
-    "bytes": 205608,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-09,
-      "cpu_time": 2.9314506609225646,
-      "steps": 22209,
-      "error_test_failures": 384,
-      "convergence_failures": 0,
-      "state_events": 39,
+      "cpu_time": 4.148019723943435,
+      "steps": 29731,
+      "rhs_evaluations": 34462,
+      "jacobian_evaluations": 627,
+      "time_events": 29,
+      "error_test_failures": 671,
+      "convergence_failures": 2,
+      "state_events": 116,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "gearbox.carrier.omega": "rad/s",
+      "gearbox.post[1].tau_post": "N.m",
+      "gearbox.post[2].tau_post": "N.m",
+      "gearbox.post[3].tau_post": "N.m",
+      "gearbox.post[4].tau_post": "N.m",
+      "gearbox.meshSP[1].F_loa": "N",
+      "gearbox.meshSP[2].F_loa": "N",
+      "gearbox.meshSP[3].F_loa": "N",
+      "gearbox.meshSP[4].F_loa": "N"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 205744,
+    "record": {
+      "schema": 1,
+      "record_id": "d68f04ec7010e7eea69c3320cf7d02bab9ea32c0b5e5d1fad60c056a7ee7440c",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:49:39",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "a4465e557e2d452df38a0c4a504881b",
+        "impact_fmu_id": "_mics_testmodels_planetaryrollerplanetbearingsmoke_20261109_184917_ae90c90",
+        "model_description_sha256": "94ddfc78e2c627891ff47fa4c5351bbcf75247f33a4ff0fcbf9d4c205acdaf80"
+      },
+      "experiment": {
+        "case_entry_sha256": "78aaa97b551ce9ac271742872397dd619358f5b3dbd545ded632ec5d5c1aeb6c",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_mics_testmodels_planetaryrollerplanetbearingsmoke_20261109_184917_1c8d771",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "36e43e6d0124229bfbde44aaa0caafa925e9dd1692862e98cacab2c926d21da1"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.PlanetaryRollerPlanetBearingSmoke",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 205744,
+        "file": "PlanetaryRollerPlanetBearingSmoke.npz",
+        "format": "npz",
+        "sha256": "780fcd8b631319acae331bbb4caccdee273937a72bcf97d9ffb4e92203247f69"
+      },
+      "run": {
+        "utc": "2026-11-09T18:49:46+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -5830,13 +8658,9 @@
       "F_sp_t",
       "N",
       "err_F_sp",
-      "err_f_mesh_rp",
-      "err_f_mesh_sp",
       "err_gamma_r[1]",
       "err_gamma_r[2]",
       "err_gamma_r[3]",
-      "err_omega_c",
-      "err_omega_p",
       "err_tau_carrier",
       "f_c_t",
       "f_mesh_t",
@@ -5858,19 +8682,82 @@
       "z_r",
       "z_s"
     ],
-    "bytes": 844232,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-08,
-      "cpu_time": 13.288864227943122,
-      "steps": 129117,
-      "error_test_failures": 27,
-      "convergence_failures": 0,
-      "state_events": 7,
+      "cpu_time": 13.691202347050421,
+      "steps": 132780,
+      "rhs_evaluations": 142928,
+      "jacobian_evaluations": 2279,
+      "time_events": 3,
+      "error_test_failures": 388,
+      "convergence_failures": 1,
+      "state_events": 84,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "h_rim": "m",
+      "f_c_t": "Hz",
+      "f_mesh_t": "Hz",
+      "gearbox.ringFlex.f_n[1]": "Hz",
+      "gearbox.ringFlex.f_n[2]": "Hz",
+      "gearbox.ringFlex.f_n[3]": "Hz",
+      "gearbox.ringFlex.f_n[4]": "Hz",
+      "F_sp_mean": "N",
+      "F_sp_t": "N"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 649876,
+    "record": {
+      "schema": 1,
+      "record_id": "066b1c74e06ff288e86d0e072823f7ab37b3fb67a9d4ee8d583895a887f63ee1",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:46:51",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "e49ef69e11cab49ca6e1bf3944ef7aa2",
+        "impact_fmu_id": "_amics_testmodels_planetarysequentialsidebandcheck_20261109_184629_2999d80",
+        "model_description_sha256": "bcbd82b9ef1aae9cfbc82b350f9da5599cc927b72216bda5a1c932e286b19260"
+      },
+      "experiment": {
+        "case_entry_sha256": "a559b341043a4282e273c373eedbca81dc8d7e603b6e02d2d31a64c85c1bc0f6",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_amics_testmodels_planetarysequentialsidebandcheck_20261109_184628_e503b34",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "fb10f073bc50b1574e78a67121c75999f010a5fa5dcda4dda1f61f9d82845193"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.PlanetarySequentialSidebandCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 649876,
+        "file": "PlanetarySequentialSidebandCheck.npz",
+        "format": "npz",
+        "sha256": "bf41cedabce008c74a5912f19f660c280f5885352d80df467141c4b781346403"
+      },
+      "run": {
+        "utc": "2026-11-09T18:47:07+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -5881,13 +8768,9 @@
       "F_sp_t",
       "N",
       "err_F_sp",
-      "err_f_mesh_rp",
-      "err_f_mesh_sp",
       "err_gamma_r[1]",
       "err_gamma_r[2]",
       "err_gamma_r[3]",
-      "err_omega_c",
-      "err_omega_p",
       "err_tau_carrier",
       "f_c_t",
       "f_mesh_t",
@@ -5909,19 +8792,85 @@
       "z_r",
       "z_s"
     ],
-    "bytes": 843056,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-08,
-      "cpu_time": 13.796784654026851,
-      "steps": 135912,
-      "error_test_failures": 24,
+      "cpu_time": 14.78756762901321,
+      "steps": 146641,
+      "rhs_evaluations": 155591,
+      "jacobian_evaluations": 2503,
+      "time_events": 3,
+      "error_test_failures": 424,
       "convergence_failures": 0,
-      "state_events": 7,
+      "state_events": 78,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "h_rim": "m",
+      "f_c_t": "Hz",
+      "f_mesh_t": "Hz",
+      "gearbox.ringFlex.f_n[1]": "Hz",
+      "gearbox.ringFlex.f_n[2]": "Hz",
+      "gearbox.ringFlex.f_n[3]": "Hz",
+      "gearbox.ringFlex.f_n[4]": "Hz",
+      "F_sp_mean": "N",
+      "F_sp_t": "N"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 646899,
+    "record": {
+      "schema": 1,
+      "record_id": "073d9bba2aee7b079feaffc0b463bec68228f876209faf43bd43fddaba5b59b5",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:46:51",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "e49ef69e11cab49ca6e1bf3944ef7aa2",
+        "impact_fmu_id": "_amics_testmodels_planetarysequentialsidebandcheck_20261109_184629_2999d80",
+        "model_description_sha256": "bcbd82b9ef1aae9cfbc82b350f9da5599cc927b72216bda5a1c932e286b19260"
+      },
+      "experiment": {
+        "case_entry_sha256": "e02fdfcfacb9720a0e87bb3964d7cc6a4a39ad160f350f1b2ba7275b536148cf",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_amics_testmodels_planetarysequentialsidebandcheck_20261109_184707_8011630",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "9796d987edbe9a855387b989606ddb283a66e979a109495f24db9bfc70782e6a"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.PlanetarySequentialSidebandCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "h_rim": 0.1
+        }
+      },
+      "result": {
+        "bytes": 646899,
+        "file": "PlanetarySequentialSidebandCheck_RigidRim.npz",
+        "format": "npz",
+        "sha256": "ab46a477ec8219d65871cb70560ffbc50bc39ea752b7d3eaa8cb89fe58254051"
+      },
+      "run": {
+        "utc": "2026-11-09T18:47:24+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -5961,7 +8910,6 @@
       "gearbox.ringFlex.f_n[3]",
       "gearbox.ringFlex.f_n[4]",
       "h_rim",
-      "loadShareSpread",
       "ratio",
       "ringDriven",
       "time",
@@ -5970,19 +8918,81 @@
       "z_r",
       "z_s"
     ],
-    "bytes": 344001,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-08,
-      "cpu_time": 12.702369614038616,
-      "steps": 79283,
-      "error_test_failures": 876,
-      "convergence_failures": 0,
-      "state_events": 134,
+      "cpu_time": 11.731162279029377,
+      "steps": 80545,
+      "rhs_evaluations": 89762,
+      "jacobian_evaluations": 1436,
+      "time_events": 1,
+      "error_test_failures": 917,
+      "convergence_failures": 1,
+      "state_events": 96,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "h_rim": "m",
+      "gearbox.ringFlex.f_n[1]": "Hz",
+      "gearbox.ringFlex.f_n[2]": "Hz",
+      "gearbox.ringFlex.f_n[3]": "Hz",
+      "gearbox.ringFlex.f_n[4]": "Hz",
+      "gearbox.carrier.omega": "rad/s",
+      "F_sp_mean": "N",
+      "F_sp_t": "N"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 274292,
+    "record": {
+      "schema": 1,
+      "record_id": "3b7af73eb81cf49a7f0d1b046b7b67ed6bc1148c795033e38be077f5362d2565",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:47:50",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "997d477dc2e61fadc711cb5649e8d796",
+        "impact_fmu_id": "rotordynamics_testmodels_planetarysidebandcheck_20261109_184724_e94fd1e",
+        "model_description_sha256": "de5f045ea3a6de16f46ee27dbf95484e6d49e65d70a55683791ea90d381e3943"
+      },
+      "experiment": {
+        "case_entry_sha256": "819a36a148d9833b2e48cd43ef1fd3271235e8e21dcbe2f33d4f2c22a11a2554",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_planetarysidebandcheck_20261109_184724_11c1530",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "34c9f512f316ddcdde3fd7af49596e20443c1dddf0dec4d75d608b578ae3b6ae"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.PlanetarySidebandCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 274292,
+        "file": "PlanetarySidebandCheck.npz",
+        "format": "npz",
+        "sha256": "22b57f185c677a0fce9a1fddb8fe1152065a5679bb3d36a75a94f19dfc4a35c9"
+      },
+      "run": {
+        "utc": "2026-11-09T18:48:05+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -5992,53 +9002,80 @@
       "F_sp_max",
       "F_sp_mean",
       "F_sp_min",
-      "err_F_rp",
-      "err_F_sp",
-      "err_f_mesh_rp",
-      "err_f_mesh_sp",
-      "err_gamma_r[1]",
-      "err_gamma_r[2]",
-      "err_gamma_r[3]",
-      "err_gamma_s[1]",
-      "err_gamma_s[2]",
-      "err_gamma_s[3]",
-      "err_loadRatio",
-      "err_omega_c",
-      "err_omega_p",
-      "err_tau_carrier",
-      "err_tau_ring",
-      "gamma_r[1]",
-      "gamma_r[2]",
-      "gamma_r[3]",
-      "gamma_r_t[1]",
-      "gamma_r_t[2]",
-      "gamma_r_t[3]",
-      "gamma_s[1]",
-      "gamma_s[2]",
-      "gamma_s[3]",
-      "gamma_s_t[1]",
-      "gamma_s_t[2]",
-      "gamma_s_t[3]",
       "loadRatio",
-      "loadShareSpread",
       "ringDriven",
-      "ringFiltered",
-      "ringReject",
       "time"
     ],
-    "bytes": 459275,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-08,
-      "cpu_time": 2.730428138980642,
-      "steps": 13176,
-      "error_test_failures": 506,
+      "cpu_time": 1.2391278659924865,
+      "steps": 7831,
+      "rhs_evaluations": 9332,
+      "jacobian_evaluations": 165,
+      "time_events": 1,
+      "error_test_failures": 177,
       "convergence_failures": 0,
-      "state_events": 274,
+      "state_events": 36,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "F_sp_max": "N",
+      "F_sp_min": "N",
+      "F_sp_mean": "N"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 123185,
+    "record": {
+      "schema": 1,
+      "record_id": "59baa5251b856e489af2a70483516d9c6c590d5e8e9e02e05b87ca08a7e6c8e1",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:50:34",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "2fc08950363f5c4a3d90ace33d51986c",
+        "impact_fmu_id": "rotordynamics_testmodels_planetarythreeplanetcheck_20261109_185015_aac73c2",
+        "model_description_sha256": "1ea7a4185f0f5fce782cff172d4b3d7845d9c276d7138e36f76f18f0478de293"
+      },
+      "experiment": {
+        "case_entry_sha256": "e308f9fd3d5efd5101488a809d8780d5c2e3c709881d71e1ff76a33282fb7b09",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_planetarythreeplanetcheck_20261109_185015_2a00a43",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "fe4edd11d00ec697d4072327e6b8172c480fa51d48d4319496bdc540f657a9e1"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.PlanetaryThreePlanetCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 123185,
+        "file": "PlanetaryThreePlanetCheck.npz",
+        "format": "npz",
+        "sha256": "fa331d510aed5fb180a3ef2f1e5424b2c4f3f28b42ad5908ccbb46d98deecc86"
+      },
+      "run": {
+        "utc": "2026-11-09T18:50:39+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
@@ -6867,19 +9904,90 @@
       "mesh2.f_mesh",
       "time"
     ],
-    "bytes": 436303,
     "metrics": {
       "solver": "CVode",
       "linear_multistep_method": "BDF",
       "nonlinear_solver": "Newton",
       "linear_solver_type": "DENSE",
       "rtol": 1e-07,
-      "cpu_time": 2.9979473300045356,
-      "steps": 24760,
-      "error_test_failures": 749,
+      "cpu_time": 2.5997236949624494,
+      "steps": 24126,
+      "rhs_evaluations": 28447,
+      "jacobian_evaluations": 420,
+      "time_events": 3,
+      "error_test_failures": 676,
       "convergence_failures": 0,
-      "state_events": 75,
+      "state_events": 12,
       "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "mesh1.a_centre": "m",
+      "mesh2.a_centre": "m",
+      "mesh1.delta": "m",
+      "gear2.omega": "rad/s",
+      "mesh2.delta": "m",
+      "gear4.omega": "rad/s",
+      "acc1.a_out[1]": "m/s2",
+      "acc1.a_out[2]": "m/s2",
+      "gear1.omega": "rad/s",
+      "mesh1.F_loa": "N",
+      "mesh1.f_mesh": "Hz",
+      "acc2.a_out[1]": "m/s2",
+      "acc2.a_out[2]": "m/s2",
+      "mesh2.F_loa": "N",
+      "mesh2.f_mesh": "Hz",
+      "acc3.a_out[1]": "m/s2",
+      "acc3.a_out[2]": "m/s2"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 415341,
+    "record": {
+      "schema": 1,
+      "record_id": "dcd140a65ce42a57f6748435f25a71c9310dfd8ef0c77a8f8a204571b717622e",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-09T18:49:00",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "211329e12c0ff416f6b1e554f17fc30a",
+        "impact_fmu_id": "rotordynamics_examples_twostagegearboxdemo_20261109_184843_b9afba1",
+        "model_description_sha256": "bb9dfd6476b61b0d8134edc3c48d3000bb3ce960ea663d2c5adf5536f0640968"
+      },
+      "experiment": {
+        "case_entry_sha256": "d6c4abf5b6a934ef8d57f2faf836d6b471b92a2c196c8d5b911a1d7d72d6bc6b",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_examples_twostagegearboxdemo_20261109_184843_b2f023e",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "af0a1b9ef7208093bb280fa19ac3393ba344c1fe194665b45299957f3c104f72"
+      },
+      "model": {
+        "class": "RotorDynamics.Examples.TwoStageGearboxDemo",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ]
+      },
+      "result": {
+        "bytes": 415341,
+        "file": "TwoStageGearboxDemo.npz",
+        "format": "npz",
+        "sha256": "82a023ffe56b9808aed24a12933922e22f49c3b9cc62ce0a5478cf8bd19a8a48"
+      },
+      "run": {
+        "utc": "2026-11-09T18:49:05+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "6466931d521ec981441bcd6673ac3abaa734c22f",
+          "dirty": false
+        }
+      }
     }
   },
   {
