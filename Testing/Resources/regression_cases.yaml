@@ -287,9 +287,9 @@ cases:
     ncp: 5
     rtol: 1.0e-9
     modifiers: {}
-    variables: [time, "thrust.axialFlange.f", F_expected,
-                "shaft.axialFlange_a.f", "shaft.axialFlange_b.f",
-                "rotor.axialFlange_a.f", "rotor.axialFlange_b.f",
+    variables: [time, "clamp.flange.ax.f", F_expected,
+                "shaft.flange_a.ax.f", "shaft.flange_b.ax.f",
+                "rotor.flange_a.ax.f", "rotor.flange_b.ax.f",
                 "rotor.r_c*", "shaft.flange_b.r*"]
 
   - name: VerticalThrustChain
@@ -300,7 +300,7 @@ cases:
     ncp: 5
     rtol: 1.0e-9
     modifiers: {}
-    variables: [time, "mount.axialFlange.f", F_expected]
+    variables: [time, "mount.support.ax.f", F_expected]
 
   - name: VerticalHousingReaction
     enabled: true
@@ -310,7 +310,7 @@ cases:
     ncp: 5
     rtol: 1.0e-9
     modifiers: {}
-    variables: [time, "thrust.axialFlange.f", "bearingB.axialFlange_a.f", F_expected, d_F]
+    variables: [time, "clampA.flange.ax.f", "bearingB.flange_a.ax.f", F_expected, d_F]
 
   - name: MomentLeverArm
     enabled: true
@@ -1170,7 +1170,7 @@ cases:
                 gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma,
                 gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1,
                 "gearMesh.M_1*", "gearMesh.M_2*",
-                thrust1.axialFlange.f, thrust2.axialFlange.f]
+                end1.flange.ax.f, support2.flange.ax.f]
 
   # ---- The INTERNAL twin of the case above: PlanetaryGearboxPlan.md section 7 gap 1 ----
   - name: GearMeshInternalHelicalThrustCheck
@@ -1193,7 +1193,7 @@ cases:
                 gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1,
                 "gearMesh.M_1*", "gearMesh.M_2*",
                 err_Fax, err_M1, err_M2, err_omega2,
-                thrust1.axialFlange.f, thrust2.axialFlange.f]
+                end1.flange.ax.f, support2.flange.ax.f]
     # err_Fax/err_M1/err_M2/err_omega2 are near-zero residuals (ref ~1e-8, endpoint_tolerance
     # floored at 1e-9) -- the model's own correctness assertions, comparing two numbers near
     # zero under the routine 100x looser re-simulation. Stored (still in `variables:` above,
@@ -1442,7 +1442,7 @@ cases:
     modifiers: {}
     variables: [time, c_za, c_z, F_ax_target, s_target, gearMesh.F_ax1, gearMesh.r_b2,
                 gearMesh.phi_t, gearMesh.beta, bearing1.F_za, bearing1.s_mid,
-                bearing2.F_za, housing1.axialFlange.f, housing2.axialFlange.f,
+                bearing2.F_za, housing1.flange.ax.f, housing2.flange.ax.f,
                 F_axialResidual]
 
   # ---- Axial inertia A1: Newton on a free thrust line ----
@@ -1521,7 +1521,7 @@ cases:
     ncp: 2000
     rtol: 1.0e-9
     modifiers: {}
-    variables: [time, x_ring, housing.axialFlange.s, f_n_target, s_inf, c_z, c_za,
+    variables: [time, x_ring, housing.flange.ax.s, f_n_target, s_inf, c_z, c_za,
                 bearing1.m_outer]
 
 # ---------------------------------------------------------------------------------------
@@ -2330,7 +2330,7 @@ cases:
     ncp: 2000
     rtol: 1.000000000e-10
     modifiers: {gearMesh.beta: 0.17453292519943295}
-    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, thrust1.axialFlange.f, thrust2.axialFlange.f, gearMesh.F_sep]
+    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, end1.flange.ax.f, support2.flange.ax.f, gearMesh.F_sep]
   - name: GearMeshHelicalThrustCheck_beta30
     enabled: true
     model: RotorDynamics.TestModels.GearMeshHelicalThrustCheck
@@ -2339,7 +2339,7 @@ cases:
     ncp: 2000
     rtol: 1.000000000e-10
     modifiers: {gearMesh.beta: 0.5235987755982988}
-    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, thrust1.axialFlange.f, thrust2.axialFlange.f, gearMesh.F_sep]
+    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, end1.flange.ax.f, support2.flange.ax.f, gearMesh.F_sep]
   - name: GearMeshHelicalThrustCheck_beta10_LH
     enabled: true
     model: RotorDynamics.TestModels.GearMeshHelicalThrustCheck
@@ -2348,7 +2348,7 @@ cases:
     ncp: 2000
     rtol: 1.000000000e-10
     modifiers: {gearMesh.beta: 0.17453292519943295, gearMesh.rightHandGear1: false}
-    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, thrust1.axialFlange.f, thrust2.axialFlange.f, gearMesh.F_sep]
+    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, end1.flange.ax.f, support2.flange.ax.f, gearMesh.F_sep]
   - name: GearMeshHelicalThrustCheck_beta20_LH
     enabled: true
     model: RotorDynamics.TestModels.GearMeshHelicalThrustCheck
@@ -2357,7 +2357,7 @@ cases:
     ncp: 2000
     rtol: 1.000000000e-10
     modifiers: {gearMesh.rightHandGear1: false}
-    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, thrust1.axialFlange.f, thrust2.axialFlange.f, gearMesh.F_sep]
+    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, end1.flange.ax.f, support2.flange.ax.f, gearMesh.F_sep]
   - name: GearMeshHelicalThrustCheck_beta30_LH
     enabled: true
     model: RotorDynamics.TestModels.GearMeshHelicalThrustCheck
@@ -2366,7 +2366,7 @@ cases:
     ncp: 2000
     rtol: 1.000000000e-10
     modifiers: {gearMesh.beta: 0.5235987755982988, gearMesh.rightHandGear1: false}
-    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, thrust1.axialFlange.f, thrust2.axialFlange.f, gearMesh.F_sep]
+    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, end1.flange.ax.f, support2.flange.ax.f, gearMesh.F_sep]
 
   # --- report section 3.79: helix angle 10/20/30 deg on the INTERNAL mesh (base case is 20 deg)
   - name: GearMeshInternalHelicalThrustCheck_beta10
@@ -2377,7 +2377,7 @@ cases:
     ncp: 2000
     rtol: 1.000000000e-10
     modifiers: {gearMesh.beta: 0.17453292519943295}
-    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.a_centre, gearMesh.s_int, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, err_Fax, err_M1, err_M2, err_omega2, thrust1.axialFlange.f, thrust2.axialFlange.f]
+    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.a_centre, gearMesh.s_int, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, err_Fax, err_M1, err_M2, err_omega2, end1.flange.ax.f, support2.flange.ax.f]
     exclude_variables: [err_Fax, err_M1, err_M2, err_omega2]
   - name: GearMeshInternalHelicalThrustCheck_beta30
     enabled: true
@@ -2387,7 +2387,7 @@ cases:
     ncp: 2000
     rtol: 1.000000000e-10
     modifiers: {gearMesh.beta: 0.5235987755982988}
-    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.a_centre, gearMesh.s_int, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, err_Fax, err_M1, err_M2, err_omega2, thrust1.axialFlange.f, thrust2.axialFlange.f]
+    variables: [time, tau_load, gearMesh.z1, gearMesh.z2, gearMesh.m_n, gearMesh.phi_n, gearMesh.beta, gearMesh.phi_t, gearMesh.beta_b, gearMesh.m_t, gearMesh.r_p1, gearMesh.r_p2, gearMesh.r_b1, gearMesh.r_b2, gearMesh.a_centre, gearMesh.s_int, gearMesh.eps_alpha, gearMesh.eps_beta, gearMesh.eps_gamma, gearMesh.F_loa, gearMesh.F_tang, gearMesh.F_ax1, gearMesh.M_1*, gearMesh.M_2*, err_Fax, err_M1, err_M2, err_omega2, end1.flange.ax.f, support2.flange.ax.f]
     exclude_variables: [err_Fax, err_M1, err_M2, err_omega2]
 
   # --- report section 3.80: contact angle 15/25/35/45 deg (base case is 25 deg)
