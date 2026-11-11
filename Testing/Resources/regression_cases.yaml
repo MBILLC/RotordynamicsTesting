@@ -1692,14 +1692,16 @@ cases:
     # If this case ever gets FASTER or its trajectories change, the contact-switch behaviour
     # has moved -- which is worth knowing, whether or not it was intended.
     #
-    # RETIRED 2026-11-09 (owner). It has moved, on purpose: since RotorDynamics PR #9 every
-    # flank-contact mesh asserts not (driveOn and coastOn), and with b_eff = 0 this rig is
-    # stopped by that assert (meshRP[4], t = 11.0 ms here, 11.4 us at the report's settings)
-    # instead of chattering. A refused run cannot be a trajectory reference, and the harness
-    # aborts the whole suite on a failed case. The behaviour is still checked, as "the
-    # assert fires", in the credibility report's validate_backlash_chatter(). Kept disabled,
-    # not deleted, so the record of the storm stays next to its pair.
-    enabled: false
+    # RETIRED 2026-11-09 (owner), RE-ENABLED 2026-11-11 as an expected failure. Since
+    # RotorDynamics PR #9 every flank-contact mesh asserts not (driveOn and coastOn), and with
+    # b_eff = 0 this rig is stopped by that assert (meshRP[4]; t = 11.4 us at rtol 1e-9, 11.0 ms
+    # at the check's 100x looser rtol) instead of
+    # chattering. A refused run has no trajectory to store, so the case now checks the refusal
+    # itself with ModCheck's expect_failure (MBILLC/ModCheck#43): PASS when the run fails with
+    # the double-flank message; FAIL if it runs to the end (the guard is gone) or fails with
+    # another message. The event count of the old storm stays measured in the credibility
+    # report's validate_backlash_chatter(). No library flag bypasses the assert (owner).
+    enabled: true
     model: RotorDynamics.TestModels.PlanetaryOverhungSmoke
     start_time: 0.0
     final_time: 0.015
@@ -1707,18 +1709,8 @@ cases:
     rtol: 1.0e-9
     modifiers:
       gearbox.useBacklash: false
-    variables: [time, gearbox.carrier.omega, gearbox.meshSP*F_loa*, gearbox.post*tau_post*]
-    # The post torques carry the chatter itself, and chatter micro-structure is NOT a
-    # reproducible reference: re-simulated at the suite's 100x looser rtol the storm takes a
-    # different path through the same switching surface, and these four miss by ~0.5 while
-    # carrier.omega and all four mesh forces reproduce to EXACTLY 0.000000. Stored but not
-    # compared -- what this case guards is that the macroscopic behaviour is unchanged, and
-    # the fact that a chattering trajectory cannot be a trajectory reference is itself part
-    # of what the case documents. The magnitude of the failure mode is measured where it can
-    # be measured robustly -- as an event COUNT, in the credibility report's
-    # validate_backlash_chatter() section.
-    exclude_variables:
-      - "gearbox.post*tau_post*"
+    expect_failure: "BOTH flanks penetrated at once"
+    variables: [time]   # required by the schema, unused for an expected failure
 
   - name: PlanetaryRollerPlanetBearingSmoke
     # The replaceable half of 4.27.4: planet bearings redeclared from PlainBearing to
