@@ -3232,3 +3232,57 @@ cases:
     rtol: 1.0e-10
     modifiers: {}
     variables: [time, "shaft*.theta_rel", "shaft*.w_rel", "disc*.omega"]
+
+  # --- 2026-11-12: Newton's third law in 3-D for every skew-axis mesh (the force arrows' standing check).
+  # The same rigs as the cases above, drawn, with the force arrows on. Each mesh's
+  # Visualizers.Parts.MeshForceArrow asserts |F_balance| <= 1e-6*(1 + |F1|), the world-frame sum of
+  # the forces on its two gears (round-off is 1e-12): a drawn installation that contradicts a mesh's
+  # force convention (cone apex, axis sense, centreline angle) stops the simulation, so the case
+  # fails. Found by the hypoid of Hypoid3D (3.9 kN at 6 kN, apex on the wrong side; RotorDynamics
+  # Resources/Documentation/Decisions/2026-11-12-hypoid-apex-convention.md). The compared variables
+  # are the base cases' own: drawing must not change them.
+  - name: HypoidGearMeshCheck_drawn
+    enabled: true
+    model: RotorDynamics.TestModels.HypoidGearMeshCheck
+    start_time: 0.0
+    final_time: 0.1
+    ncp: 4000
+    rtol: 1.0e-10
+    modifiers: {rotorWorld.enableAnimation: true, rotorWorld.showForces: true}
+    variables: [time, omega1, hypoidMesh.F_a1, hypoidMesh.F_r1, hypoidMesh.F_a2, hypoidMesh.F_r2,
+                hypoidMesh.tau_1, hypoidMesh.tau_2, err_conjugacy, err_eta]
+  - name: CrossedAxisReversalCheck_drawn
+    enabled: true
+    model: RotorDynamics.TestModels.CrossedAxisReversalCheck
+    start_time: 0.0
+    final_time: 0.5
+    ncp: 2000
+    rtol: 1.0e-10
+    modifiers: {rotorWorld.enableAnimation: true, rotorWorld.showForces: true}
+    variables: [time, err_ZP_Fa1, err_ZP_Fr1, err_ZP_Fa2, err_ZP_Fr2, err_ZP_tau2,
+                meshS.F_a1, meshS.F_r1, meshS.F_tang, meshP.F_a1, meshP.F_r1, meshP.F_a2,
+                meshP.F_r2, meshH.F_sep, meshH.F_n, meshH.alpha_nLoaded, meshX.F_r, meshX.F_n,
+                meshX.F_a1]
+  - name: CompliantCrossedAxisReversalCheck_drawn
+    enabled: true
+    model: RotorDynamics.TestModels.CompliantCrossedAxisReversalCheck
+    start_time: 0.0
+    final_time: 0.6
+    ncp: 6000
+    rtol: 1.0e-9
+    timeout_seconds: 1800
+    modifiers: {rotorWorld.enableAnimation: true, rotorWorld.showForces: true}
+    variables: [time, meshPc.sigma, meshXc.sigma, meshHc.sigma, meshWc.sigma,
+                meshXc.lossPower, meshHc.lossPower, meshWc.lossPower, meshPc.tau_2,
+                meshXc.tau_1, meshHc.tau_1, meshWc.tau_1, meshHc.alpha_nLoaded]
+  - name: RackPinionHelicalReversalCheck_drawn
+    enabled: true
+    model: RotorDynamics.TestModels.RackPinionHelicalReversalCheck
+    start_time: 0.0
+    final_time: 1.3
+    ncp: 6500
+    rtol: 1.0e-11
+    timeout_seconds: 1800
+    modifiers: {rotorWorld.enableAnimation: true, rotorWorld.showForces: true}
+    variables: [time, err_delta_coast, err_gap, nFlankChanges, rackPinion.sigma, rackPinion.F_ax1,
+                rackPinion.F_sep, rackPinion.v_rack]
