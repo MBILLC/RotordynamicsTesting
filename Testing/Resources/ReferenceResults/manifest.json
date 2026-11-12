@@ -561,6 +561,108 @@
     "descriptor": "impact workspace 'rotordynamicsdevelopment'"
   },
   {
+    "name": "CompliantCrossedAxisReversalCheck_drawn",
+    "model": "RotorDynamics.TestModels.CompliantCrossedAxisReversalCheck",
+    "variables": [
+      "meshHc.alpha_nLoaded",
+      "meshHc.lossPower",
+      "meshHc.sigma",
+      "meshHc.tau_1",
+      "meshPc.sigma",
+      "meshPc.tau_2",
+      "meshWc.lossPower",
+      "meshWc.sigma",
+      "meshWc.tau_1",
+      "meshXc.lossPower",
+      "meshXc.sigma",
+      "meshXc.tau_1",
+      "time"
+    ],
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-09,
+      "rtol": 1e-09,
+      "cpu_time": 3.676464046999172,
+      "steps": 19105,
+      "rhs_evaluations": 24550,
+      "jacobian_evaluations": 401,
+      "time_events": 3,
+      "error_test_failures": 966,
+      "convergence_failures": 6,
+      "state_events": 97,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "meshPc.tau_2": "N.m",
+      "meshXc.tau_1": "N.m",
+      "meshXc.lossPower": "W",
+      "meshHc.tau_1": "N.m",
+      "meshHc.alpha_nLoaded": "rad",
+      "meshHc.lossPower": "W",
+      "meshWc.tau_1": "N.m",
+      "meshWc.lossPower": "W"
+    },
+    "display_units": {
+      "meshHc.alpha_nLoaded": "deg"
+    },
+    "format": "npz",
+    "bytes": 246048,
+    "record": {
+      "schema": 1,
+      "record_id": "c2b3ec2f01d5f97b2e0b87a66644daf3cf196c66bab5f5a2a6e2c9a2b02bdf4d",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-12T20:07:56",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "ede5389eee0483b36d55d8a01f0c008",
+        "impact_fmu_id": "_mics_testmodels_compliantcrossedaxisreversalcheck_20261112_200742_96ac145",
+        "model_description_sha256": "b6195fa5bff0e345f35b07ef93717eed52273f6eb94eb0fb19e599eec4f01ad7"
+      },
+      "experiment": {
+        "case_entry_sha256": "1e8731167f6767f6b6cf7d46d0b85d90c496b040b705c92f364aa9d3fd691ca2",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_mics_testmodels_compliantcrossedaxisreversalcheck_20261112_200742_79c5f84",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "c83fc8fb70e5a306288c803aeee005a574b4fca352d931a0aef58850b270dafc"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.CompliantCrossedAxisReversalCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "rotorWorld.enableAnimation": true,
+          "rotorWorld.showForces": true
+        }
+      },
+      "result": {
+        "bytes": 246048,
+        "file": "CompliantCrossedAxisReversalCheck_drawn.npz",
+        "format": "npz",
+        "sha256": "da92e6d5d5e3531e2e128b822b1dc298ca44d5fd68eb9d6f9ab46b9a16581202"
+      },
+      "run": {
+        "utc": "2026-11-12T20:08:06+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "abe98f486b8f5c8b688b6808c3373da0d17ecce3",
+          "dirty": false
+        }
+      }
+    }
+  },
+  {
     "name": "CouplingMisalignmentCheck",
     "model": "RotorDynamics.TestModels.CouplingMisalignmentCheck",
     "variables": [
@@ -897,6 +999,119 @@
       "kind": "dynamic"
     },
     "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
+    "name": "CrossedAxisReversalCheck_drawn",
+    "model": "RotorDynamics.TestModels.CrossedAxisReversalCheck",
+    "variables": [
+      "err_ZP_Fa1",
+      "err_ZP_Fa2",
+      "err_ZP_Fr1",
+      "err_ZP_Fr2",
+      "err_ZP_tau2",
+      "meshH.F_n",
+      "meshH.F_sep",
+      "meshH.alpha_nLoaded",
+      "meshP.F_a1",
+      "meshP.F_a2",
+      "meshP.F_r1",
+      "meshP.F_r2",
+      "meshS.F_a1",
+      "meshS.F_r1",
+      "meshS.F_tang",
+      "meshX.F_a1",
+      "meshX.F_n",
+      "meshX.F_r",
+      "time"
+    ],
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-10,
+      "rtol": 1e-10,
+      "cpu_time": 0.34872771599475527,
+      "steps": 2019,
+      "rhs_evaluations": 2043,
+      "jacobian_evaluations": 35,
+      "time_events": 3,
+      "error_test_failures": 1,
+      "convergence_failures": 0,
+      "state_events": 1,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "meshS.F_tang": "N",
+      "meshS.F_a1": "N",
+      "meshS.F_r1": "N",
+      "meshP.F_a1": "N",
+      "meshP.F_r1": "N",
+      "meshP.F_a2": "N",
+      "meshP.F_r2": "N",
+      "meshH.F_n": "N",
+      "meshH.F_sep": "N",
+      "meshH.alpha_nLoaded": "rad",
+      "meshX.F_n": "N",
+      "meshX.F_a1": "N",
+      "meshX.F_r": "N"
+    },
+    "display_units": {
+      "meshH.alpha_nLoaded": "deg"
+    },
+    "format": "npz",
+    "bytes": 81589,
+    "record": {
+      "schema": 1,
+      "record_id": "a0ecfbc43f3fbcb2b6e56dc54b1ac1fbe9d428f8de638eb302b57e7f7aa8b8af",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-12T20:07:26",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "78f53439b8a711f9e85b41845c1ccc21",
+        "impact_fmu_id": "rotordynamics_testmodels_crossedaxisreversalcheck_20261112_200718_b65d198",
+        "model_description_sha256": "2ed9f1944937f00d0bb9ea1f1ba51bc0f8cc1b36d279315801fee445a83b56f8"
+      },
+      "experiment": {
+        "case_entry_sha256": "99c643da5c3d6d64101f8a74a0c3b0b91f015e5b2026375674b612827d606395",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_crossedaxisreversalcheck_20261112_200718_faacd46",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "16d4824185b3354b771901c97707afcbc3e1ef5f3cca593ecfaa6fc4aaf26e1b"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.CrossedAxisReversalCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "rotorWorld.enableAnimation": true,
+          "rotorWorld.showForces": true
+        }
+      },
+      "result": {
+        "bytes": 81589,
+        "file": "CrossedAxisReversalCheck_drawn.npz",
+        "format": "npz",
+        "sha256": "40df1c26200b4875878051fab776fee5e461dddfbc9c7815fbdbd549b3fb47df"
+      },
+      "run": {
+        "utc": "2026-11-12T20:07:30+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "abe98f486b8f5c8b688b6808c3373da0d17ecce3",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "CrossedHelicalMeshCheck",
@@ -5503,6 +5718,101 @@
     }
   },
   {
+    "name": "HypoidGearMeshCheck_drawn",
+    "model": "RotorDynamics.TestModels.HypoidGearMeshCheck",
+    "variables": [
+      "err_conjugacy",
+      "err_eta",
+      "hypoidMesh.F_a1",
+      "hypoidMesh.F_a2",
+      "hypoidMesh.F_r1",
+      "hypoidMesh.F_r2",
+      "hypoidMesh.tau_1",
+      "hypoidMesh.tau_2",
+      "omega1",
+      "time"
+    ],
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "atol": 1e-10,
+      "rtol": 1e-10,
+      "cpu_time": 0.7784766089971527,
+      "steps": 4012,
+      "rhs_evaluations": 4024,
+      "jacobian_evaluations": 68,
+      "time_events": 1,
+      "error_test_failures": 1,
+      "convergence_failures": 0,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "omega1": "rad/s",
+      "hypoidMesh.tau_1": "N.m",
+      "hypoidMesh.tau_2": "N.m",
+      "hypoidMesh.F_a1": "N",
+      "hypoidMesh.F_r1": "N",
+      "hypoidMesh.F_a2": "N",
+      "hypoidMesh.F_r2": "N"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 97225,
+    "record": {
+      "schema": 1,
+      "record_id": "2257af04401b9db3b8d197e9ed29e1ace67d2d1ed5878ececbd5643ccc1ec465",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-12T20:07:11",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "90066981eb8da0e23bdec68973fde930",
+        "impact_fmu_id": "rotordynamics_testmodels_hypoidgearmeshcheck_20261112_200702_518f703",
+        "model_description_sha256": "720266d3541b58b83f9721a4fb23960678df8dcb482a182b49bd535e718a5862"
+      },
+      "experiment": {
+        "case_entry_sha256": "cae960b1a7f063e059697c06ab4a67ff1ba5a61ebf760f9c31808d5a93e0f1b5",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "rotordynamics_testmodels_hypoidgearmeshcheck_20261112_200702_7ccd4bd",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "ae61b6e0c0e00f0591723fbc5b1048784af37a829961faa1200a07d7cb0ec3aa"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.HypoidGearMeshCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "rotorWorld.enableAnimation": true,
+          "rotorWorld.showForces": true
+        }
+      },
+      "result": {
+        "bytes": 97225,
+        "file": "HypoidGearMeshCheck_drawn.npz",
+        "format": "npz",
+        "sha256": "4fbb09ea6e74b7b1aa8a18d05173dd1f13bcaa3374c89deb5f4339be507e0472"
+      },
+      "run": {
+        "utc": "2026-11-12T20:07:15+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "abe98f486b8f5c8b688b6808c3373da0d17ecce3",
+          "dirty": false
+        }
+      }
+    }
+  },
+  {
     "name": "HypoidGearMeshCheck_offset_25p0_40p0",
     "model": "RotorDynamics.TestModels.HypoidGearMeshCheck",
     "variables": [
@@ -9122,6 +9432,95 @@
       "kind": "dynamic"
     },
     "descriptor": "impact workspace 'rotordynamicsdevelopment'"
+  },
+  {
+    "name": "RackPinionHelicalReversalCheck_drawn",
+    "model": "RotorDynamics.TestModels.RackPinionHelicalReversalCheck",
+    "variables": [
+      "err_delta_coast",
+      "err_gap",
+      "nFlankChanges",
+      "rackPinion.F_ax1",
+      "rackPinion.F_sep",
+      "rackPinion.sigma",
+      "rackPinion.v_rack",
+      "time"
+    ],
+    "metrics": {
+      "solver": "CVode",
+      "linear_multistep_method": "BDF",
+      "nonlinear_solver": "Newton",
+      "linear_solver_type": "DENSE",
+      "rtol": 1e-11,
+      "cpu_time": 1.0486506519955583,
+      "steps": 23160,
+      "rhs_evaluations": 28650,
+      "jacobian_evaluations": 419,
+      "time_events": 3,
+      "error_test_failures": 989,
+      "convergence_failures": 0,
+      "state_events": 36,
+      "kind": "dynamic"
+    },
+    "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+    "units": {
+      "rackPinion.F_sep": "N",
+      "rackPinion.F_ax1": "N",
+      "rackPinion.v_rack": "m/s"
+    },
+    "display_units": {},
+    "format": "npz",
+    "bytes": 176621,
+    "record": {
+      "schema": 1,
+      "record_id": "9a2b67f9b7976398477d7871ca03a2355b9d39e839b84bef7807cd30191391ad",
+      "executable": {
+        "fmi_version": "2.0",
+        "generation_date": "2026-11-12T20:07:37",
+        "generation_tool": "Optimica Compiler Toolkit",
+        "guid": "73e3c80f0de23538f831d686f4d71c61",
+        "impact_fmu_id": "_ynamics_testmodels_rackpinionhelicalreversalcheck_20261112_200733_fed1072",
+        "model_description_sha256": "368703aa736cd566ef4c3a1e72ff1f04632e6b4cd0af98ccc8bbb35319374529"
+      },
+      "experiment": {
+        "case_entry_sha256": "0fd54d8bf4e4d460a87df5d62bd3ef11ff9ba10c212972886038106f9359c6ea",
+        "descriptor": "impact workspace 'rotordynamicsdevelopment'",
+        "engine": "impact",
+        "impact_case_id": "case_1",
+        "impact_experiment_id": "_ynamics_testmodels_rackpinionhelicalreversalcheck_20261112_200733_cbce6d6",
+        "released": true,
+        "rtol_factor": 1.0,
+        "workspace": "rotordynamicsdevelopment",
+        "definition_sha256": "9399ec7c5e5e0ac87090f766968b4312c9d65ebfd30c19da4a160fe23dff12e5"
+      },
+      "model": {
+        "class": "RotorDynamics.TestModels.RackPinionHelicalReversalCheck",
+        "libraries": [
+          {
+            "local": false,
+            "name": "RotorDynamics"
+          }
+        ],
+        "modifiers": {
+          "rotorWorld.enableAnimation": true,
+          "rotorWorld.showForces": true
+        }
+      },
+      "result": {
+        "bytes": 176621,
+        "file": "RackPinionHelicalReversalCheck_drawn.npz",
+        "format": "npz",
+        "sha256": "4f80513358014732e9d3cbca86aa1ab12f4a5874112fc36da1a004e08e37f481"
+      },
+      "run": {
+        "utc": "2026-11-12T20:07:40+00:00",
+        "modcheck": {
+          "api": 1,
+          "commit": "abe98f486b8f5c8b688b6808c3373da0d17ecce3",
+          "dirty": false
+        }
+      }
+    }
   },
   {
     "name": "RackPinionReversalCheck_PinionBelow",
